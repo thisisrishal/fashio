@@ -167,20 +167,20 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4, bottom: 4),
-                    child: CustomBanner(
-                      controller: _controller,
-                      current: _current,
-                      title: 'Recommended \nProduct ',
-                      // offer: 'Product',
-                      imageList: imgList,
-                      subRow: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SubTitle(
-                          text: 'We recommend the Best for you',
-                          color: AppColor.kWhite,
+                      child: CustomBanner(
+                        controller: _controller,
+                        current: _current,
+                        title: 'Recommended \nProduct ',
+                        // offer: 'Product',
+                        imageList: imgList,
+                        subRow: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: SubTitle(
+                            text: 'We recommend the Best for you',
+                            color: AppColor.kWhite,
+                          ),
                         ),
                       ),
-                    ),
                   ),
                   AppSize.kSizedBox10h,
                   GridView.builder(

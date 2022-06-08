@@ -15,7 +15,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   final pages = [
     HomeScreen(),
-    const OfferScreen(),
+     OfferScreen(),
     // Container(color: Colors.green),
     Container(color: Colors.orange),
     Container(color: Colors.indigo),
