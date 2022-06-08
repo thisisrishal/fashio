@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Fashio',
               theme: ThemeData(
+                scaffoldBackgroundColor: Colors.white,
                 primarySwatch: Colors.blue,
                 fontFamily: 'poppins'
               ),

@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:fashio/ui/pages/home/components/components.dart';
-import 'package:fashio/ui/pages/login/components/components.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
-import 'package:fashio/ui/shared/components/text_filed.dart';
+import 'package:fashio/ui/pages/home/components/components.dart';
+import 'package:fashio/ui/pages/login/components/components.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
 import 'package:fashio/utils/constants.dart';
 
@@ -21,6 +20,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
+              // title: HeadTitle(text: 'Fashio',fontSize: 20,),
               leadingWidth: 44,
               leading: const Padding(
                 padding: EdgeInsets.only(left: 10.0),
@@ -37,38 +37,38 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: AppColor.kWhite,
               elevation: 0,
             ),
-            body: Container(
-                // margin: const EdgeInsets.all( 8),
-                // padding: const EdgeInsets.all(8.0),
-                child: SingleChildScrollView(
+            body: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 20),
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        // SizedBox( child: Logo()),
-                        // SizedBox(
-                        //     width: 70.w,
-                        //     height: 5.h,
-                        //     child: CustomTextField(
-                        //         controller: _searchController,
-                        //         label: 'Search Product',
-                        //         icon: AppIcons.iconSearch)),
-                        // AppIcons.iconFavourite,
-                        // AppSize.kSizedBox10w,
-                        // AppIcons.iconNotification
-                      ],
+                      children: const [],
                     ),
                   ),
-                  AppSize.kSizedBox20h,
+                  AppSize.kSizedBox10h,
                   CustomBanner(
                     controller: _controller,
                     current: _current,
-                    title: 'Super Flash Sale',
-                    offer: '50',
+                    title: 'Super Flash Sale \n 50% off',
+                    // offer: '50',
+                    imageList: imgList,
+                    subRow: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TimeContainer(time: '08'),
+                        const CustomColon(),
+                        TimeContainer(time: '34'),
+                        const CustomColon(),
+                        TimeContainer(time: '52'),
+                      ],
+                    ),
                   ),
                   Obx(() {
                     return Row(
@@ -89,15 +89,127 @@ class HomeScreen extends StatelessWidget {
                               // ignore: unrelated_type_equality_checks
                               color: _current == entry.key
                                   ? AppColor.kThemeBlue
-                                  : AppColor.KDarkWhite,
+                                  : AppColor.kDarkWhite,
                             ),
                           ),
                         );
                       }).toList(),
                     );
                   }),
+                  AppSize.kSizedBox20h,
+                  const TextBar(
+                      firstTitle: 'Catetgory', secondTitle: 'More Category'),
+                  AppSize.kSizedBox20h,
+                  SizedBox(
+                    height: 12.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return CategoryRound(
+                            index: index, imgSrc: imgList[index]);
+                      },
+                      itemCount: 10,
+                      shrinkWrap: true,
+                    ),
+                  ),
+                  AppSize.kSizedBox10h,
+                  const TextBar(
+                      firstTitle: 'Flash Sale', secondTitle: 'See More'),
+                  // AppSize.kSizedBox10h,
+                  SizedBox(
+                    height: 33.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                            left: 8,
+                            top: 8,
+                            bottom: 8,
+                            right: 4,
+                          ),
+                          child: ProductCard(
+                              imgSrc: imgList[index],
+                              name: 'FS - Nike Air max 270 React new',
+                              currentPrize: '2999',
+                              originalPrize: '4999',
+                              offer: '24'),
+                        );
+                      },
+                    ),
+                  ),
+                  AppSize.kSizedBox10h,
+                  const TextBar(
+                      firstTitle: 'Mega Sale', secondTitle: 'See more'),
+                  SizedBox(
+                    height: 33.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                            left: 8,
+                            top: 8,
+                            bottom: 8,
+                            right: 4,
+                          ),
+                          child: ProductCard(
+                              imgSrc: imgList[index],
+                              name: 'FS - Nike Air max 270 React new',
+                              currentPrize: '2999',
+                              originalPrize: '4999',
+                              offer: '24'),
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4, bottom: 4),
+                    child: CustomBanner(
+                      controller: _controller,
+                      current: _current,
+                      title: 'Recommended \nProduct ',
+                      // offer: 'Product',
+                      imageList: imgList,
+                      subRow: const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SubTitle(
+                          text: 'We recommend the Best for you',
+                          color: AppColor.kWhite,
+                        ),
+                      ),
+                    ),
+                  ),
+                  AppSize.kSizedBox10h,
+                  GridView.builder(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.0,
+                      crossAxisSpacing: 10.0,
+                      mainAxisSpacing: 10.0,
+                      mainAxisExtent: 33.h,
+                    ),
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ProductCard(
+                        imgSrc: imgList[index],
+                        name: 'FS - Nike Air max 270 React new',
+                        currentPrize: '2999',
+                        originalPrize: '4999',
+                        offer: '24',
+                        star: true,
+                        imgWidth: 40.w,
+                      );
+                    },
+                  ),
+                  AppSize.kSizedBox20h
                 ],
               ),
-            ))));
+            )));
   }
 }

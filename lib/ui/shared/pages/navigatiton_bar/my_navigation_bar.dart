@@ -1,4 +1,5 @@
 import 'package:fashio/ui/pages/home/home_screen.dart';
+import 'package:fashio/ui/pages/offer/offer.dart';
 import 'package:fashio/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,8 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   final pages = [
     HomeScreen(),
-    Container(color: Colors.green),
+    const OfferScreen(),
+    // Container(color: Colors.green),
     Container(color: Colors.orange),
     Container(color: Colors.indigo),
     Container(color: Colors.yellow)
@@ -36,9 +38,9 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
               activeIcon: ChangeIconColor.iconHome,
             ),
             BottomNavigationBarItem(
-              icon: AppIcons.iconFavourite,
-              label: 'Favorite',
-              activeIcon: ChangeIconColor.iconFavourite,
+              icon: AppIcons.iconOffer,
+              label: 'Offer',
+              activeIcon: ChangeIconColor.iconOffer,
             ),
             BottomNavigationBarItem(
               icon: AppIcons.iconCart,
@@ -46,9 +48,9 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
               activeIcon: ChangeIconColor.iconCart,
             ),
             BottomNavigationBarItem(
-              icon: AppIcons.iconOffer,
-              label: 'Offer',
-              activeIcon: ChangeIconColor.iconOffer,
+              icon: AppIcons.iconFavourite,
+              label: 'Favorite',
+              activeIcon: ChangeIconColor.iconFavourite,
             ),
             BottomNavigationBarItem(
               icon: AppIcons.iconPerson,
@@ -62,7 +64,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             color: AppColor.kThemeBlue,
           ),
           unselectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w400,
             fontSize: 10,
             color: AppColor.kWhite,
           ),

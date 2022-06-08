@@ -43,71 +43,79 @@ class TimeContainer extends StatelessWidget {
 }
 
 class CustomBanner extends StatelessWidget {
-  const CustomBanner({
-    Key? key,
-    required CarouselController controller,
-    required RxInt current,
-    required String title,
-    required String offer,
-  })  : _controller = controller,
+  const CustomBanner(
+      {Key? key,
+      required CarouselController controller,
+      required RxInt current,
+      required String title,
+      // required String offer,
+      required List imageList,
+      required Widget subRow})
+      : _controller = controller,
         _current = current,
         _title = title,
-        _offer = offer,
+        // _offer = offer,
+        imgNewList = imageList,
+        subRow = subRow,
         super(key: key);
 
   final CarouselController _controller;
   final RxInt _current;
   final String _title;
-  final String _offer;
+  // final String _offer;
+  final List imgNewList;
+  final Widget subRow;
 
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
       carouselController: _controller,
-      itemCount: imgList.length,
+      itemCount: imgNewList.length,
       itemBuilder: (BuildContext context, int index, int pageViewIndex) =>
           Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Stack(children: [
+          // AppSize.kSizedBox10h,
           Container(
-              // height: 206,
+              // height: 400,
               width: 100.w,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(imgList[index]), fit: BoxFit.cover),
                   color: Colors.green,
                   borderRadius: const BorderRadius.all(
-                    Radius.circular(10),
+                    Radius.circular(4),
                   ))),
-          Positioned(
-            bottom: 6.w,
-            left: 2.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TimeContainer(time: '08'),
-                const CustomColon(),
-                TimeContainer(time: '34'),
-                const CustomColon(),
-                TimeContainer(time: '52'),
-              ],
-            ),
-          ),
+          Positioned(bottom: 6.w, left: 2.w, child: subRow),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HeadTitle(
-                  text: _title,
-                  color: AppColor.kWhite,
-                  fontSize: 24,
-                ),
-                HeadTitle(
-                  text: '$_offer% off',
-                  color: AppColor.kWhite,
-                  fontSize: 24,
+                AppSize.kSizedBox10h,
+                SizedBox(
+                  width: 60.w,
+                  child: Text(
+                    _title,
+                    style: const TextStyle(
+                      color: AppColor.kWhite,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    maxLines: 2,
+                  ),
                 )
+                // HeadTitle(
+                //   text: _title,
+                //   color: AppColor.kWhite,
+                //   fontSize: 24,
+                // ),
+                // HeadTitle(
+                //   text: '$_offer% off',
+                //   color: AppColor.kWhite,
+                //   fontSize: 24,
+                // )
               ],
             ),
           )
@@ -123,4 +131,221 @@ class CustomBanner extends StatelessWidget {
           }),
     );
   }
+}
+
+class ProductCard extends StatelessWidget {
+  final String imgSrc;
+  final String name;
+  final String currentPrize;
+  final String originalPrize;
+  final String offer;
+  final bool star;
+   final double? imgWidth ;
+   ProductCard(
+      {Key? key,
+      required this.imgSrc,
+      required this.name,
+      required this.currentPrize,
+      required this.originalPrize,
+      required this.offer,
+      this.star = false,
+      this.imgWidth 
+    //  this.imgWidth 30.w
+      })
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 1, color: AppColor.kDarkWhite),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      // padding: const EdgeInsets.only(left: 4,top: 8,bottom: 8,right: 4),
+      child: Container(
+        margin: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 14.h,
+              width: imgWidth ?? 30.w,
+              decoration: BoxDecoration(
+                color: AppColor.kThemeBlue,
+                borderRadius: BorderRadius.circular(4.0),
+                image: DecorationImage(
+                  image: NetworkImage(imgSrc),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppSize.kSizedBox10h,
+                CardText(
+                  text: name,
+                ),
+                Row(children: star ? starsForRatings() : []),
+                AppSize.kSizedBox10h,
+                HeadTitle(
+                    text: ' ₹$currentPrize',
+                    color: AppColor.kThemeBlue,
+                    fontSize: 12),
+                AppSize.kSizedBox10h,
+                Row(
+                  children: [
+                    Text(' ₹$originalPrize',
+                        style: const TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                          color: AppColor.kLightGrey,
+                          fontSize: 10,
+                        )),
+                    AppSize.kSizedBox10w,
+                    HeadTitle(
+                      text: '$offer% off',
+                      color: AppColor.kNotificationRose,
+                      fontSize: 10,
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CategoryRound extends StatelessWidget {
+  final int index;
+  final String imgSrc;
+  const CategoryRound({
+    Key? key,
+    required this.index,
+    required this.imgSrc,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 8),
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: AppColor.kWhite),
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 1,
+                    color: AppColor.kLightGrey.withOpacity(0.8),
+                    spreadRadius: 0,
+                    // blurStyle: BlurStyle.outer,
+                    offset: const Offset(0, 3))
+              ],
+            ),
+            child: CircleAvatar(
+              radius: 30.0,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50.0),
+                child: Image.network(
+                  imgSrc,
+                  fit: BoxFit.fill,
+                  scale: 1,
+                  width: 60,
+                  height: 60,
+                ),
+              ),
+            ),
+          ),
+          AppSize.kSizedBox5h,
+          SubTitle(
+            text: nameList[index],
+            fontSize: 10.sp,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class CardText extends StatelessWidget {
+  final String text;
+  final double fontSize;
+
+  const CardText({
+    Key? key,
+    required this.text,
+    this.fontSize = 12,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        width: 100,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: AppColor.kDarkBluePrimary,
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+            overflow: TextOverflow.ellipsis,
+          ),
+          maxLines: 2,
+        ));
+  }
+}
+
+class TextBar extends StatelessWidget {
+  final String firstTitle;
+  final String secondTitle;
+  const TextBar({
+    Key? key,
+    required this.firstTitle,
+    required this.secondTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          HeadTitle(
+            text: firstTitle,
+            fontSize: 14,
+          ),
+          HeadTitle(
+            text: secondTitle,
+            fontSize: 13,
+            color: AppColor.kThemeBlue,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+const int _rating = 4;
+List<Icon> starsForRatings() {
+  List<Icon> stars = [];
+  for (int i = 0; i < _rating; i++) {
+    stars.add(const Icon(
+      Icons.star_rate_rounded,
+      size: 16,
+      color: Colors.yellow,
+    ));
+  }
+  for (int i = 0; i < 5 - _rating; i++) {
+    stars.add(const Icon(
+      Icons.star_rate_rounded,
+      size: 16,
+      color: AppColor.kDarkWhite,
+      // color: Colors.yellow,
+    ));
+  }
+  return stars;
 }
