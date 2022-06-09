@@ -7,11 +7,13 @@ class HeadTitle extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color color;
+  final FontWeight fontWeight;
   HeadTitle({
     Key? key,
     required this.text,
     this.fontSize = 14,
     this.color = AppColor.kDarkBlue,
+    this.fontWeight = FontWeight.bold,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class HeadTitle extends StatelessWidget {
       style: TextStyle(
         color: color,
         fontSize: fontSize,
-        fontWeight: FontWeight.bold,
+        fontWeight: fontWeight,
       ),
     );
   }

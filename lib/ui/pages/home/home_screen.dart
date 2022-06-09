@@ -19,24 +19,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            appBar: AppBar(
-              // title: HeadTitle(text: 'Fashio',fontSize: 20,),
-              leadingWidth: 44,
-              leading: const Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Logo(),
-              ),
-              actions: [
-                AppIcons.iconSearch,
-                AppSize.kSizedBox10w,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: AppIcons.iconNotification,
-                )
-              ],
-              backgroundColor: AppColor.kWhite,
-              elevation: 0,
-            ),
+            appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(50),
+                child: CustomAppBar(
+                    leading: const Logo(),
+                    title: 'Fashio',
+                  
+                    trailing: AppIcons.iconNotification,
+                    trailing2: AppIcons.iconSearch,
+                )),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
@@ -108,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                         return CategoryRound(
                             index: index, imgSrc: imgList[index]);
                       },
-                      itemCount: 10,
+                      itemCount: 6,
                       shrinkWrap: true,
                     ),
                   ),
@@ -167,20 +158,20 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4, bottom: 4),
-                      child: CustomBanner(
-                        controller: _controller,
-                        current: _current,
-                        title: 'Recommended \nProduct ',
-                        // offer: 'Product',
-                        imageList: imgList,
-                        subRow: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: SubTitle(
-                            text: 'We recommend the Best for you',
-                            color: AppColor.kWhite,
-                          ),
+                    child: CustomBanner(
+                      controller: _controller,
+                      current: _current,
+                      title: 'Recommended \nProduct ',
+                      // offer: 'Product',
+                      imageList: imgList,
+                      subRow: const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SubTitle(
+                          text: 'We recommend the Best for you',
+                          color: AppColor.kWhite,
                         ),
                       ),
+                    ),
                   ),
                   AppSize.kSizedBox10h,
                   GridView.builder(

@@ -1,3 +1,6 @@
+import 'package:fashio/ui/pages/account/account.dart';
+import 'package:fashio/ui/pages/cart/cart.dart';
+import 'package:fashio/ui/pages/favourite/favourite.dart';
 import 'package:fashio/ui/pages/home/home_screen.dart';
 import 'package:fashio/ui/pages/offer/offer.dart';
 import 'package:fashio/utils/constants.dart';
@@ -15,11 +18,10 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   final pages = [
     HomeScreen(),
-     OfferScreen(),
-    // Container(color: Colors.green),
-    Container(color: Colors.orange),
-    Container(color: Colors.indigo),
-    Container(color: Colors.yellow)
+    OfferScreen(),
+    const CartPage(),
+    const FavouriteScreen(),
+    const AccountScreen()
   ];
 
   @override

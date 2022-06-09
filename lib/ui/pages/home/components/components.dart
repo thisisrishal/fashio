@@ -140,8 +140,10 @@ class ProductCard extends StatelessWidget {
   final String originalPrize;
   final String offer;
   final bool star;
-   final double? imgWidth ;
-   ProductCard(
+  final double? imgWidth;
+  final double? textWidth;
+  bool delete;
+  ProductCard(
       {Key? key,
       required this.imgSrc,
       required this.name,
@@ -149,8 +151,10 @@ class ProductCard extends StatelessWidget {
       required this.originalPrize,
       required this.offer,
       this.star = false,
-      this.imgWidth 
-    //  this.imgWidth 30.w
+      this.imgWidth,
+      this.delete = false,
+      this.textWidth
+      //  this.imgWidth 30.w
       })
       : super(key: key);
 
@@ -163,7 +167,7 @@ class ProductCard extends StatelessWidget {
       ),
       // padding: const EdgeInsets.only(left: 4,top: 8,bottom: 8,right: 4),
       child: Container(
-        margin: const EdgeInsets.all(14),
+        margin: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -185,6 +189,7 @@ class ProductCard extends StatelessWidget {
                 AppSize.kSizedBox10h,
                 CardText(
                   text: name,
+                  width: textWidth,
                 ),
                 Row(children: star ? starsForRatings() : []),
                 AppSize.kSizedBox10h,
@@ -194,6 +199,8 @@ class ProductCard extends StatelessWidget {
                     fontSize: 12),
                 AppSize.kSizedBox10h,
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(' ₹$originalPrize',
                         style: const TextStyle(
@@ -207,6 +214,8 @@ class ProductCard extends StatelessWidget {
                       color: AppColor.kNotificationRose,
                       fontSize: 10,
                     ),
+                    AppSize.kSizedBox20w,
+                    delete ? AppIcons.iconDelete : Container(),
                   ],
                 ),
               ],
@@ -274,17 +283,19 @@ class CategoryRound extends StatelessWidget {
 class CardText extends StatelessWidget {
   final String text;
   final double fontSize;
+  final double? width;
 
   const CardText({
     Key? key,
     required this.text,
     this.fontSize = 12,
+    this.width,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 100,
+        width: width ?? 28.w,
         child: Text(
           text,
           style: TextStyle(

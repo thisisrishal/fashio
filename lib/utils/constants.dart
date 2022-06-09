@@ -1,3 +1,4 @@
+import 'package:fashio/ui/shared/components/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,6 +23,8 @@ class AppColor {
 
 class AppSize {
   static const SizedBox kSizedBox5h = SizedBox(height: 5);
+  static const SizedBox kSizedBox5w = SizedBox(width:5);
+
   static const SizedBox kSizedBox10h = SizedBox(height: 10);
   static const SizedBox kSizedBox20h = SizedBox(height: 20);
   static const SizedBox kSizedBox10w = SizedBox(width: 10);
@@ -63,6 +66,12 @@ class AppIcons {
     'assets/icons/S04tar.svg',
     color: Colors.yellow,
   );
+  static SvgPicture iconDelete = SvgPicture.asset(
+    'assets/icons/Trash.svg',
+  );
+  static SvgPicture icondown = SvgPicture.asset(
+    'assets/icons/svgviewer-output.svg',
+  );
 }
 
 class ChangeIconColor {
@@ -86,12 +95,12 @@ class ChangeIconColor {
     'assets/icons/person.svg',
     color: AppColor.kThemeBlue,
   );
-
-  // static SvgPicture iconPerson = SvgPicture.asset(
-  //   'assets/icons/person.svg',
-  //   color: AppColor.kThemeBlue,
-  // );
-
+  static SvgPicture iconBag = SvgPicture.asset(
+    'assets/icons/bag.svg',
+  );
+  static SvgPicture iconlocation = SvgPicture.asset(
+    'assets/icons/location.svg',
+  );
 }
 
 final List<String> imgList = [
@@ -112,3 +121,47 @@ List nameList = [
   'Western',
   'Abaya'
 ];
+
+class CustomAppBar extends StatelessWidget {
+  final Widget? leading;
+  final String title;
+  final Widget trailing;
+  final Widget? trailing2;
+  final double? leadingWidth;
+
+  const CustomAppBar({
+    Key? key,
+    this.leading,
+    this.title = '',
+    this.trailing = const SizedBox(width: 0),
+    this.trailing2,
+    this.leadingWidth,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      // title: HeadTitle(text: 'Fashio',fontSize: 20,),
+      leadingWidth: leadingWidth ?? 44,
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 10.0),
+        child: leading,
+      ),
+      title: HeadTitle(text: title, fontSize: 20, fontWeight: FontWeight.bold),
+
+      actions: [
+        Row(
+          children: [
+            Padding(padding: const EdgeInsets.all(8.0), child: trailing2),
+            // AppSize.kSizedBox10w,
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: trailing)
+          ],
+        )
+      ],
+      backgroundColor: AppColor.kWhite,
+      elevation: .4,
+    );
+  }
+}
