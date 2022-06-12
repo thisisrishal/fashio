@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fashio/ui/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -22,11 +23,14 @@ class HomeScreen extends StatelessWidget {
             appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(50),
                 child: CustomAppBar(
-                    leading: const Logo(),
-                    title: 'Fashio',
-                  
-                    trailing: AppIcons.iconNotification,
-                    trailing2: AppIcons.iconSearch,
+                  leading: const Logo(),
+                  title: 'Fashio',
+                  trailing: AppIcons.iconNotification,
+                  trailing2: AppIcons.iconSearch,
+                  trailing2OnTap: //goto search page using get
+                      () {
+                    Get.to(const SearchScreen());
+                  },
                 )),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),

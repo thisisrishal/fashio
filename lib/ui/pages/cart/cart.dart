@@ -206,7 +206,7 @@ class CartPage extends StatelessWidget {
                               // fontWeight: FontWeight.w900
                             ),
                           ),
-                          AppSize.kSizedBox10h,
+                          AppSize.kSizedBox20h,
                           Padding(
                             padding: const EdgeInsets.only(left: 4),
                             child: HeadTitle(
@@ -220,10 +220,13 @@ class CartPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                   Positioned(
-                    bottom:5.h,
-                    child: Container(color: AppColor.kDarkGrey.withOpacity(.8),height: 1,width: 92.w,)
-                  ),
+                  Positioned(
+                      bottom: 5.5.h,
+                      child: Container(
+                        color: AppColor.kDarkGrey.withOpacity(.8),
+                        height: 1,
+                        width: 92.w,
+                      )),
                 ],
               ),
               AppSize.kSizedBox10h,
@@ -237,7 +240,7 @@ class CartPage extends StatelessWidget {
                       color: AppColor.kThemeBlue.withOpacity(.5),
                       blurRadius: 4,
                       spreadRadius: 1,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                   color: AppColor.kThemeBlue,

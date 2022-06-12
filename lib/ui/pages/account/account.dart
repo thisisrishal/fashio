@@ -42,7 +42,7 @@ class CustomListTile extends StatelessWidget {
   const CustomListTile({
     Key? key,
     required this.leading,
-    required this.title,
+     this.title='',
   }) : super(key: key);
 
   @override

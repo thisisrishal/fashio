@@ -2,6 +2,7 @@ import 'package:fashio/ui/shared/components/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class AppColor {
   static const Color kWhite = Color(0xFFFFFFFF);
@@ -19,11 +20,13 @@ class AppColor {
   static const Color kNotificationRose = Color(0xFFFB7181);
   static const Color kerrorRed = Color(0xFFFF6E6E);
   static const Color kstarYellow = Color(0xFFFFC833);
+  static const Color kblack = Colors.black;
+
 }
 
 class AppSize {
   static const SizedBox kSizedBox5h = SizedBox(height: 5);
-  static const SizedBox kSizedBox5w = SizedBox(width:5);
+  static const SizedBox kSizedBox5w = SizedBox(width: 5);
 
   static const SizedBox kSizedBox10h = SizedBox(height: 10);
   static const SizedBox kSizedBox20h = SizedBox(height: 20);
@@ -53,8 +56,12 @@ class AppIcons {
   static SvgPicture iconSearch = SvgPicture.asset(
     'assets/icons/search.svg',
   );
-  static SvgPicture iconCart = SvgPicture.asset(
-    'assets/icons/Cart.svg',
+  // static SvgPicture iconCart = SvgPicture.asset(
+  //   'assets/icons/Cart.svg',
+  // );
+  static Icon iconCart = const Icon(
+    Icons.shopping_cart_outlined,
+    color: AppColor.kLightGrey,
   );
   static SvgPicture iconOffer = SvgPicture.asset(
     'assets/icons/Offer.svg',
@@ -71,6 +78,9 @@ class AppIcons {
   );
   static SvgPicture icondown = SvgPicture.asset(
     'assets/icons/svgviewer-output.svg',
+  );
+  static SvgPicture iconMic = SvgPicture.asset(
+    'assets/icons/mic.svg',
   );
 }
 
@@ -125,18 +135,20 @@ List nameList = [
 class CustomAppBar extends StatelessWidget {
   final Widget? leading;
   final String title;
-  final Widget trailing;
+  final Widget? trailing;
   final Widget? trailing2;
   final double? leadingWidth;
+  final VoidCallback? trailing2OnTap;
 
-  const CustomAppBar({
-    Key? key,
-    this.leading,
-    this.title = '',
-    this.trailing = const SizedBox(width: 0),
-    this.trailing2,
-    this.leadingWidth,
-  }) : super(key: key);
+  const CustomAppBar(
+      {Key? key,
+      this.leading,
+      this.title = '',
+      this.trailing,
+      this.trailing2,
+      this.leadingWidth,
+      this.trailing2OnTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +164,12 @@ class CustomAppBar extends StatelessWidget {
       actions: [
         Row(
           children: [
-            Padding(padding: const EdgeInsets.all(8.0), child: trailing2),
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: trailing2OnTap ?? () {},
+                  child: trailing2 ?? Container(),
+                )),
             // AppSize.kSizedBox10w,
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
