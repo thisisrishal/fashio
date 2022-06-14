@@ -1,12 +1,15 @@
-import 'package:fashio/ui/shared/components/texts.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
+import 'package:sizer/sizer.dart';
+
+import 'package:fashio/ui/shared/components/texts.dart';
 
 class AppColor {
   static const Color kWhite = Color(0xFFFFFFFF);
-  static const Color kThemeBlue = Color.fromARGB(231, 64, 191, 255);
+  static const Color kThemeBlue = Color.fromARGB(229, 64, 191, 255);
+  static const Color kLightBlue = Color.fromARGB(113, 64, 191, 255);
 
   static const Color kDarkBlue = Color(0xFF020D4D);
   static const Color kDarkBluePrimary = Color(0xFF223263);
@@ -21,7 +24,6 @@ class AppColor {
   static const Color kerrorRed = Color(0xFFFF6E6E);
   static const Color kstarYellow = Color(0xFFFFC833);
   static const Color kblack = Colors.black;
-
 }
 
 class AppSize {
@@ -71,7 +73,7 @@ class AppIcons {
   );
   static SvgPicture iconStar = SvgPicture.asset(
     'assets/icons/S04tar.svg',
-    color: Colors.yellow,
+    color: Colors.amber,
   );
   static SvgPicture iconDelete = SvgPicture.asset(
     'assets/icons/Trash.svg',
@@ -82,9 +84,22 @@ class AppIcons {
   static SvgPicture iconMic = SvgPicture.asset(
     'assets/icons/mic.svg',
   );
+  static Icon iconBack = const Icon(
+    Icons.chevron_left,
+    color: AppColor.kLightGrey,
+  );
+
+  static Icon iconMore = const Icon(
+    Icons.more_vert_rounded,
+    color: Colors.grey,
+  );
 }
 
 class ChangeIconColor {
+  static Icon iconCart1 = const Icon(
+    Icons.shopping_cart_outlined,
+    color: AppColor.kThemeBlue,
+  );
   static SvgPicture iconHome = SvgPicture.asset(
     'assets/icons/Home.svg',
     color: AppColor.kThemeBlue,
@@ -93,10 +108,10 @@ class ChangeIconColor {
     'assets/icons/favourite.svg',
     color: AppColor.kThemeBlue,
   );
-  static SvgPicture iconCart = SvgPicture.asset(
-    'assets/icons/Cart.svg',
-    color: AppColor.kThemeBlue,
-  );
+  // static SvgPicture iconCart = SvgPicture.asset(
+  //   'assets/icons/Cart.svg',
+  //   color: AppColor.kThemeBlue,
+  // );
   static SvgPicture iconOffer = SvgPicture.asset(
     'assets/icons/Offer.svg',
     color: AppColor.kThemeBlue,
@@ -122,7 +137,7 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
 ];
 
-List nameList = [
+List<String> nameList = [
   'Men',
   'Women',
   'Kids',
@@ -131,6 +146,59 @@ List nameList = [
   'Western',
   'Abaya'
 ];
+List<String> sizeList = ['S', 'M', 'L', 'XL'];
+List<Color> colorList = [Colors.yellow,Colors.blue,Colors.pink,Colors.green,Colors.purple[900]!,];
+
+List<Widget> starList = [
+  const CustomRatings(text: 'All Review', star: false),
+  // const Text('All Review'),
+  const CustomRatings(text: '1'),
+  const CustomRatings(text: '2'),
+  const CustomRatings(text: '3'),
+  const CustomRatings(text: '4'),
+  const CustomRatings(text: '5'),
+];
+
+class CustomRatings extends StatelessWidget {
+  final String text;
+  final bool star;
+  const CustomRatings({
+    Key? key,
+    required this.text,
+    this.star = true,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10.sp),
+      decoration: BoxDecoration(
+          // color: AppColor.kThemeBlue,
+          borderRadius: BorderRadius.circular(4.sp),
+          border: Border.all(color: AppColor.kLightGrey.withOpacity(.2))),
+      child: Row(
+        children: [
+          star
+              ? SvgPicture.asset(
+                  'assets/icons/S04tar.svg',
+                  color: Colors.amber,
+                  height: 12.sp,
+                  width: 12.sp,
+                )
+              : Container(),
+          AppSize.kSizedBox5w,
+          SubTitle(
+            text: text,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins-Thin',
+            color: AppColor.kDarkBlue.withOpacity(.6),
+          )
+        ],
+      ),
+    );
+  }
+}
 
 class CustomAppBar extends StatelessWidget {
   final Widget? leading;
@@ -159,7 +227,12 @@ class CustomAppBar extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10.0),
         child: leading,
       ),
-      title: HeadTitle(text: title, fontSize: 20, fontWeight: FontWeight.bold),
+      title: HeadTitle(
+        text: title,
+        fontSize: 13.sp,
+        fontWeight: FontWeight.bold,
+        color: const Color.fromARGB(215, 2, 13, 77),
+      ),
 
       actions: [
         Row(
@@ -179,6 +252,62 @@ class CustomAppBar extends StatelessWidget {
       ],
       backgroundColor: AppColor.kWhite,
       elevation: .4,
+    );
+  }
+}
+
+class CustomElevatedButton extends StatelessWidget {
+  final String text;
+
+  const CustomElevatedButton({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 16.w,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.kThemeBlue.withOpacity(.5),
+            blurRadius: 4,
+            spreadRadius: 1,
+            offset: const Offset(0, 3),
+          ),
+        ],
+        color: AppColor.kThemeBlue,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Center(
+        child: HeadTitle(
+          text: text,
+          color: AppColor.kWhite,
+        ),
+      ),
+    );
+  }
+}
+
+class PrizeListRow extends StatelessWidget {
+  final Widget leading;
+  final Widget trailing;
+  const PrizeListRow({
+    Key? key,
+    required this.leading,
+    required this.trailing,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [leading, trailing],
+      ),
     );
   }
 }

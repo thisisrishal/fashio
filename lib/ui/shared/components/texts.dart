@@ -6,14 +6,16 @@ import '../../../utils/constants.dart';
 class HeadTitle extends StatelessWidget {
   final String text;
   final double fontSize;
-  final Color color;
+  final Color? color;
   final FontWeight fontWeight;
-  HeadTitle({
+  final String fontFamily;
+  const HeadTitle({
     Key? key,
     required this.text,
     this.fontSize = 14,
-    this.color = AppColor.kDarkBlue,
+    this.color,
     this.fontWeight = FontWeight.bold,
+    this.fontFamily = 'poppins',
   }) : super(key: key);
 
   @override
@@ -21,10 +23,10 @@ class HeadTitle extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: color,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-      ),
+          color: color ?? const Color(0xD1020D4D),
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          fontFamily: fontFamily),
     );
   }
 }
@@ -34,19 +36,25 @@ class SubTitle extends StatelessWidget {
   final double fontSize;
   final FontWeight fontWeight;
   final Color color;
+  final String fontFamily;
   const SubTitle({
     Key? key,
     required this.text,
     this.fontSize = 12,
     this.fontWeight = FontWeight.normal,
-     this.color= AppColor.kLightGrey,
+    this.color = AppColor.kLightGrey,
+    this.fontFamily = 'poppins',
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(color: color, fontWeight: fontWeight,fontSize: fontSize),
+      style: TextStyle(
+          color: color,
+          fontWeight: fontWeight,
+          fontSize: fontSize,
+          fontFamily: fontFamily),
     );
   }
 }

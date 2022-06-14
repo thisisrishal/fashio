@@ -47,16 +47,20 @@ class CustomBanner extends StatelessWidget {
       {Key? key,
       required CarouselController controller,
       required RxInt current,
-      required String title,
+      String title = '',
       // required String offer,
       required List imageList,
-      required Widget subRow})
+      required Widget subRow,
+      bool autoPlay = true,
+      double padding = 10})
       : _controller = controller,
         _current = current,
         _title = title,
         // _offer = offer,
         imgNewList = imageList,
         subRow = subRow,
+        padding = padding,
+        autoPlay = autoPlay,
         super(key: key);
 
   final CarouselController _controller;
@@ -65,6 +69,8 @@ class CustomBanner extends StatelessWidget {
   // final String _offer;
   final List imgNewList;
   final Widget subRow;
+  final double padding;
+  final bool autoPlay;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +79,7 @@ class CustomBanner extends StatelessWidget {
       itemCount: imgNewList.length,
       itemBuilder: (BuildContext context, int index, int pageViewIndex) =>
           Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: padding),
         child: Stack(children: [
           // AppSize.kSizedBox10h,
           Container(
@@ -122,10 +128,11 @@ class CustomBanner extends StatelessWidget {
         ]),
       ),
       options: CarouselOptions(
-          autoPlay: true,
+          autoPlay: autoPlay,
           viewportFraction: 1,
           enlargeCenterPage: true,
           aspectRatio: 2,
+          height: 32.h,
           onPageChanged: (index, reason) {
             _current.value = index;
           }),
@@ -284,12 +291,16 @@ class CardText extends StatelessWidget {
   final String text;
   final double fontSize;
   final double? width;
+  final Color color;
+  final int? maxLines;
 
   const CardText({
     Key? key,
     required this.text,
     this.fontSize = 12,
     this.width,
+    this.color = AppColor.kDarkBluePrimary,
+    this.maxLines = 2,
   }) : super(key: key);
 
   @override
@@ -299,7 +310,7 @@ class CardText extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: AppColor.kDarkBluePrimary,
+            color: color,
             fontSize: fontSize,
             fontWeight: FontWeight.bold,
             overflow: TextOverflow.ellipsis,

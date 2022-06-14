@@ -1,4 +1,4 @@
-import 'package:fashio/ui/pages/splash/splash_screen.dart';
+import 'package:fashio/ui/pages/product_detail/product_deatil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
                   scaffoldBackgroundColor: Colors.white,
                   primarySwatch: Colors.blue,
                   fontFamily: 'poppins'),
-              home: const SplashScreen(),
+              home: ProductDetails(),
               // SplashScreen(),
             ));
   }

@@ -7,12 +7,11 @@ import 'package:fashio/ui/shared/components/text_filed.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:http/http.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:fashio/utils/constants.dart';
 
-import '../../shared/components/custom_elevated_button.dart';
+import '../../shared/components/custom_button.dart';
 import '../../shared/components/texts.dart';
 import 'components/components.dart';
 
@@ -35,7 +34,7 @@ class LoginScreen extends StatelessWidget {
                 child: const Logo(),
               ),
               AppSize.kSizedBox10h,
-               HeadTitle(text: 'Welcome to fashio', fontSize: 16),
+              HeadTitle(text: 'Welcome to fashio', fontSize: 16),
               const SubTitle(text: 'sign in to continue'),
               AppSize.kSizedBox20h,
               Padding(
@@ -55,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children:  [
+                        children: [
                           HeadTitle(text: 'Forgot Password?', fontSize: 12),
                         ],
                       ),
@@ -63,11 +62,10 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              CustomElevatedButton(
+              CustomButton(
                 color: AppColor.kDarkBlue,
                 text: 'Sign In',
-                onPressed: (){},
-              
+                onPressed: () {},
               ),
               AppSize.kSizedBox20h,
               Padding(
@@ -85,11 +83,11 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               AppSize.kSizedBox20h,
-              CustomElevatedButton(
+              CustomButton(
                 color: AppColor.kWhite,
                 text: 'Request OTP',
                 textColor: AppColor.kDarkBlue,
-                  onPressed: () {
+                onPressed: () {
                   Get.to(RegisterScreen());
                 },
               ),

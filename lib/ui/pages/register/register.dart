@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fashio/utils/constants.dart';
-import '../../shared/components/custom_elevated_button.dart';
+import '../../shared/components/custom_button.dart';
 import '../../shared/components/texts.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -55,7 +55,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               AppSize.kSizedBox20h,
-              CustomElevatedButton(
+              CustomButton(
                 color: AppColor.kDarkBlue,
                 text: 'Sign Up',
                 onPressed: () {

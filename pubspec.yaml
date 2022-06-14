@@ -33,11 +33,13 @@ dependencies:
   dotted_line: ^3.1.0
   flutter:
     sdk: flutter
+  flutter_rating_bar: ^4.0.1
   flutter_svg: ^1.1.0
   get: ^4.6.5
   http: ^0.13.4
   json_serializable: ^6.2.0
   sizer: ^2.0.15
+  smart_select: ^4.3.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -72,7 +74,12 @@ flutter:
   fonts:
     - family: poppins
       fonts:
+        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins/Poppins-Light.ttf
+        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
         - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+
         # - asset: assets/fonts/Poppins/Poppins-Bold.ttf
   #   - family: Trajan Pro
   #     fonts:

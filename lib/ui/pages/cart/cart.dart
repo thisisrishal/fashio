@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:fashio/ui/pages/home/components/components.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
 import 'package:fashio/utils/constants.dart';
-import 'package:dotted_line/dotted_line.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -231,51 +231,9 @@ class CartPage extends StatelessWidget {
               ),
               AppSize.kSizedBox10h,
               //checkout button
-              Container(
-                height: 16.w,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColor.kThemeBlue.withOpacity(.5),
-                      blurRadius: 4,
-                      spreadRadius: 1,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                  color: AppColor.kThemeBlue,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: HeadTitle(
-                    text: 'Checkout',
-                    color: AppColor.kWhite,
-                  ),
-                ),
-              ),
+              const CustomElevatedButton(text: 'Checkout'),
             ],
           ),
         ));
-  }
-}
-
-class PrizeListRow extends StatelessWidget {
-  final Widget leading;
-  final Widget trailing;
-  const PrizeListRow({
-    Key? key,
-    required this.leading,
-    required this.trailing,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [leading, trailing],
-      ),
-    );
   }
 }

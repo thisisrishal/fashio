@@ -1,12 +1,12 @@
 import 'package:fashio/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class CustomElevatedButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final VoidCallback? onPressed;
   Color color;
   String text;
   Color textColor;
-  CustomElevatedButton({
+  CustomButton({
     Key? key,
     this.onPressed,
     required this.color,

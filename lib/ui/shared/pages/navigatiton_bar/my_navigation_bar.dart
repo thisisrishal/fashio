@@ -47,7 +47,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             BottomNavigationBarItem(
               icon: AppIcons.iconCart,
               label: 'Cart',
-              activeIcon: ChangeIconColor.iconCart,
+              activeIcon: ChangeIconColor.iconCart1,
             ),
             BottomNavigationBarItem(
               icon: AppIcons.iconFavourite,
