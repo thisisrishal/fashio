@@ -293,6 +293,7 @@ class CardText extends StatelessWidget {
   final double? width;
   final Color color;
   final int? maxLines;
+  final FontWeight fontWeight;
 
   const CardText({
     Key? key,
@@ -301,6 +302,7 @@ class CardText extends StatelessWidget {
     this.width,
     this.color = AppColor.kDarkBluePrimary,
     this.maxLines = 2,
+    this.fontWeight = FontWeight.bold,
   }) : super(key: key);
 
   @override
@@ -312,7 +314,7 @@ class CardText extends StatelessWidget {
           style: TextStyle(
             color: color,
             fontSize: fontSize,
-            fontWeight: FontWeight.bold,
+            fontWeight:fontWeight,
             overflow: TextOverflow.ellipsis,
           ),
           maxLines: 2,
@@ -323,16 +325,18 @@ class CardText extends StatelessWidget {
 class TextBar extends StatelessWidget {
   final String firstTitle;
   final String secondTitle;
+  final double padding ;
   const TextBar({
     Key? key,
     required this.firstTitle,
-    required this.secondTitle,
+     this.secondTitle ='',
+    this.padding = 10,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding:  EdgeInsets.symmetric(horizontal: padding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

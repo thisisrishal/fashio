@@ -152,11 +152,11 @@ List<Color> colorList = [Colors.yellow,Colors.blue,Colors.pink,Colors.green,Colo
 List<Widget> starList = [
   const CustomRatings(text: 'All Review', star: false),
   // const Text('All Review'),
-  const CustomRatings(text: '1'),
-  const CustomRatings(text: '2'),
-  const CustomRatings(text: '3'),
-  const CustomRatings(text: '4'),
   const CustomRatings(text: '5'),
+  const CustomRatings(text: '4'),
+  const CustomRatings(text: '3'),
+  const CustomRatings(text: '2'),
+  const CustomRatings(text: '1'),
 ];
 
 class CustomRatings extends StatelessWidget {

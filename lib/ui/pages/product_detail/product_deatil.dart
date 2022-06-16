@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fashio/ui/pages/review/review_product.dart';
+import 'package:fashio/utils/rating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -29,11 +31,12 @@ class ProductDetails extends StatelessWidget {
                 title: 'The Nike Air Max 270 React ENG ',
                 trailing2: AppIcons.iconSearch,
                 trailing: AppIcons.iconMore)),
-        body: ListView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            // padding:  EdgeInsets.symmetric(horizontal: 10.sp,),
-            children: [
+        body: NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (OverscrollIndicatorNotification overscroll) {
+              overscroll.disallowIndicator();
+              return false;
+            },
+            child: ListView(children: [
               CustomBanner(
                   controller: _controller,
                   current: _current,
@@ -69,77 +72,168 @@ class ProductDetails extends StatelessWidget {
               }),
               Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ListView(shrinkWrap: true, children: [
-                    CustomRow(leading: Container(), trailing: Container()),
-                    AppSize.kSizedBox5h,
-                    const RatingIndicator(rating: 4.5),
-                    AppSize.kSizedBox20h,
-                    HeadTitle(
-                        text: ' ₹2999.99',
-                        color: AppColor.kThemeBlue,
-                        fontSize: 16.sp),
-                    AppSize.kSizedBox20h,
-                    const HeadTitle(text: 'Select Size'),
-                    AppSize.kSizedBox10h,
-                    Row(
-                      children: List.generate(
-                          sizeList.length,
-                          (index) => InkWell(
-                                overlayColor:
-                                    MaterialStateProperty.all(AppColor.kWhite),
-                                onTap: () {
-                                  _selectedSize.value = sizeList[index];
-                                },
-                                child: Obx(() => Padding(
-                                      padding: EdgeInsets.only(right: 8.sp),
-                                      child: CircleAvatar(
-                                        backgroundColor: _selectedSize.value ==
-                                                sizeList[index]
-                                            ? AppColor.kThemeBlue
-                                            : AppColor.kDarkWhite,
-                                        // index == _selectedItem.value
-                                        //     ? Colors.red
-                                        //     : AppColor.kWhite,
-                                        radius: 6.w,
-                                        child: CircleAvatar(
-                                          backgroundColor: AppColor.kWhite,
-                                          child: HeadTitle(
-                                            text: sizeList[index],
+                  child: ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        CustomRow(leading: Container(), trailing: Container()),
+                        AppSize.kSizedBox5h,
+                        const RatingIndicator(rating: 4.5),
+                        AppSize.kSizedBox20h,
+                        HeadTitle(
+                            text: ' ₹2999.99',
+                            color: AppColor.kThemeBlue,
+                            fontSize: 16.sp),
+                        AppSize.kSizedBox20h,
+                        const HeadTitle(text: 'Select Size'),
+                        AppSize.kSizedBox10h,
+                        Row(
+                          children: List.generate(
+                              sizeList.length,
+                              (index) => InkWell(
+                                    overlayColor: MaterialStateProperty.all(
+                                        AppColor.kWhite),
+                                    onTap: () {
+                                      _selectedSize.value = sizeList[index];
+                                    },
+                                    child: Obx(() => Padding(
+                                          padding: EdgeInsets.only(right: 8.sp),
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                _selectedSize.value ==
+                                                        sizeList[index]
+                                                    ? AppColor.kThemeBlue
+                                                    : AppColor.kDarkWhite,
+                                            // index == _selectedItem.value
+                                            //     ? Colors.red
+                                            //     : AppColor.kWhite,
+                                            radius: 6.w,
+                                            child: CircleAvatar(
+                                              backgroundColor: AppColor.kWhite,
+                                              child: HeadTitle(
+                                                text: sizeList[index],
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    )),
-                              )),
-                    ),
-                    AppSize.kSizedBox20h,
-                    const HeadTitle(text: 'Select Color'),
-                    AppSize.kSizedBox10h,
-                    Row(
-                        children: List.generate(
-                      colorList.length,
-                      (index) => InkWell(
-                          overlayColor:
-                              MaterialStateProperty.all(AppColor.kWhite),
-                          onTap: () {
-                            _selectedColor.value = colorList[index];
-                          },
-                          child: Obx(() => Padding(
-                              padding: EdgeInsets.only(right: 8.sp),
-                              child: CircleAvatar(
-                                backgroundColor: colorList[index],
-                                radius: 20,
-                                child: CircleAvatar(
-                                    backgroundColor:
-                                        _selectedColor.value == colorList[index]
+                                        )),
+                                  )),
+                        ),
+                        AppSize.kSizedBox20h,
+                        const HeadTitle(text: 'Select Color'),
+                        AppSize.kSizedBox10h,
+                        Row(
+                            children: List.generate(
+                          colorList.length,
+                          (index) => InkWell(
+                              overlayColor:
+                                  MaterialStateProperty.all(AppColor.kWhite),
+                              onTap: () {
+                                _selectedColor.value = colorList[index];
+                              },
+                              child: Obx(() => Padding(
+                                  padding: EdgeInsets.only(right: 8.sp),
+                                  child: CircleAvatar(
+                                    backgroundColor: colorList[index],
+                                    radius: 20,
+                                    child: CircleAvatar(
+                                        backgroundColor: _selectedColor.value ==
+                                                colorList[index]
                                             ? AppColor.kWhite
                                             : colorList[index],
-                                    radius: 6.sp),
-                              )))),
-                    )),
-                    AppSize.kSizedBox20h,
-                    const HeadTitle(text: 'Specifications'),
-                  ]))
-            ]));
+                                        radius: 6.sp),
+                                  )))),
+                        )),
+                        AppSize.kSizedBox20h,
+                        const HeadTitle(text: 'Specifications'),
+                        AppSize.kSizedBox10h,
+                        SubTitle(
+                            text:
+                                'The Nike Air Max 270 React ENG combines a full-length React foam midsole with a 270 Max Air unit for unrivaled comfort and a striking visual experience.',
+                            color: AppColor.kLightGrey.withOpacity(.8)),
+                        AppSize.kSizedBox20h,
+                        const TextBar(
+                          firstTitle: 'Review Product',
+                          secondTitle: 'See More',
+                          padding: 0,
+                        ),
+                        AppSize.kSizedBox5h,
+                        Row(children: [
+                          RatingIndicator(
+                            rating: 4,
+                            itemSize: 12.sp,
+                          ),
+                          const ReviewText(
+                            rating: '4.5',
+                            ratingCount: '2995',
+                          ),
+                        ]),
+                        AppSize.kSizedBox20h,
+                        const ReviewDetail(
+                          itemCount: 1,
+                          padding: 0,
+                        ),
+                        AppSize.kSizedBox20h,
+                        const TextBar(
+                          firstTitle: 'You Might Also Like',
+                          padding: 0,
+                        ),
+                        AppSize.kSizedBox10h,
+                        SizedBox(
+                          height: 33.h,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 6,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 8,
+                                  top: 8,
+                                  bottom: 8,
+                                  right: 4,
+                                ),
+                                child: ProductCard(
+                                    imgSrc: imgList[index],
+                                    name: 'FS - Nike Air max 270 React new',
+                                    currentPrize: '2999',
+                                    originalPrize: '4999',
+                                    offer: '24'),
+                              );
+                            },
+                          ),
+                        ),
+                      ]))
+            ])));
+  }
+}
+
+class ReviewText extends StatelessWidget {
+  final String rating;
+  final String ratingCount;
+  const ReviewText({
+    Key? key,
+    required this.rating,
+    required this.ratingCount,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+        text: TextSpan(
+      children: [
+        TextSpan(
+            text: rating,
+            style: TextStyle(
+                color: AppColor.kLightGrey,
+                fontWeight: FontWeight.bold,
+                fontSize: 8.sp)),
+        TextSpan(
+            text: ' ($ratingCount reviews)',
+            style: TextStyle(
+              fontSize: 8.sp,
+              color: AppColor.kLightGrey,
+            ))
+      ],
+    ));
   }
 }
 
@@ -169,26 +263,6 @@ class CustomRow extends StatelessWidget {
           color: AppColor.kLightGrey,
         )
       ],
-    );
-  }
-}
-
-class RatingIndicator extends StatelessWidget {
-  final double rating;
-  const RatingIndicator({
-    Key? key,
-    required this.rating,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return RatingBarIndicator(
-      rating: rating,
-      itemBuilder: (context, index) => AppIcons.iconStar,
-      itemCount: 5,
-      itemSize: 14.sp,
-      direction: Axis.horizontal,
-      unratedColor: Colors.amber.withAlpha(50),
     );
   }
 }
