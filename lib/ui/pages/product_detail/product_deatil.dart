@@ -154,7 +154,7 @@ class ProductDetails extends StatelessWidget {
                         const TextBar(
                           firstTitle: 'Review Product',
                           secondTitle: 'See More',
-                          padding: 0,
+                          hPadding: 0,
                         ),
                         AppSize.kSizedBox5h,
                         Row(children: [
@@ -175,7 +175,7 @@ class ProductDetails extends StatelessWidget {
                         AppSize.kSizedBox20h,
                         const TextBar(
                           firstTitle: 'You Might Also Like',
-                          padding: 0,
+                          vPadding: 0,
                         ),
                         AppSize.kSizedBox10h,
                         SizedBox(

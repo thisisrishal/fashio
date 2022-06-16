@@ -1,9 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+
+import 'package:fashio/ui/shared/components/texts.dart';
+import 'package:fashio/utils/constants.dart';
 
 class CustomColon extends StatelessWidget {
   const CustomColon({
@@ -12,7 +14,7 @@ class CustomColon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HeadTitle(
+    return const HeadTitle(
       text: ':',
       fontSize: 16,
       color: AppColor.kWhite,
@@ -314,7 +316,7 @@ class CardText extends StatelessWidget {
           style: TextStyle(
             color: color,
             fontSize: fontSize,
-            fontWeight:fontWeight,
+            fontWeight: fontWeight,
             overflow: TextOverflow.ellipsis,
           ),
           maxLines: 2,
@@ -325,18 +327,21 @@ class CardText extends StatelessWidget {
 class TextBar extends StatelessWidget {
   final String firstTitle;
   final String secondTitle;
-  final double padding ;
+  final double hPadding;
+  final double vPadding;
+
   const TextBar({
     Key? key,
     required this.firstTitle,
-     this.secondTitle ='',
-    this.padding = 10,
+    this.secondTitle = '',
+    this.hPadding = 10,
+    this.vPadding = 0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: padding),
+      padding: EdgeInsets.symmetric(horizontal: hPadding, vertical: vPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -344,10 +349,16 @@ class TextBar extends StatelessWidget {
             text: firstTitle,
             fontSize: 14,
           ),
-          HeadTitle(
-            text: secondTitle,
-            fontSize: 13,
-            color: AppColor.kThemeBlue,
+          Row(
+            children: [
+              HeadTitle(
+                text: secondTitle,
+                fontSize: 13,
+                color: AppColor.kThemeBlue,
+              ),
+              
+              
+            ],
           ),
         ],
       ),

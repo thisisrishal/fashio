@@ -1,22 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fashio/utils/rating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
-
 import 'package:fashio/ui/shared/components/texts.dart';
 
 class AppColor {
   static const Color kWhite = Color(0xFFFFFFFF);
   static const Color kThemeBlue = Color.fromARGB(229, 64, 191, 255);
   static const Color kLightBlue = Color.fromARGB(113, 64, 191, 255);
-
   static const Color kDarkBlue = Color(0xFF020D4D);
   static const Color kDarkBluePrimary = Color(0xFF223263);
-
   static const Color kDarkWhite = Color(0xFFE6E6EB);
   static const Color kLightGrey = Color(0xFF9098B1);
-
   static const Color kDarkGrey = Color(0xFF929499);
   static const Color kYellowStar = Color(0xFFFFC833);
   static const Color kGreen = Color(0xFF008000);
@@ -29,7 +26,6 @@ class AppColor {
 class AppSize {
   static const SizedBox kSizedBox5h = SizedBox(height: 5);
   static const SizedBox kSizedBox5w = SizedBox(width: 5);
-
   static const SizedBox kSizedBox10h = SizedBox(height: 10);
   static const SizedBox kSizedBox20h = SizedBox(height: 20);
   static const SizedBox kSizedBox10w = SizedBox(width: 10);
@@ -37,9 +33,8 @@ class AppSize {
 }
 
 class AppIcons {
-  static SvgPicture iconPhone = SvgPicture.asset(
-    'assets/icons/smartphone 1.svg',
-  );
+  static SvgPicture iconPhone =
+      SvgPicture.asset('assets/icons/smartphone 1.svg');
   static SvgPicture iconPassword = SvgPicture.asset(
     'assets/icons/Password.svg',
   );
@@ -93,6 +88,13 @@ class AppIcons {
     Icons.more_vert_rounded,
     color: Colors.grey,
   );
+    static SvgPicture iconSort = SvgPicture.asset(
+    'assets/icons/sort.svg',
+  );
+
+  static SvgPicture iconNotFound = SvgPicture.asset(
+    'assets/icons/Not_Found.svg',
+  );
 }
 
 class ChangeIconColor {
@@ -108,10 +110,6 @@ class ChangeIconColor {
     'assets/icons/favourite.svg',
     color: AppColor.kThemeBlue,
   );
-  // static SvgPicture iconCart = SvgPicture.asset(
-  //   'assets/icons/Cart.svg',
-  //   color: AppColor.kThemeBlue,
-  // );
   static SvgPicture iconOffer = SvgPicture.asset(
     'assets/icons/Offer.svg',
     color: AppColor.kThemeBlue,
@@ -126,6 +124,10 @@ class ChangeIconColor {
   static SvgPicture iconlocation = SvgPicture.asset(
     'assets/icons/location.svg',
   );
+  static SvgPicture iconFilter = SvgPicture.asset(
+    'assets/icons/filter.svg',
+  );
+
 }
 
 final List<String> imgList = [
@@ -146,59 +148,25 @@ List<String> nameList = [
   'Western',
   'Abaya'
 ];
+
 List<String> sizeList = ['S', 'M', 'L', 'XL'];
-List<Color> colorList = [Colors.yellow,Colors.blue,Colors.pink,Colors.green,Colors.purple[900]!,];
+
+List<Color> colorList = [
+  Colors.yellow,
+  Colors.blue,
+  Colors.pink,
+  Colors.green,
+  Colors.purple[900]!,
+];
 
 List<Widget> starList = [
   const CustomRatings(text: 'All Review', star: false),
-  // const Text('All Review'),
   const CustomRatings(text: '5'),
   const CustomRatings(text: '4'),
   const CustomRatings(text: '3'),
   const CustomRatings(text: '2'),
   const CustomRatings(text: '1'),
 ];
-
-class CustomRatings extends StatelessWidget {
-  final String text;
-  final bool star;
-  const CustomRatings({
-    Key? key,
-    required this.text,
-    this.star = true,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10.sp),
-      decoration: BoxDecoration(
-          // color: AppColor.kThemeBlue,
-          borderRadius: BorderRadius.circular(4.sp),
-          border: Border.all(color: AppColor.kLightGrey.withOpacity(.2))),
-      child: Row(
-        children: [
-          star
-              ? SvgPicture.asset(
-                  'assets/icons/S04tar.svg',
-                  color: Colors.amber,
-                  height: 12.sp,
-                  width: 12.sp,
-                )
-              : Container(),
-          AppSize.kSizedBox5w,
-          SubTitle(
-            text: text,
-            fontSize: 12.sp,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Poppins-Thin',
-            color: AppColor.kDarkBlue.withOpacity(.6),
-          )
-        ],
-      ),
-    );
-  }
-}
 
 class CustomAppBar extends StatelessWidget {
   final Widget? leading;
@@ -258,7 +226,6 @@ class CustomAppBar extends StatelessWidget {
 
 class CustomElevatedButton extends StatelessWidget {
   final String text;
-
   const CustomElevatedButton({
     Key? key,
     required this.text,

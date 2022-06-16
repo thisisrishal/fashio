@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                     );
                   }),
                   AppSize.kSizedBox20h,
-                  const TextBar(
+                   TextBar(
                       firstTitle: 'Catetgory', secondTitle: 'More Category'),
                   AppSize.kSizedBox20h,
                   SizedBox(
@@ -108,8 +108,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   AppSize.kSizedBox10h,
-                  const TextBar(
-                      firstTitle: 'Flash Sale', secondTitle: 'See More'),
+                  TextBar(firstTitle: 'Flash Sale', secondTitle: 'See More'),
                   // AppSize.kSizedBox10h,
                   SizedBox(
                     height: 33.h,
@@ -135,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   AppSize.kSizedBox10h,
-                  const TextBar(
+                   TextBar(
                       firstTitle: 'Mega Sale', secondTitle: 'See more'),
                   SizedBox(
                     height: 33.h,

@@ -1,4 +1,5 @@
 import 'package:fashio/ui/pages/product_detail/product_deatil.dart';
+import 'package:fashio/ui/pages/search/search_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
                   scaffoldBackgroundColor: Colors.white,
                   primarySwatch: Colors.blue,
                   fontFamily: 'poppins'),
-              home: ProductDetails(),
+              home:  SearchResult(),
               // SplashScreen(),
             ));
   }
