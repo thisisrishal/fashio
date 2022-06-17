@@ -6,6 +6,24 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
 
+
+class Logo2 extends StatelessWidget {
+  const Logo2({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Image.asset(
+      'assets/images/logo2.png',
+      height: 72.sp,
+      width: 72.sp,
+    ));
+  }
+}
+
+
 class AppColor {
   static const Color kWhite = Color(0xFFFFFFFF);
   static const Color kThemeBlue = Color.fromARGB(229, 64, 191, 255);
@@ -26,8 +44,8 @@ class AppColor {
 class AppSize {
   static const SizedBox kSizedBox5h = SizedBox(height: 5);
   static const SizedBox kSizedBox5w = SizedBox(width: 5);
-  static const SizedBox kSizedBox10h = SizedBox(height: 10);
-  static const SizedBox kSizedBox20h = SizedBox(height: 20);
+  static  SizedBox kSizedBox10h = SizedBox(height: 1.h);
+  static  SizedBox kSizedBox20h = SizedBox(height: 3.h);
   static const SizedBox kSizedBox10w = SizedBox(width: 10);
   static const SizedBox kSizedBox20w = SizedBox(width: 20);
 }
@@ -88,12 +106,18 @@ class AppIcons {
     Icons.more_vert_rounded,
     color: Colors.grey,
   );
-    static SvgPicture iconSort = SvgPicture.asset(
+  static SvgPicture iconSort = SvgPicture.asset(
     'assets/icons/sort.svg',
   );
 
   static SvgPicture iconNotFound = SvgPicture.asset(
     'assets/icons/Not_Found.svg',
+    height: 84.sp,
+    width: 84.sp,
+  );
+  static Icon iconClose = const Icon(
+    Icons.close,
+    color: Colors.grey,
   );
 }
 
@@ -127,7 +151,6 @@ class ChangeIconColor {
   static SvgPicture iconFilter = SvgPicture.asset(
     'assets/icons/filter.svg',
   );
-
 }
 
 final List<String> imgList = [

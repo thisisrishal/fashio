@@ -17,15 +17,13 @@ class OfferScreen extends StatelessWidget {
     var w;
     return SafeArea(
         child: Scaffold(
-            appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(50),
+            appBar: const PreferredSize(
+                preferredSize: Size.fromHeight(50),
                 child: CustomAppBar(
-
                   leading: Center(
                       child: HeadTitle(
                     text: 'Offers',
                     fontSize: 20,
-                  
                   )),
                   leadingWidth: 80,
                 )),
@@ -47,8 +45,8 @@ class OfferScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: AppColor.kThemeBlue,
                           borderRadius: BorderRadius.circular(4)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: HeadTitle(
                             text: 'Use "MEGSL" Coupon For \nGet 90% off',
                             color: AppColor.kWhite,

@@ -1,6 +1,8 @@
 import 'package:fashio/ui/pages/account/account.dart';
+import 'package:fashio/ui/pages/search/search_result.dart';
 import 'package:fashio/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:sizer/sizer.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -64,13 +66,17 @@ class SearchScreen extends StatelessWidget {
       body: ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemCount: nameList.length,
+        
         itemBuilder: (BuildContext context, int index) {
-          return CustomListTile(
-              leading: Text(
-            nameList[index],
-            style: TextStyle(
-                fontWeight: FontWeight.values[4], color: AppColor.kLightGrey),
-          ));
+          return GestureDetector(
+            onTap: () => Get.to(SearchResult()),
+            child: CustomListTile(
+                leading: Text(
+              nameList[index],
+              style: TextStyle(
+                  fontWeight: FontWeight.values[4], color: AppColor.kLightGrey),
+            )),
+          );
         },
       ),
       // appBar: AppBar(

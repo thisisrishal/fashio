@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fashio/ui/pages/review/review_product.dart';
 import 'package:fashio/utils/rating.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,8 +11,8 @@ import 'package:fashio/utils/constants.dart';
 
 import '../home/components/components.dart';
 
-class ProductDetails extends StatelessWidget {
-  ProductDetails({Key? key}) : super(key: key);
+class ProductDetailScreen extends StatelessWidget {
+  ProductDetailScreen({Key? key}) : super(key: key);
   final RxInt _current = 0.obs;
   final RxString _selectedSize = ''.obs;
   final Rx<Color> _selectedColor = Colors.transparent.obs;
@@ -151,11 +150,29 @@ class ProductDetails extends StatelessWidget {
                                 'The Nike Air Max 270 React ENG combines a full-length React foam midsole with a 270 Max Air unit for unrivaled comfort and a striking visual experience.',
                             color: AppColor.kLightGrey.withOpacity(.8)),
                         AppSize.kSizedBox20h,
-                        const TextBar(
-                          firstTitle: 'Review Product',
-                          secondTitle: 'See More',
+                        TextBar(
                           hPadding: 0,
+                          firstTitle: const HeadTitle(
+                            text: 'Review Product',
+                            fontSize: 14,
+                          ),
+                          secondTitle: GestureDetector(
+                            onTap: () {
+                              Get.toNamed('/review_product');
+                            },
+                            child: const HeadTitle(
+                              text: 'See More',
+                              fontSize: 13,
+                              color: AppColor.kThemeBlue,
+                            ),
+                          ),
                         ),
+                        // ,,)
+                        // const TextBar(
+                        //   firstTitle: 'Review Product',
+                        //   secondTitle: 'See More',
+                        //   hPadding: 0,
+                        // ),
                         AppSize.kSizedBox5h,
                         Row(children: [
                           RatingIndicator(
@@ -174,9 +191,15 @@ class ProductDetails extends StatelessWidget {
                         ),
                         AppSize.kSizedBox20h,
                         const TextBar(
-                          firstTitle: 'You Might Also Like',
-                          vPadding: 0,
-                        ),
+                            firstTitle: HeadTitle(
+                          text: 'You Might Also Like',
+                          fontSize: 14,
+                        )),
+
+                        //  TextBar(
+                        //   firstTitle: 'You Might Also Like',
+                        //   vPadding: 0,
+                        // ),
                         AppSize.kSizedBox10h,
                         SizedBox(
                           height: 33.h,

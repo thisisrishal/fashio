@@ -1,6 +1,8 @@
 import 'package:fashio/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
+// ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
   final VoidCallback? onPressed;
   Color color;
@@ -19,7 +21,7 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-          primary: color, minimumSize: const Size(343, 57)),
+          primary: color, minimumSize: Size(333.sp, 48.sp)),
       child: Text(
         text,
         style: TextStyle(color: textColor, fontWeight: FontWeight.bold),

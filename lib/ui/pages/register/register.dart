@@ -1,7 +1,5 @@
-import 'package:fashio/ui/pages/home/home_screen.dart';
 import 'package:fashio/ui/pages/login/components/components.dart';
 import 'package:fashio/ui/shared/components/text_filed.dart';
-import 'package:fashio/ui/shared/pages/navigatiton_bar/my_navigation_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -13,7 +11,7 @@ import '../../shared/components/texts.dart';
 class RegisterScreen extends StatelessWidget {
   final TextEditingController _mobileController = TextEditingController();
   final TextEditingController _otpController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  // final TextEditingController _passwordController = TextEditingController();
 
   RegisterScreen({Key? key}) : super(key: key);
 
@@ -21,7 +19,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 8.sp),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -30,36 +28,29 @@ class RegisterScreen extends StatelessWidget {
                 child: const Logo(),
               ),
               AppSize.kSizedBox10h,
-               HeadTitle(text: 'Let\'s Get Started', fontSize: 16),
+              HeadTitle(text: 'Let\'s Get Started', fontSize: 16.sp),
               const SubTitle(text: 'Create a new Account'),
               AppSize.kSizedBox20h,
-              Padding(
-                padding: const EdgeInsets.all(0),
-                child: Column(
-                  children: [
-                    CustomTextField(
-                        controller: _mobileController,
-                        icon: AppIcons.iconPhone,
-                        label: 'Mobile Number'),
-                    AppSize.kSizedBox10h,
-                    CustomTextField(
-                        controller: _otpController,
-                        icon: AppIcons.iconMessage,
-                        label: 'Enter OTP'),
-                    // AppSize.kSizedBox10h,
-                    // CustomTextField(
-                    //     controller: _passwordController,
-                    //     icon: AppIcons.iconPassword,
-                    //     label: 'Enter Password'),
-                  ],
-                ),
+              Column(
+                children: [
+                  CustomTextField(
+                      controller: _mobileController,
+                      icon: AppIcons.iconPhone,
+                      label: 'Mobile Number'),
+                  AppSize.kSizedBox10h,
+                  CustomTextField(
+                      controller: _otpController,
+                      icon: AppIcons.iconMessage,
+                      label: 'Enter OTP'),
+                ],
               ),
               AppSize.kSizedBox20h,
               CustomButton(
                 color: AppColor.kDarkBlue,
                 text: 'Sign Up',
                 onPressed: () {
-                  Get.to( MyNavigationBar());
+                  // Get.to(const MyNavigationBar());
+                  Get.toNamed('/');
                 },
               ),
               AppSize.kSizedBox20h,
@@ -70,23 +61,21 @@ class RegisterScreen extends StatelessWidget {
                   RichText(
                       text: TextSpan(
                           text: ' have a account?',
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: AppColor.kLightGrey,
-                              fontSize: 12,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.w500),
                           children: <InlineSpan>[
                         TextSpan(
-                            text: 'sign In',
-                            style: const TextStyle(
-                              color: AppColor.kDarkBlue,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w900,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // print('sign in');
-                                // log('Sign Up button Tapped');
-                              })
+                          text: 'sign In',
+                          style: TextStyle(
+                            color: AppColor.kDarkBlue,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w900,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => Get.toNamed('/login'),
+                        )
                       ])),
                 ],
               ),

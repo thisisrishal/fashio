@@ -14,9 +14,9 @@ class CustomColon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HeadTitle(
+    return  HeadTitle(
       text: ':',
-      fontSize: 16,
+      fontSize: 14.sp,
       color: AppColor.kWhite,
     );
   }
@@ -32,12 +32,12 @@ class TimeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding:  EdgeInsets.symmetric(horizontal: 6.sp),
       child: Container(
         height: 14.w,
         width: 14.w,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6), color: AppColor.kWhite),
+            borderRadius: BorderRadius.circular(4.sp), color: AppColor.kWhite),
         child: Center(child: HeadTitle(text: time)),
       ),
     );
@@ -85,7 +85,7 @@ class CustomBanner extends StatelessWidget {
         child: Stack(children: [
           // AppSize.kSizedBox10h,
           Container(
-              // height: 400,
+              height: 400,
               width: 100.w,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -134,7 +134,7 @@ class CustomBanner extends StatelessWidget {
           viewportFraction: 1,
           enlargeCenterPage: true,
           aspectRatio: 2,
-          height: 32.h,
+          height: 25.h,
           onPageChanged: (index, reason) {
             _current.value = index;
           }),
@@ -325,15 +325,15 @@ class CardText extends StatelessWidget {
 }
 
 class TextBar extends StatelessWidget {
-  final String firstTitle;
-  final String secondTitle;
+  final Widget firstTitle;
+  final Widget? secondTitle;
   final double hPadding;
   final double vPadding;
 
   const TextBar({
     Key? key,
     required this.firstTitle,
-    this.secondTitle = '',
+    this.secondTitle ,
     this.hPadding = 10,
     this.vPadding = 0,
   }) : super(key: key);
@@ -345,21 +345,23 @@ class TextBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          HeadTitle(
-            text: firstTitle,
-            fontSize: 14,
-          ),
-          Row(
-            children: [
-              HeadTitle(
-                text: secondTitle,
-                fontSize: 13,
-                color: AppColor.kThemeBlue,
-              ),
+firstTitle,
+secondTitle??Container()
+          // HeadTitle(
+          //   text: firstTitle,
+          //   fontSize: 14,
+          // ),
+          // Row(
+          //   children: [
+          //     HeadTitle(
+          //       text: secondTitle,
+          //       fontSize: 13,
+          //       color: AppColor.kThemeBlue,
+          //     ),
               
               
-            ],
-          ),
+          //   ],
+          // ),
         ],
       ),
     );

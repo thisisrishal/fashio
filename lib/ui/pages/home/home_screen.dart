@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:fashio/ui/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -24,12 +23,20 @@ class HomeScreen extends StatelessWidget {
                 preferredSize: const Size.fromHeight(50),
                 child: CustomAppBar(
                   leading: const Logo(),
+                  // leadingWidth: 60,
                   title: 'Fashio',
-                  trailing: AppIcons.iconNotification,
+
+                  trailing: GestureDetector(
+                    onTap: () {
+                      Get.toNamed('/notification');
+                    },
+                    child: AppIcons.iconNotification,
+                  ),
+
                   trailing2: AppIcons.iconSearch,
                   trailing2OnTap: //goto search page using get
                       () {
-                    Get.to(const SearchScreen());
+                    Get.toNamed('/search');
                   },
                 )),
             body: SingleChildScrollView(
@@ -38,10 +45,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10,
-                      right: 10,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 8.sp),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: const [],
@@ -52,6 +56,7 @@ class HomeScreen extends StatelessWidget {
                     controller: _controller,
                     current: _current,
                     title: 'Super Flash Sale \n 50% off',
+                    padding: 6.sp,
                     // offer: '50',
                     imageList: imgList,
                     subRow: Row(
@@ -91,9 +96,20 @@ class HomeScreen extends StatelessWidget {
                       }).toList(),
                     );
                   }),
-                  AppSize.kSizedBox20h,
-                   TextBar(
-                      firstTitle: 'Catetgory', secondTitle: 'More Category'),
+                  AppSize.kSizedBox10h,
+                  const TextBar(
+                    firstTitle: HeadTitle(
+                      text: 'Catetgory',
+                      fontSize: 14,
+                    ),
+                    secondTitle: HeadTitle(
+                      text: 'More Category',
+                      fontSize: 13,
+                      color: AppColor.kThemeBlue,
+                    ),
+                  ),
+                  // const TextBar(
+                  //     firstTitle: 'Catetgory', secondTitle: 'More Category'),
                   AppSize.kSizedBox20h,
                   SizedBox(
                     height: 12.h,
@@ -108,7 +124,20 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   AppSize.kSizedBox10h,
-                  TextBar(firstTitle: 'Flash Sale', secondTitle: 'See More'),
+                  const TextBar(
+                    firstTitle: HeadTitle(
+                      text: 'Flash Sale',
+                      fontSize: 14,
+                    ),
+                    secondTitle: HeadTitle(
+                      text: 'See More',
+                      fontSize: 13,
+                      color: AppColor.kThemeBlue,
+                    ),
+                  ),
+
+                  // const TextBar(
+                  //     firstTitle: 'Flash Sale', secondTitle: 'See More'),
                   // AppSize.kSizedBox10h,
                   SizedBox(
                     height: 33.h,
@@ -116,26 +145,42 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: 6,
                       itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                            left: 8,
-                            top: 8,
-                            bottom: 8,
-                            right: 4,
+                        return GestureDetector(
+                          onTap: () {
+                            Get.toNamed('/product_detail');
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              left: 8,
+                              top: 8,
+                              bottom: 8,
+                              right: 4,
+                            ),
+                            child: ProductCard(
+                                imgSrc: imgList[index],
+                                name: 'FS - Nike Air max 270 React new',
+                                currentPrize: '2999',
+                                originalPrize: '4999',
+                                offer: '24'),
                           ),
-                          child: ProductCard(
-                              imgSrc: imgList[index],
-                              name: 'FS - Nike Air max 270 React new',
-                              currentPrize: '2999',
-                              originalPrize: '4999',
-                              offer: '24'),
                         );
                       },
                     ),
                   ),
                   AppSize.kSizedBox10h,
-                   TextBar(
-                      firstTitle: 'Mega Sale', secondTitle: 'See more'),
+                  const TextBar(
+                    firstTitle: HeadTitle(
+                      text: 'Mega Sale',
+                      fontSize: 14,
+                    ),
+                    secondTitle: HeadTitle(
+                      text: 'See More',
+                      fontSize: 13,
+                      color: AppColor.kThemeBlue,
+                    ),
+                  ),
+                  // const TextBar(
+                  //     firstTitle: 'Mega Sale', secondTitle: 'See more'),
                   SizedBox(
                     height: 33.h,
                     child: ListView.builder(

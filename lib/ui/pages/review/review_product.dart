@@ -1,8 +1,10 @@
 // import 'package:smart_select/smart_select.dart';
+import 'package:fashio/ui/shared/components/custom_button.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
 import 'package:fashio/utils/constants.dart';
 import 'package:fashio/utils/rating.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class ReviewProductScreen extends StatelessWidget {
@@ -43,8 +45,15 @@ class ReviewProductScreen extends StatelessWidget {
                   ReviewDetail(itemCount: 2),
                   ReviewDetail(itemCount: 1),
                   ReviewDetail(itemCount: 0),
+                  
                 ]),
               ),
+              GestureDetector(
+                onTap: (){
+                  Get.toNamed('/write_review');
+                
+                },
+                child: CustomButton(color: AppColor.kDarkBlue, text: 'Write a Review')),
             ],
           ),
         )

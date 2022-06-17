@@ -40,6 +40,7 @@ dependencies:
   json_serializable: ^6.2.0
   sizer: ^2.0.15
   smart_select: ^4.3.2
+  syncfusion_flutter_sliders: ^20.1.60
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -79,7 +80,6 @@ flutter:
         - asset: assets/fonts/Poppins/Poppins-Medium.ttf
         - asset: assets/fonts/Poppins/Poppins-Regular.ttf
         - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
-
         # - asset: assets/fonts/Poppins/Poppins-Bold.ttf
   #   - family: Trajan Pro
   #     fonts:

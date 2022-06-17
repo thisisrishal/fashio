@@ -1,5 +1,4 @@
-import 'package:fashio/ui/pages/product_detail/product_deatil.dart';
-import 'package:fashio/ui/pages/search/search_result.dart';
+import 'package:fashio/ui/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -23,14 +22,14 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Fashio',
               theme: ThemeData(
-                  appBarTheme: const AppBarTheme(
-                    systemOverlayStyle: SystemUiOverlayStyle.dark,
-                  ),
+                  appBarTheme: Theme.of(context).appBarTheme.copyWith(
+                        systemOverlayStyle: SystemUiOverlayStyle.dark,
+                      ),
                   scaffoldBackgroundColor: Colors.white,
                   primarySwatch: Colors.blue,
                   fontFamily: 'poppins'),
-              home:  SearchResult(),
-              // SplashScreen(),
+              initialRoute: '/splash',
+              getPages: Routes.routes,
             ));
   }
 }

@@ -19,7 +19,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   final pages = [
     HomeScreen(),
     OfferScreen(),
-    const CartPage(),
+    const CartScreen(),
     const FavouriteScreen(),
     const AccountScreen()
   ];

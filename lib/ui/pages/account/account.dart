@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fashio/ui/pages/order/order.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fashio/ui/shared/components/texts.dart';
 import 'package:fashio/utils/constants.dart';
+import 'package:get/get.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -15,8 +17,8 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(50),
           child: CustomAppBar(
             leading: Center(
                 child: HeadTitle(
@@ -28,8 +30,14 @@ class _AccountScreenState extends State<AccountScreen> {
       body: Column(
         children: [
           CustomListTile(leading: ChangeIconColor.iconPerson, title: 'Profile'),
-          CustomListTile(leading: ChangeIconColor.iconBag, title: 'Order'),
-          CustomListTile(leading: ChangeIconColor.iconlocation, title: 'Address'),
+          GestureDetector(
+              onTap: () {
+                Get.to(const OrderPage());
+              },
+              child: CustomListTile(
+                  leading: ChangeIconColor.iconBag, title: 'Order')),
+          CustomListTile(
+              leading: ChangeIconColor.iconlocation, title: 'Address'),
         ],
       ),
     );
@@ -42,7 +50,7 @@ class CustomListTile extends StatelessWidget {
   const CustomListTile({
     Key? key,
     required this.leading,
-     this.title='',
+    this.title = '',
   }) : super(key: key);
 
   @override

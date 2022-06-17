@@ -7,8 +7,8 @@ import 'package:fashio/ui/pages/home/components/components.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
 import 'package:fashio/utils/constants.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+class CartScreen extends StatelessWidget {
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
