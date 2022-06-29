@@ -1,8 +1,8 @@
 // import 'package:smart_select/smart_select.dart';
+import 'package:fashio/configs/rating.dart';
 import 'package:fashio/ui/shared/components/custom_button.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
-import 'package:fashio/utils/rating.dart';
+import 'package:fashio/configs/appConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';

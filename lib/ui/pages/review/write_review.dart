@@ -1,8 +1,9 @@
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:fashio/configs/appConstants.dart';
+
 import 'package:sizer/sizer.dart';
 
 class WriteReviewScreen extends StatelessWidget {

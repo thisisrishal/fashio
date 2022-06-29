@@ -3,10 +3,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:fashio/configs/appConstants.dart';
 
 import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
-
+ 
 class CustomColon extends StatelessWidget {
   const CustomColon({
     Key? key,

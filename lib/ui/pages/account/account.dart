@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fashio/configs/appConstants.dart';
 import 'package:fashio/ui/pages/order/order.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
 import 'package:get/get.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -29,7 +29,12 @@ class _AccountScreenState extends State<AccountScreen> {
           )),
       body: Column(
         children: [
-          CustomListTile(leading: ChangeIconColor.iconPerson, title: 'Profile'),
+          GestureDetector(
+              onTap: () {
+                Get.toNamed('/profile');
+              },
+              child: CustomListTile(
+                  leading: ChangeIconColor.iconPerson, title: 'Profile')),
           GestureDetector(
               onTap: () {
                 Get.to(const OrderPage());

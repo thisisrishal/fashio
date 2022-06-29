@@ -4,16 +4,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:sizer/sizer.dart';
-import 'package:fashio/utils/constants.dart';
-import '../../shared/components/custom_button.dart';
+import 'package:fashio/configs/appConstants.dart';
+
+ import '../../shared/components/custom_button.dart';
 import '../../shared/components/texts.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreenTwo extends StatelessWidget {
   final TextEditingController _mobileController = TextEditingController();
   final TextEditingController _otpController = TextEditingController();
   // final TextEditingController _passwordController = TextEditingController();
 
-  RegisterScreen({Key? key}) : super(key: key);
+  RegisterScreenTwo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +36,25 @@ class RegisterScreen extends StatelessWidget {
                 children: [
                   CustomTextField(
                       controller: _mobileController,
-                      icon: AppIcons.iconPhone,
-                      label: 'Mobile Number'),
+                      validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter email';
+                    }
+                    return '';
+                  },
+                      icon: AppIcons.iconMessage,
+                      label: 'OTP'),
                   AppSize.kSizedBox10h,
                   CustomTextField(
                       controller: _otpController,
-                      icon: AppIcons.iconMessage,
-                      label: 'Enter OTP'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter email';
+                        }
+                        return '';
+                      },
+                      icon: AppIcons.iconPassword,
+                      label: 'Password'),
                 ],
               ),
               AppSize.kSizedBox20h,

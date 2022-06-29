@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../../../utils/constants.dart';
+import 'package:fashio/configs/appConstants.dart';
 import '../home/components/components.dart';
 
 class OrderPage extends StatelessWidget {

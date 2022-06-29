@@ -1,6 +1,6 @@
-import 'package:fashio/utils/constants.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:fashio/configs/appConstants.dart';
 
 // ignore: must_be_immutable
 class CustomButton extends StatelessWidget {

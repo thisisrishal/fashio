@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:fashio/configs/appConstants.dart';
 
 import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
-
+ 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
 

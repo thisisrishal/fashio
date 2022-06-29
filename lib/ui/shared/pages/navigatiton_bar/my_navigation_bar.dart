@@ -1,10 +1,10 @@
+import 'package:fashio/configs/appConstants.dart';
 import 'package:fashio/ui/pages/account/account.dart';
 import 'package:fashio/ui/pages/cart/cart.dart';
 import 'package:fashio/ui/pages/favourite/favourite.dart';
 import 'package:fashio/ui/pages/home/home_screen.dart';
 import 'package:fashio/ui/pages/offer/offer.dart';
-import 'package:fashio/utils/constants.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   final pages = [
     HomeScreen(),
     OfferScreen(),
-    const CartScreen(),
+     CartScreen(),
     const FavouriteScreen(),
     const AccountScreen()
   ];
@@ -27,6 +27,14 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       // appBar: AppBar(),
+        appBar: AppBar(
+            elevation: 0,
+            toolbarHeight: 0,
+            backgroundColor: AppColor.kDarkBlue,
+            systemOverlayStyle:
+                customOverlayStyle(AppColor.kWhite, Brightness.dark)),
+      // appBar: AppBar(backgroundColor: Colors.white,elevation: 0,),
         body: pages.elementAt(pageIndex),
         bottomNavigationBar: BottomNavigationBar(
           landscapeLayout: BottomNavigationBarLandscapeLayout.linear,

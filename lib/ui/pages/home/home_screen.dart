@@ -2,18 +2,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:fashio/configs/appConstants.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:fashio/ui/pages/home/components/components.dart';
 import 'package:fashio/ui/pages/login/components/components.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
-
+ 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final RxInt _current = 0.obs;
   final CarouselController _controller = CarouselController();
-  final TextEditingController _searchController = TextEditingController();
+  // final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

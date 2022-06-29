@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../../../utils/constants.dart';
+import 'package:fashio/configs/appConstants.dart';
 
 class HeadTitle extends StatelessWidget {
   final String text;

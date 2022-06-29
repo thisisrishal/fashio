@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:fashio/utils/rating.dart';
+import 'package:fashio/configs/rating.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
-
 
 class Logo2 extends StatelessWidget {
   const Logo2({
@@ -22,7 +22,18 @@ class Logo2 extends StatelessWidget {
     ));
   }
 }
+  SystemUiOverlayStyle customOverlayStyle(
+          Color barColor, Brightness brightness) =>
+      SystemUiOverlayStyle(
+          statusBarColor: barColor, statusBarIconBrightness: brightness);
 
+
+// SystemUiOverlayStyle customStatusBarStyle() {
+//   return const SystemUiOverlayStyle(
+//       statusBarColor: Colors.white,
+//       systemNavigationBarIconBrightness: Brightness.dark,
+//       statusBarIconBrightness: Brightness.dark);
+// }
 
 class AppColor {
   static const Color kWhite = Color(0xFFFFFFFF);
@@ -39,13 +50,15 @@ class AppColor {
   static const Color kerrorRed = Color(0xFFFF6E6E);
   static const Color kstarYellow = Color(0xFFFFC833);
   static const Color kblack = Colors.black;
+  static const Color blueGrey = Colors.blueGrey;
+
 }
 
 class AppSize {
-  static const SizedBox kSizedBox5h = SizedBox(height: 5);
+  static const SizedBox kSizedBox5h = SizedBox(height: .4);
   static const SizedBox kSizedBox5w = SizedBox(width: 5);
-  static  SizedBox kSizedBox10h = SizedBox(height: 1.h);
-  static  SizedBox kSizedBox20h = SizedBox(height: 3.h);
+  static SizedBox kSizedBox10h = SizedBox(height: 1.h);
+  static SizedBox kSizedBox20h = SizedBox(height: 3.h);
   static const SizedBox kSizedBox10w = SizedBox(width: 10);
   static const SizedBox kSizedBox20w = SizedBox(width: 20);
 }
@@ -93,6 +106,7 @@ class AppIcons {
   );
   static SvgPicture icondown = SvgPicture.asset(
     'assets/icons/svgviewer-output.svg',
+// height: 8.sp,
   );
   static SvgPicture iconMic = SvgPicture.asset(
     'assets/icons/mic.svg',
@@ -174,6 +188,8 @@ List<String> nameList = [
 
 List<String> sizeList = ['S', 'M', 'L', 'XL'];
 
+List<String> qtyList = ['1', '2', '3'];
+
 List<Color> colorList = [
   Colors.yellow,
   Colors.blue,
@@ -191,9 +207,12 @@ List<Widget> starList = [
   const CustomRatings(text: '1'),
 ];
 
+final BorderRadius customBorderRadius4 = BorderRadius.circular(4.sp);
+
 class CustomAppBar extends StatelessWidget {
   final Widget? leading;
   final String title;
+  
   final Widget? trailing;
   final Widget? trailing2;
   final double? leadingWidth;

@@ -36,3 +36,21 @@ book details
 side menu
 
 not found lottie
+
+mb num icon @reg1
+
+
+bulid
+
+flutter build apk --split-per-abi
+
+
+-----------
+
+- Login 
+- Register 
+- User Details
+- User Update
+- Address,add ,delete
+- HomePage
+- 

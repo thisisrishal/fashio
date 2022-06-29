@@ -3,18 +3,18 @@
 import 'package:fashio/ui/shared/components/text_filed.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fashio/configs/appConstants.dart';
 import 'package:get/route_manager.dart';
 import 'package:sizer/sizer.dart';
-import 'package:fashio/utils/constants.dart';
-import '../../shared/components/custom_button.dart';
+ import '../../shared/components/custom_button.dart';
 import '../../shared/components/texts.dart';
 import 'components/components.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginMobileScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  LoginScreen({Key? key}) : super(key: key);
+  LoginMobileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +40,31 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     CustomTextField(
                         controller: _emailController,
-                        icon: AppIcons.iconPhone,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter email';
+                          }
+                          return '';
+                        },
+                        icon: AppIcons.iconMessage,
                         label: 'Mobile Number'),
                     AppSize.kSizedBox10h,
                     CustomTextField(
                         controller: _passwordController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter email';
+                          }
+                          return '';
+                        },
                         icon: AppIcons.iconPassword,
-                        label: 'Password'),
+                        label: 'OTP'),
                     Padding(
                       padding: EdgeInsets.all(10.sp),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          HeadTitle(text: 'Forgot Password?', fontSize: 10.sp),
+                          HeadTitle(text: 'Request OTP', fontSize: 10.sp),
                         ],
                       ),
                     ),
@@ -70,7 +82,7 @@ class LoginScreen extends StatelessWidget {
               AppSize.kSizedBox5h,
 
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 8.sp),
+                padding: EdgeInsets.symmetric(horizontal: 8.sp),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -88,7 +100,7 @@ class LoginScreen extends StatelessWidget {
 
               CustomButton(
                 color: AppColor.kWhite,
-                text: 'Request OTP',
+                text: 'Login with OTP',
                 textColor: AppColor.kDarkBlue,
                 onPressed: () {
                   // Get.offAll(RegisterScreen());
@@ -102,20 +114,20 @@ class LoginScreen extends StatelessWidget {
                   RichText(
                       text: TextSpan(
                           text: 'Don\'t have an account?',
-                          style:  TextStyle(
+                          style: TextStyle(
                               color: AppColor.kLightGrey,
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w500),
                           children: <InlineSpan>[
                         TextSpan(
                           text: 'sign Up',
-                          style:  TextStyle(
+                          style: TextStyle(
                             color: AppColor.kDarkBlue,
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w900,
                           ),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => Get.toNamed('/register'),
+                            ..onTap = () => Get.toNamed('/regOne'),
                         )
                       ])),
                 ],

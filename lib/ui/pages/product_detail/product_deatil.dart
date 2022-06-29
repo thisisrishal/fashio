@@ -1,14 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fashio/ui/pages/review/review_product.dart';
-import 'package:fashio/utils/rating.dart';
+import 'package:fashio/configs/appConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
-
+ 
+import '../../../configs/rating.dart';
 import '../home/components/components.dart';
 
 class ProductDetailScreen extends StatelessWidget {

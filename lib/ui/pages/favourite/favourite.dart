@@ -1,9 +1,9 @@
 import 'package:fashio/ui/pages/home/components/components.dart';
 import 'package:fashio/ui/pages/home/home_screen.dart';
+import 'package:fashio/configs/appConstants.dart';
 import 'package:fashio/ui/pages/login/components/components.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
-import 'package:fashio/utils/constants.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class FavouriteScreen extends StatelessWidget {

@@ -1,6 +1,7 @@
-import 'package:fashio/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:fashio/configs/appConstants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -12,28 +13,43 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    gotoLogin();
+    navigateUser();
+    // gotoLogin();
     super.initState();
   }
 
+  // Future<String> getValidationData() async {
+  //   final SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   var obtainedEmail = preferences.getString('email');
+  //   return obtainedEmail?='';
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      // appBar:AppBar(
-      //   backgroundColor: AppColor.kDarkBlue,
-      //   systemOverlayStyle: const SystemUiOverlayStyle(
-      //     statusBarColor: AppColor.kDarkBlue,
-      //     statusBarIconBrightness: Brightness.light,
-      //   ),
-      // ),
+    return Scaffold(
+      // appBar: AppBar(),
+      appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 0,
+          backgroundColor: AppColor.kDarkBlue,
+          systemOverlayStyle:
+              customOverlayStyle(AppColor.kDarkBlue, Brightness.light)),
       backgroundColor: AppColor.kDarkBlue,
-      body: Logo2(),
+      body: const Logo2(),
     );
   }
 
-  Future<void> gotoLogin() async {
+  // Future<void> gotoLogin() async {
+  //   Future.delayed(const Duration(seconds: 2), () {
+  //     Get.toNamed('/elogin');
+  //   });
+  // }
+
+  navigateUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var status = prefs.getBool("isLoggedIn") ?? false;
     Future.delayed(const Duration(seconds: 2), () {
-      Get.toNamed('/login');
+      status ? Get.toNamed('/') : Get.toNamed('/elogin');
     });
   }
 }
