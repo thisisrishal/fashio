@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
+
+import '../core/controllers/single_product_controller.dart';
+
+final productDetailC = Get.put(SingleProductController());
 
 class Logo2 extends StatelessWidget {
   const Logo2({
@@ -22,11 +27,11 @@ class Logo2 extends StatelessWidget {
     ));
   }
 }
-  SystemUiOverlayStyle customOverlayStyle(
-          Color barColor, Brightness brightness) =>
-      SystemUiOverlayStyle(
-          statusBarColor: barColor, statusBarIconBrightness: brightness);
 
+SystemUiOverlayStyle customOverlayStyle(
+        Color barColor, Brightness brightness) =>
+    SystemUiOverlayStyle(
+        statusBarColor: barColor, statusBarIconBrightness: brightness);
 
 // SystemUiOverlayStyle customStatusBarStyle() {
 //   return const SystemUiOverlayStyle(
@@ -51,7 +56,6 @@ class AppColor {
   static const Color kstarYellow = Color(0xFFFFC833);
   static const Color kblack = Colors.black;
   static const Color blueGrey = Colors.blueGrey;
-
 }
 
 class AppSize {
@@ -165,6 +169,23 @@ class ChangeIconColor {
   static SvgPicture iconFilter = SvgPicture.asset(
     'assets/icons/filter.svg',
   );
+  static Icon iconLogout = const Icon(
+    Icons.logout,
+    color: AppColor.kerrorRed,
+  );
+  static SvgPicture iconMessage = SvgPicture.asset(
+    'assets/icons/messages.svg',
+    color: AppColor.kThemeBlue,
+  );
+  static SvgPicture iconPhone = SvgPicture.asset(
+    'assets/icons/smartphone 1.svg',
+    color: AppColor.kThemeBlue,
+  );
+
+  static SvgPicture iconPassword = SvgPicture.asset(
+    'assets/icons/Password.svg',
+    color: AppColor.kThemeBlue,
+  );
 }
 
 final List<String> imgList = [
@@ -198,6 +219,7 @@ List<Color> colorList = [
   Colors.purple[900]!,
 ];
 
+
 List<Widget> starList = [
   const CustomRatings(text: 'All Review', star: false),
   const CustomRatings(text: '5'),
@@ -212,7 +234,7 @@ final BorderRadius customBorderRadius4 = BorderRadius.circular(4.sp);
 class CustomAppBar extends StatelessWidget {
   final Widget? leading;
   final String title;
-  
+
   final Widget? trailing;
   final Widget? trailing2;
   final double? leadingWidth;

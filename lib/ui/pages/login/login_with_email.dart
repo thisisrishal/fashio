@@ -185,7 +185,7 @@ class LoginEmailScreen extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                           ),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => Get.toNamed('/register'),
+                            ..onTap = () => Get.toNamed('/regOne'),
                         )
                       ])),
                 ],

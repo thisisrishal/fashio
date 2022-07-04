@@ -7,7 +7,7 @@ import 'package:sizer/sizer.dart';
 
 import 'package:fashio/ui/pages/home/components/components.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
- 
+
 class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
 
@@ -275,7 +275,7 @@ class CartScreen extends StatelessWidget {
                           ),
                         ),
                         AppSize.kSizedBox10w,
-                        LineThroughText(text: '534,33',fontSize: 12),
+                        LineThroughText(text: '534,33', fontSize: 12),
                       ],
                     ),
                   ],
@@ -441,7 +441,7 @@ class CartScreen extends StatelessWidget {
 class LineThroughText extends StatelessWidget {
   String text;
   double fontSize;
-   LineThroughText({
+  LineThroughText({
     Key? key,
     required this.text,
     required this.fontSize,
@@ -449,7 +449,7 @@ class LineThroughText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text ,
+    return Text(text,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.lineThrough,

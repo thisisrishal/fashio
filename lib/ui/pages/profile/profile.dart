@@ -1,402 +1,119 @@
-import 'package:fashio/ui/shared/components/texts.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fashio/core/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:fashio/configs/appConstants.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+import 'package:fashio/configs/appConstants.dart';
+import 'package:fashio/ui/shared/components/texts.dart';
 
-  @override
-  MapScreenState createState() => MapScreenState();
-}
+class ProfilePage extends StatelessWidget {
+  ProfilePage({Key? key}) : super(key: key);
 
-class MapScreenState extends State<ProfilePage>
-    with SingleTickerProviderStateMixin {
-  bool _status = true;
-  final FocusNode myFocusNode = FocusNode();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  final profileC = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const PreferredSize(
-            preferredSize: Size.fromHeight(50),
-            child: CustomAppBar(
-              leading: Center(
-                  child: HeadTitle(
-                text: 'Account',
-                fontSize: 20,
-              )),title: '',
-              leadingWidth: 110,
-            )),
-        body: Container(
-          color: Colors.white,
-          child: ListView(
-            children: <Widget>[
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(50),
+          child: CustomAppBar(
+            leading: Icon(
+              Icons.navigate_before_rounded,
+              color: Colors.black,
+              size: 26.sp,
+            ),
+            title: 'Profile',
+          )),
+      body: ListView(
+        padding: EdgeInsets.all(8.sp),
+        shrinkWrap: true,
+        children: [
+          AppSize.kSizedBox10h,
+          Row(
+            children: [
+              Container(
+                  width: 20.w,
+                  height: 20.w,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
+                      fit: BoxFit.cover,
+                    ),
+                  )),
+              AppSize.kSizedBox10w,
               Column(
-                children: <Widget>[
-                  Container(
-                    height: 28.h,
-                    color: Colors.white,
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                            padding:
-                                const EdgeInsets.only(left: 20.0, top: 20.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                AppIcons.iconBack,
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 25.0),
-                                  child: HeadTitle(
-                                    text: 'PROFILE', fontSize: 14.sp,
-                                    // style: TextStyle(
-                                    //     fontWeight: FontWeight.bold,
-                                    //     fontSize: 20.0,
-                                    //     fontFamily: 'sans-serif-light',
-                                    //     color: Colors.black)
-                                  ),
-                                )
-                              ],
-                            )),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
-                          child: Stack(fit: StackFit.loose, children: <Widget>[
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                    width: 140.0,
-                                    height: 140.0,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    )),
-                              ],
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 90.0, right: 100.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const <Widget>[
-                                    CircleAvatar(
-                                      backgroundColor: AppColor.kDarkBlue,
-                                      radius: 25.0,
-                                      child: Icon(
-                                        Icons.camera_alt,
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          ]),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    color: const Color(0xffFFFFFF),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 25.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 25.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: const <Widget>[
-                                      Text(
-                                        'Parsonal Information',
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      _status ? _getEditIcon() : Container(),
-                                    ],
-                                  )
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 25.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: const <Widget>[
-                                      Text(
-                                        'Name',
-                                        style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 2.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Flexible(
-                                    child: TextField(
-                                      decoration: const InputDecoration(
-                                        hintText: "Enter Your Name",
-                                      ),
-                                      enabled: !_status,
-                                      autofocus: !_status,
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 25.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: const <Widget>[
-                                      Text(
-                                        'Email ID',
-                                        style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 2.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Flexible(
-                                    child: TextField(
-                                      decoration: const InputDecoration(
-                                          hintText: "Enter Email ID"),
-                                      enabled: !_status,
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 25.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: const <Widget>[
-                                      Text(
-                                        'Mobile',
-                                        style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 2.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  Flexible(
-                                    child: TextField(
-                                      decoration: const InputDecoration(
-                                          hintText: "Enter Mobile Number"),
-                                      enabled: !_status,
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 25.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      child: const Text(
-                                        'Pin Code',
-                                        style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Container(
-                                      child: const Text(
-                                        'State',
-                                        style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 2.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Flexible(
-                                    flex: 2,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 10.0),
-                                      child: TextField(
-                                        decoration: const InputDecoration(
-                                            hintText: "Enter Pin Code"),
-                                        enabled: !_status,
-                                      ),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    flex: 2,
-                                    child: TextField(
-                                      decoration: const InputDecoration(
-                                          hintText: "Enter State"),
-                                      enabled: !_status,
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          !_status ? _getActionButtons() : Container(),
-                        ],
-                      ),
-                    ),
-                  )
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  HeadTitle(text: 'Mohammed Rishal'),
+                  SubTitle(text: '@derlaxy')
                 ],
-              ),
+              )
             ],
           ),
-        ));
-  }
-
-  @override
-  void dispose() {
-    // Clean up the controller when the Widget is disposed
-    myFocusNode.dispose();
-    super.dispose();
-  }
-
-  Widget _getActionButtons() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 45.0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: Container(
-                  child: RaisedButton(
-                textColor: Colors.white,
-                color: Colors.green,
-                onPressed: () {
-                  setState(() {
-                    _status = true;
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  });
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: const Text("Save"),
-              )),
+          AppSize.kSizedBox20h,
+          GestureDetector(
+            onTap: () {
+              profileC.getUserDetails();
+            },
+            child: ProfileTile(
+              leadingIcon: ChangeIconColor.iconMessage,
+              title: 'Email',
+              trailingText: 'mrishal.ap@gmail.com',
             ),
           ),
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: Container(
-                  child: RaisedButton(
-                textColor: Colors.white,
-                color: AppColor.kDarkBlue,
-                onPressed: () {
-                  setState(() {
-                    _status = true;
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  });
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: const Text("Cancel"),
-              )),
-            ),
+          ProfileTile(
+            leadingIcon: ChangeIconColor.iconPhone,
+            title: 'Phone Number',
+            trailingText: '+91 8136860910',
           ),
+          ProfileTile(
+            leadingIcon: ChangeIconColor.iconPassword,
+            title: 'Change Password',
+            trailingText: '..............................',
+          )
         ],
       ),
     );
   }
+}
 
-  Widget _getEditIcon() {
-    return GestureDetector(
-      child: const CircleAvatar(
-        backgroundColor: AppColor.kDarkBlue,
-        radius: 14.0,
-        child: Icon(
-          Icons.edit,
-          color: Colors.white,
-          size: 16.0,
+class ProfileTile extends StatelessWidget {
+  final Widget leadingIcon;
+  final String title;
+  final String trailingText;
+  const ProfileTile({
+    Key? key,
+    required this.leadingIcon,
+    required this.title,
+    required this.trailingText,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 8.sp),
+      child: ListTile(
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(color: Colors.grey, width: .3),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        leading: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [leadingIcon, AppSize.kSizedBox10w, HeadTitle(text: title)],
+        ),
+        // title: const ,
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SubTitle(text: trailingText),
+            const Icon(Icons.navigate_next_rounded)
+          ],
         ),
       ),
-      onTap: () {
-        setState(() {
-          _status = false;
-        });
-      },
     );
   }
 }

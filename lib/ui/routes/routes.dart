@@ -26,7 +26,7 @@ class Routes {
     GetPage(name: '/mlogin', page: () => LoginMobileScreen()),
 
     GetPage(name: '/regOne', page: () => RegisterScreenOne()),
-    GetPage(name: '/regTwo', page: () => RegisterScreenTwo()),
+    // GetPage(name: '/regTwo', page: () => RegisterScreenTwo()),
 
     GetPage(name: '/offer', page: () => OfferScreen()),
     GetPage(name: '/fav', page: () => const FavouriteScreen()),
@@ -34,7 +34,7 @@ class Routes {
     GetPage(name: '/review_product', page: () => const ReviewProductScreen()),
     GetPage(name: '/write_review', page: () => const WriteReviewScreen()),
     GetPage(name: '/d', page: () => HomeScreen()),
-    GetPage(name: '/notification', page: () => const NotificationScreen()),
+    GetPage(name: '/notification', page: () =>  NotificationScreen()),
     GetPage(name: '/home', page: () => HomeScreen()),
     // GetPage(name: '/', page: () => exploreScreen()),
     GetPage(name: '/search', page: () => const SearchScreen()),
@@ -43,9 +43,9 @@ class Routes {
     GetPage(name: '/cart', page: () =>  CartScreen()),
     // GetPage(name: '/', page: () => ShipToScreen()),
     // GetPage(name: '/', page: () => PaymentScreen()),
-    // GetPage(name: '/', page: () => SuccessScreen()),
+    // GetPage(name: '/', page: () => SuccessScreen())
     GetPage(name: '/d', page: () => OfferScreen()),
-    GetPage(name: '/d', page: () => const AccountScreen()),
+    GetPage(name: '/d', page: () =>  AccountScreen()),
     GetPage(name: '/profile', page: () => ProfilePage()),
     // GetPage(name: '/', page: () => OrderScreen()),
     // GetPage(name: '/', page: () => AddressScreen()),

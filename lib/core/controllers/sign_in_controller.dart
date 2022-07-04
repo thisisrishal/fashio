@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fashio/configs/appConfig.dart';
 import 'package:fashio/configs/appConstants.dart';
 import 'package:fashio/ui/shared/components/texts.dart';
@@ -11,15 +13,13 @@ class LoginSignInController extends GetxController {
 
   final email = RxString('');
   final password = RxString('');
+  final firstName = RxString('');
+  final lastName = RxString('');
+  final mobileNumber = RxString('');
 
   login(
     BuildContext context,
-
-    //  String email, String pass
   ) async {
-    // print('${email.value},$password');
-    // print('====================================');
-
     try {
       final res = await _dio.post(
         '$baseUrl/login-email',
@@ -31,6 +31,7 @@ class LoginSignInController extends GetxController {
         },
       );
       if (res.statusCode == 200) {
+       
         Get.snackbar(
           'Success',
           'Login Success  ${res.data}',
@@ -40,10 +41,7 @@ class LoginSignInController extends GetxController {
 
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool("isLoggedIn", true);
-
-        // final SharedPreferences preferences =
-        //     await SharedPreferences.getInstance();
-        // preferences.setString('email', email.value);
+        prefs.setString('userDetails', jsonEncode(res.data));
 
         Get.toNamed('/');
 
@@ -63,5 +61,55 @@ class LoginSignInController extends GetxController {
       );
       return ScaffoldMessenger.of(context).showSnackBar(snackbar);
     }
+  }
+
+  register(BuildContext context) async {
+    final data = {
+      "firstName": firstName.value,
+      "lastName": lastName.value,
+      "email": email.value,
+      "password": password.value,
+      "mobileNumber": int.parse(mobileNumber.value)
+    };
+    try {
+      final res = await _dio.post('$baseUrl/signup', data: data);
+
+      if (res.statusCode == 200) {
+        Get.snackbar(
+          'Success',
+          'Registration Success ${res.data}',
+          backgroundColor: AppColor.blueGrey,
+          colorText: AppColor.kWhite,
+        );
+
+        // print(res.data);
+        // print('User Registration success ');
+        Get.toNamed('/regTwo');
+
+        return res.data;
+      } else {
+        Get.snackbar(
+          'Failed',
+          'Failed to Registration',
+        );
+      }
+    } catch (e) {
+      // print(e.toString());
+      SnackBar snackbar = SnackBar(
+        backgroundColor: Colors.red,
+        content: HeadTitle(
+          text: 'Please give correct email and password $e',
+          color: Colors.white,
+          // maxLines: 5,
+        ),
+      );
+      return ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    }
+  }
+
+  logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("isLoggedIn", false);
+    Get.toNamed('elogin');
   }
 }

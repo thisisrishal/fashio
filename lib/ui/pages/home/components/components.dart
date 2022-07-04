@@ -6,7 +6,7 @@ import 'package:sizer/sizer.dart';
 import 'package:fashio/configs/appConstants.dart';
 
 import 'package:fashio/ui/shared/components/texts.dart';
- 
+
 class CustomColon extends StatelessWidget {
   const CustomColon({
     Key? key,
@@ -14,7 +14,7 @@ class CustomColon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  HeadTitle(
+    return HeadTitle(
       text: ':',
       fontSize: 14.sp,
       color: AppColor.kWhite,
@@ -32,7 +32,7 @@ class TimeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 6.sp),
+      padding: EdgeInsets.symmetric(horizontal: 6.sp),
       child: Container(
         height: 14.w,
         width: 14.w,
@@ -89,7 +89,8 @@ class CustomBanner extends StatelessWidget {
               width: 100.w,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(imgList[index]), fit: BoxFit.cover),
+                      image: NetworkImage(imgNewList[index]),
+                      fit: BoxFit.cover),
                   color: Colors.green,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(4),
@@ -237,12 +238,14 @@ class ProductCard extends StatelessWidget {
 }
 
 class CategoryRound extends StatelessWidget {
+  final title;
+
   final int index;
   final String imgSrc;
   const CategoryRound({
     Key? key,
     required this.index,
-    required this.imgSrc,
+    required this.imgSrc,required this.title,
   }) : super(key: key);
 
   @override
@@ -280,7 +283,7 @@ class CategoryRound extends StatelessWidget {
           ),
           AppSize.kSizedBox5h,
           SubTitle(
-            text: nameList[index],
+            text: title,
             fontSize: 10.sp,
           )
         ],
@@ -333,7 +336,7 @@ class TextBar extends StatelessWidget {
   const TextBar({
     Key? key,
     required this.firstTitle,
-    this.secondTitle ,
+    this.secondTitle,
     this.hPadding = 10,
     this.vPadding = 0,
   }) : super(key: key);
@@ -345,8 +348,8 @@ class TextBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-firstTitle,
-secondTitle??Container()
+          firstTitle,
+          secondTitle ?? Container()
           // HeadTitle(
           //   text: firstTitle,
           //   fontSize: 14,
@@ -358,8 +361,7 @@ secondTitle??Container()
           //       fontSize: 13,
           //       color: AppColor.kThemeBlue,
           //     ),
-              
-              
+
           //   ],
           // ),
         ],

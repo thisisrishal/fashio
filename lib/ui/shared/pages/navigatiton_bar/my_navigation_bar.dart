@@ -21,7 +21,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     OfferScreen(),
      CartScreen(),
     const FavouriteScreen(),
-    const AccountScreen()
+     AccountScreen()
   ];
 
   @override

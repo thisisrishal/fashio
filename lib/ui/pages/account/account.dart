@@ -1,19 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:fashio/configs/appConstants.dart';
-import 'package:fashio/ui/pages/order/order.dart';
 import 'package:flutter/material.dart';
-
-import 'package:fashio/ui/shared/components/texts.dart';
 import 'package:get/get.dart';
 
-class AccountScreen extends StatefulWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+import 'package:fashio/configs/appConstants.dart';
+import 'package:fashio/ui/pages/order/order.dart';
+import 'package:fashio/ui/shared/components/texts.dart';
 
-  @override
-  State<AccountScreen> createState() => _AccountScreenState();
-}
+import '../../../core/controllers/sign_in_controller.dart';
 
-class _AccountScreenState extends State<AccountScreen> {
+class AccountScreen extends StatelessWidget {
+  AccountScreen({Key? key}) : super(key: key);
+
+  final loginSignInC = Get.put(LoginSignInController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +42,13 @@ class _AccountScreenState extends State<AccountScreen> {
                   leading: ChangeIconColor.iconBag, title: 'Order')),
           CustomListTile(
               leading: ChangeIconColor.iconlocation, title: 'Address'),
+          GestureDetector(
+            onTap: () {
+              loginSignInC.logout();
+            },
+            child: CustomListTile(
+                leading: ChangeIconColor.iconLogout, title: 'Logout'),
+          ),
         ],
       ),
     );
@@ -52,10 +58,12 @@ class _AccountScreenState extends State<AccountScreen> {
 class CustomListTile extends StatelessWidget {
   final Widget leading;
   final String title;
+  final Widget? trailing;
   const CustomListTile({
     Key? key,
     required this.leading,
     this.title = '',
+     this.trailing,
   }) : super(key: key);
 
   @override
@@ -65,6 +73,7 @@ class CustomListTile extends StatelessWidget {
       // dense: true,
       leading: leading,
       title: HeadTitle(text: title, fontWeight: FontWeight.bold),
+      trailing: trailing ?? SizedBox(),
     );
   }
 }
