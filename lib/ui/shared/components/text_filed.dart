@@ -21,7 +21,7 @@ class CustomTextField extends StatelessWidget {
       required this.icon,
       this.obscureText = false,
       this.suffixIcon = const SizedBox(),
-      this.keyboardType =  TextInputType.none,
+      this.keyboardType =  TextInputType.multiline,
       required this.validator,
       this.onChanged})
       : super(key: key);
@@ -29,6 +29,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
         // keyboardType: keyboard,
         onChanged: onChanged,
         autovalidateMode: AutovalidateMode.onUserInteraction,

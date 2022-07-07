@@ -16,7 +16,7 @@ class RegisterScreenOne extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _mobileController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  // final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   final loginSignInC = Get.put(LoginSignInController());
 
@@ -46,7 +46,7 @@ class RegisterScreenOne extends StatelessWidget {
                         controller: _nameController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter email';
+                            return 'Please enter full name';
                           }
                           return '';
                         },
@@ -58,7 +58,7 @@ class RegisterScreenOne extends StatelessWidget {
                         controller: _mobileController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter email';
+                            return 'Please enter mobile number';
                           }
                           return '';
                         },
@@ -77,6 +77,19 @@ class RegisterScreenOne extends StatelessWidget {
                         onChanged: loginSignInC.email,
                         icon: AppIcons.iconMessage,
                         label: 'Email'),
+                    AppSize.kSizedBox10h,
+
+                         CustomTextField(
+                        controller: _passwordController ,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter password';
+                          }
+                          return '';
+                        },
+                        onChanged: loginSignInC.password,
+                        icon: AppIcons.iconPassword,
+                        label: 'Password'),
                   ],
                 ),
               ),
@@ -85,7 +98,6 @@ class RegisterScreenOne extends StatelessWidget {
                 color: AppColor.kDarkBlue,
                 text: 'Continue',
                 onPressed: () {
-               
 
                   if (_formKey.currentState!.validate() ||
                       loginSignInC.email.value.isNotEmpty ||
@@ -94,11 +106,6 @@ class RegisterScreenOne extends StatelessWidget {
                     loginSignInC.register(context);
                   }
 
-                  // loginSignInC.reg
-                  // Get.to(const MyNavigationBar());
-                  // loginSignInC.firstName.value = ;
-
-                  // Get.toNamed('/regTwo');
                 },
               ),
               AppSize.kSizedBox20h,

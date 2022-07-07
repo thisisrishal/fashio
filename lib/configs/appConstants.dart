@@ -137,6 +137,17 @@ class AppIcons {
     Icons.close,
     color: Colors.grey,
   );
+  static SvgPicture buyThisNow = SvgPicture.asset(
+    'assets/icons/buyThisNow.svg',
+  );
+  static SvgPicture saveForLater = SvgPicture.asset(
+    'assets/icons/saveForLater.svg',
+    color: Colors.grey,
+     
+  );
+  
+
+
 }
 
 class ChangeIconColor {

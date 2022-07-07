@@ -10,9 +10,10 @@ class ProfileController extends GetxController {
   getUserDetails() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final data = jsonDecode(prefs.getString('userDetails') ?? '');
+    
     print(data);
-    // print('data kitteeeeeeee');
-    // print(data["data"].firstname);
+    print('data kitteeeeeeee');
+    print(data["data"]["USER"]["firstName"]);
     
   }
 }

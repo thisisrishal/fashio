@@ -4,6 +4,7 @@ import 'package:fashio/configs/rating.dart';
 import 'package:fashio/ui/shared/components/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -411,10 +412,19 @@ class ProductDetailScreen extends StatelessWidget {
               left: 15.w,
               right: 15.w,
               child: isCatVisible.value
-                  ? CustomButton(
+                  ?
+                  
+                   
+                  
+                  CustomButton(
                       color: AppColor.kDarkBlue,
                       text: 'Add to Cart',
                       onPressed: () {
+                        Fluttertoast.showToast(
+                          msg: "Item added to cart", // message
+                          toastLength: Toast.LENGTH_SHORT, // length
+                          gravity: ToastGravity.BOTTOM, 
+                        );
                         Get.toNamed('/cart');
                       })
                   : Container()))

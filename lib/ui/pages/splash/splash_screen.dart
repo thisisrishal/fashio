@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var status = prefs.getBool("isLoggedIn") ?? false;
     Future.delayed(const Duration(seconds: 2), () {
-      status ? Get.toNamed('/') : Get.toNamed('/elogin');
+      status ? Get.offAndToNamed('/') : Get.offAndToNamed('/elogin');
     });
   }
 }

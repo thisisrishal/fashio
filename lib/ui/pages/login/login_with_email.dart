@@ -114,27 +114,12 @@ class LoginEmailScreen extends StatelessWidget {
                 color: AppColor.kDarkBlue,
                 text: 'Sign In',
                 onPressed: () {
-                  // String email = _emailController.text;
-                  // String pass = _passwordController.text;
-
-                  // print('----$email----$pass-');
-                  // loginSignInC.email.value = _emailController.text;
-                  // loginSignInC.password.value = _passwordController.text;
-
-                  // loginSignInC.login(
-                  //     context, email, pass);
-
+                 
                   if (_formKey.currentState!.validate() ||
                       loginSignInC.email.value.isNotEmpty ||
                       loginSignInC.password.value.isNotEmpty) {
                     loginSignInC.login(context);
-                    // print('ok anneeeeeeey');
                   }
-
-                  // )
-                  //  {
-                  //   Get.offAllNamed('/');
-                  // }
                 },
               ),
               AppSize.kSizedBox10h,
@@ -161,7 +146,7 @@ class LoginEmailScreen extends StatelessWidget {
                 text: 'Login with OTP',
                 textColor: AppColor.kDarkBlue,
                 onPressed: () {
-                  Get.toNamed('/mlogin');
+                  Get.offAndToNamed('/mlogin');
                 },
               ),
               AppSize.kSizedBox20h,
@@ -185,7 +170,7 @@ class LoginEmailScreen extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                           ),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => Get.toNamed('/regOne'),
+                            ..onTap = () => Get.offAndToNamed('/regOne'),
                         )
                       ])),
                 ],

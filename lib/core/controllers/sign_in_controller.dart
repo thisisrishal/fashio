@@ -16,6 +16,9 @@ class LoginSignInController extends GetxController {
   final firstName = RxString('');
   final lastName = RxString('');
   final mobileNumber = RxString('');
+  final Otp = RxString('');
+
+  final gotOtp = RxString('');
 
   login(
     BuildContext context,
@@ -31,7 +34,6 @@ class LoginSignInController extends GetxController {
         },
       );
       if (res.statusCode == 200) {
-       
         Get.snackbar(
           'Success',
           'Login Success  ${res.data}',
@@ -42,6 +44,8 @@ class LoginSignInController extends GetxController {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool("isLoggedIn", true);
         prefs.setString('userDetails', jsonEncode(res.data));
+        print(prefs.getString('UserDetails'));
+
 
         Get.toNamed('/');
 
@@ -61,6 +65,66 @@ class LoginSignInController extends GetxController {
       );
       return ScaffoldMessenger.of(context).showSnackBar(snackbar);
     }
+  }
+
+  requestOTP(BuildContext context) async {
+    final data = {
+      'mobileNumber': mobileNumber.value,
+    };
+    try {
+      final res = await _dio.post('$baseUrl/login-otp', data: data);
+      if (res.statusCode == 200) {
+        Get.snackbar(
+          'Success',
+          'OTP sent successfully',
+          backgroundColor: AppColor.blueGrey,
+          colorText: AppColor.kWhite,
+        );
+        return res.data;
+      }
+    } catch (e) {
+      if (e is DioError) {
+        // print(e.message);
+        return ScaffoldMessenger.of(context).showSnackBar(
+            errorSnackbar(e.response!.data['message'].toString()));
+      }
+      // print(e.toString());
+    }
+  }
+
+  verifyOtp(BuildContext context) async {
+    final data = {
+      "mobilenumber": mobileNumber.value,
+      "otp": Otp.value,
+    };
+    try {
+      final res = await _dio.post('$baseUrl/login-verify-otp', data: data);
+      if (res.statusCode == 200) {
+    
+
+        Get.snackbar(
+          'Success',
+          'Login  successfully',
+          backgroundColor: AppColor.blueGrey,
+          colorText: AppColor.kWhite,
+        );
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool("isLoggedIn", true);
+        prefs.setString('userDetails', jsonEncode(res.data));
+        Get.toNamed('/');
+
+        return res.data;
+      }
+    } catch (e) {
+      if (e is DioError) {
+        // print(e.message);
+        return ScaffoldMessenger.of(context).showSnackBar(
+            errorSnackbar(e.response!.data['message'].toString()));
+      }
+      // print(e.toString());
+    }
+   
+
   }
 
   register(BuildContext context) async {
@@ -84,7 +148,7 @@ class LoginSignInController extends GetxController {
 
         // print(res.data);
         // print('User Registration success ');
-        Get.toNamed('/regTwo');
+        Get.toNamed('/mlogin');
 
         return res.data;
       } else {
@@ -94,22 +158,29 @@ class LoginSignInController extends GetxController {
         );
       }
     } catch (e) {
-      // print(e.toString());
-      SnackBar snackbar = SnackBar(
-        backgroundColor: Colors.red,
-        content: HeadTitle(
-          text: 'Please give correct email and password $e',
-          color: Colors.white,
-          // maxLines: 5,
-        ),
-      );
-      return ScaffoldMessenger.of(context).showSnackBar(snackbar);
+      if (e is DioError) {
+        return ScaffoldMessenger.of(context).showSnackBar(
+            errorSnackbar(e.response!.data['message'].toString()));
+      } else {
+        return ScaffoldMessenger.of(context).showSnackBar(errorSnackbar(e));
+      }
     }
   }
 
   logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool("isLoggedIn", false);
-    Get.toNamed('elogin');
+    Get.offAndToNamed('elogin');
+  }
+
+  SnackBar errorSnackbar(error) {
+    return SnackBar(
+      backgroundColor: Colors.red,
+      content: HeadTitle(
+        text: error,
+        color: Colors.white,
+        // maxLines: 5,
+      ),
+    );
   }
 }

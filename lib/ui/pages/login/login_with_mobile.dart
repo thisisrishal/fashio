@@ -1,18 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:fashio/core/controllers/sign_in_controller.dart';
 import 'package:fashio/ui/shared/components/text_filed.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fashio/configs/appConstants.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
- import '../../shared/components/custom_button.dart';
+import '../../shared/components/custom_button.dart';
 import '../../shared/components/texts.dart';
 import 'components/components.dart';
 
 class LoginMobileScreen extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final loginSignInC = Get.put(LoginSignInController());
+
+  final TextEditingController _mobileController = TextEditingController();
+  final TextEditingController _otpController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   LoginMobileScreen({Key? key}) : super(key: key);
 
@@ -36,46 +40,64 @@ class LoginMobileScreen extends StatelessWidget {
               // SizedBox(height: 3.h),
               Padding(
                 padding: const EdgeInsets.all(0),
-                child: Column(
-                  children: [
-                    CustomTextField(
-                        controller: _emailController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter email';
-                          }
-                          return '';
-                        },
-                        icon: AppIcons.iconMessage,
-                        label: 'Mobile Number'),
-                    AppSize.kSizedBox10h,
-                    CustomTextField(
-                        controller: _passwordController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter email';
-                          }
-                          return '';
-                        },
-                        icon: AppIcons.iconPassword,
-                        label: 'OTP'),
-                    Padding(
-                      padding: EdgeInsets.all(10.sp),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          HeadTitle(text: 'Request OTP', fontSize: 10.sp),
-                        ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                          controller: _mobileController,
+                          keyboardType: TextInputType.phone,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter MobileNumber';
+                            }
+                            return null;
+                          },
+                          icon: AppIcons.iconMessage,
+                          label: 'Mobile Number'),
+                      AppSize.kSizedBox10h,
+                      CustomTextField(
+                          controller: _otpController,
+                          keyboardType: TextInputType.phone,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter OTP';
+                            }
+                            return null;
+                          },
+                          icon: AppIcons.iconPassword,
+                          label: 'OTP'),
+                      Padding(
+                        padding: EdgeInsets.all(10.sp),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                                onTap: () {
+                                  loginSignInC.mobileNumber.value =
+                                      _mobileController.text;
+                                  // print(loginSignInC.mobileNumber.value);
+                                  loginSignInC.requestOTP(context);
+                                },
+                                child: HeadTitle(
+                                    text: 'Request OTP', fontSize: 10.sp)),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               CustomButton(
                 color: AppColor.kDarkBlue,
                 text: 'Sign In',
                 onPressed: () {
-                  Get.offAllNamed('/');
+                   loginSignInC.Otp.value = _otpController.text;
+                  if (_formKey.currentState!.validate()) {
+                    loginSignInC.verifyOtp(context);
+                  }
+
+                  // Get.offAllNamed('/');
                 },
               ),
               AppSize.kSizedBox10h,
@@ -100,9 +122,10 @@ class LoginMobileScreen extends StatelessWidget {
 
               CustomButton(
                 color: AppColor.kWhite,
-                text: 'Login with OTP',
+                text: 'Login with Email',
                 textColor: AppColor.kDarkBlue,
                 onPressed: () {
+                  Get.offNamed('elogin');
                   // Get.offAll(RegisterScreen());
                 },
               ),
