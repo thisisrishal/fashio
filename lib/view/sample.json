@@ -1,0 +1,29 @@
+{
+    "productname": "Men Blue Skinny Fit Jeans ",
+    "price": 2999,
+    "description": "Be the star of your own show as you wear this pair of blue skinny fit jeans from Ketch. These ankle length denims come with a front button closure, a zip fly, five pockets and belt loops. This pair features a medium-fade, clean look and a mid-rise waist. These men's jeans are a wardrobe staple and can be combined with multiple options to create different looks.",
+    "categoryId": "62b476e646abfa42b8010860",
+    "subcategoryname": "Jeans",
+    "stock": 10,
+    "sizeOne": "S",
+    "sizeTwo": "M",
+    "sizeThree": "L",
+    "sizeqty1": 3,
+    "sizeqty2": 3,
+    "sizeqty3": 4,
+    "colorOne": "#42bcf5",
+    "colorTwo": "#0b232e",
+    "colorThree": "#557787",
+    "colorqty1": 3,
+    "colorqty2": 3,
+    "colorqty3": 4
+}
+
+{
+    "userID": "62b0b522835d6481b69db9d8",
+    "productID": "62b44f379020fa6608b380ab",
+    "productImage": "http://res.cloudinary.com/dctrsna3x/image/upload/v1655983911/FlutterEcommerce/uwhi5ko9mrmgk3fior3e.jpg",
+    "MRP": "1250",
+    "color": "red",
+    "size": "XL"
+}

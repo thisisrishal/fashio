@@ -1,34 +1,13 @@
------- Refactor Login Textfield --------- ,textFieldDecoration
-Cart Bottom Nav Notification Rose-Round
-Notification icon - stack - round 
-home up cart notification
-refactord correcttion
-check other phones 
-app bars same height
-font-family to used in app 
-
 
 --------------------------
 * if there is no product there 'Currently Unavailabe'
 * no login buy button
 
---------------------------
-
-name of all & where it stored
+-------------------------
 
 
 
-question review
-- for loop for star
-rating bar
 
-
-to Afsal
-
-- product details
-- catergory & subcatergory
-- home page details
-- all input and output  
 
 
 order history
@@ -47,21 +26,33 @@ flutter build apk --split-per-abi
 
 -----------
 
-- Login 
-- Register 
-- User Details
-- User Update
-- Address,add ,delete
-- HomePage
--   
+- complete 
 
+color codes 
+review product
+you might also like 
+
+******* got answer
+- buy this now not needed 
+-  
 
 
 ===================
  to the next review
  - i assign the id before moving to the next  page is it correct 
  - different b/w future builder and getx 
- - buy this now and save for later
  - which is better hive or 
- - i can includce google sign in 
- - how to include the color
+
+
+ ======  To Afsal 
+
+ * Color Code to #
+ * List All Products 
+ * Offers 
+ * Order Details
+ * Address Details
+ * Patch Register
+
+
+ ????????
+ want to load the lists befoe it needs
