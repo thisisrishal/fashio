@@ -48,38 +48,7 @@ class NotificationScreen extends StatelessWidget {
             ),
           ),
         )
-        //  ListView(
-        //   padding: EdgeInsets.all(3.w),
-        //   physics: const BouncingScrollPhysics(),
-        //   shrinkWrap: true,
-        //   children: [
-        //     GestureDetector(
-        //       onTap: () {
-        //         print('${notificationC.notifications.value[0].title } ui part');
-        //       },
-        //       child: CustomNotification(
-        //         width: width,
-        //         title: 'Offer Notification',
-        //         description:
-        //             'consectetur, from a Lorem Ipsumr.32 and 1.10.3gs a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham',
-        //         date: 'April 30, 2014 1:01 PM',
-        //       ),
-        //     ),
-        // CustomNotification(
-        //   width: width,
-        //   title: 'Offer Notification',
-        //   description:
-        //       'consectetur, from a Lorem Ipsumr.32 and 1.10.3gs a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham',
-        //   date: 'April 30, 2014 1:01 PM',
-        // ),
-        //     CustomNotification(
-        //       width: width,
-        //       title: 'Offer Notification',
-        //       description: 'Contrary to popular belief, Richard McClintoc',
-        //       date: 'April 30, 2014 1:01 PM',
-        //     )
-        //   ],
-        // )
+       
         );
   }
 }

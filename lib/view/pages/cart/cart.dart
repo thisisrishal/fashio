@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
               ),
               leadingWidth: 110,
             )),
-        body: Padding(
+        body: Obx(() => Padding(
             padding: EdgeInsets.all(4.w),
             child: cartController.cartProducts.value.isNotEmpty
                 ? Column(
@@ -141,7 +141,14 @@ class CartScreen extends StatelessWidget {
                                                 .value[0].productname,
                                             fontSize: 13.sp,
                                             width: 55.w),
-                                        AppIcons.iconDelete
+                                        GestureDetector(
+                                            onTap: () {
+                                              cartController.removeCartItem(
+                                                  cartController
+                                                      .cartProducts.value[0].id
+                                                      .toString());
+                                            },
+                                            child: AppIcons.iconDelete)
                                       ],
                                     ),
                                     AppSize.kSizedBox10h,
@@ -496,7 +503,7 @@ class CartScreen extends StatelessWidget {
                             Get.toNamed('/');
                           }),
                     ],
-                  )));
+                  ))));
   }
 }
 

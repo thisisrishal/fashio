@@ -46,7 +46,6 @@ class LoginSignInController extends GetxController {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool("isLoggedIn", true);
         prefs.setString('userDetails', jsonEncode(res.data));
-        print(prefs.getString('UserDetails'));
 
         Get.toNamed('/');
 
@@ -55,13 +54,11 @@ class LoginSignInController extends GetxController {
         Get.snackbar('Failed', 'Failed to login');
       }
     } catch (e) {
-      // print(e.toString());
       SnackBar snackbar = const SnackBar(
         backgroundColor: Colors.red,
         content: HeadTitle(
           text: 'Please give correct email and password',
           color: Colors.white,
-          // maxLines: 5,
         ),
       );
       return ScaffoldMessenger.of(context).showSnackBar(snackbar);
@@ -85,11 +82,9 @@ class LoginSignInController extends GetxController {
       }
     } catch (e) {
       if (e is DioError) {
-        // print(e.message);
         return ScaffoldMessenger.of(context).showSnackBar(
             errorSnackbar(e.response!.data['message'].toString()));
       }
-      // print(e.toString());
     }
   }
 
@@ -116,11 +111,9 @@ class LoginSignInController extends GetxController {
       }
     } catch (e) {
       if (e is DioError) {
-        // print(e.message);
         return ScaffoldMessenger.of(context).showSnackBar(
             errorSnackbar(e.response!.data['message'].toString()));
       }
-      // print(e.toString());
     }
   }
 
@@ -143,8 +136,6 @@ class LoginSignInController extends GetxController {
           colorText: AppColor.kWhite,
         );
 
-        // print(res.data);
-        // print('User Registration success ');
         Get.toNamed('/mlogin');
 
         return res.data;

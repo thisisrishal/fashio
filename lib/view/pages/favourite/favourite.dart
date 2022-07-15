@@ -1,26 +1,38 @@
-
+import 'package:fashio/controllers/fav_controller.dart';
 import 'package:fashio/view/constants/appConstants.dart';
 import 'package:fashio/view/pages/home/components/components.dart';
 import 'package:fashio/view/shared/components/texts.dart';
 
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:sizer/sizer.dart';
 
 class FavouriteScreen extends StatelessWidget {
-  const FavouriteScreen({Key? key}) : super(key: key);
+   FavouriteScreen({Key? key}) : super(key: key);
+    final productDetailC = Get.put(FavController());
+
+
 
   @override
   Widget build(BuildContext context) {
+    // print('${favBox.keys.length}----------this is a favbox---');
     return SafeArea(
         child: Scaffold(
             appBar:  PreferredSize(
-                preferredSize: Size.fromHeight(50),
+                preferredSize: const Size.fromHeight(50),
                 child: CustomAppBar(
-                  leading : Center(child: HeadTitle(text: 'Favourite',fontSize: 20,)),
+                  leading: Center(
+                      child: GestureDetector(
+                        onTap: (){
+                          
+                        },
+                        child: const HeadTitle(
+                                          text: 'Favourite',
+                                          fontSize: 20,
+                                        ),
+                      )),
                   leadingWidth: 110,
-                  
-                  
-
                 )),
             body: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),

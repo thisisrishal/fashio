@@ -33,7 +33,7 @@ class Routes {
     GetPage(name: '/moreCategory', page: () => MoreCategoryScreen()),
 
     GetPage(name: '/offer', page: () => OfferScreen()),
-    GetPage(name: '/fav', page: () => const FavouriteScreen()),
+    GetPage(name: '/fav', page: () =>  FavouriteScreen()),
     GetPage(name: '/product_detail', page: () => ProductDetailScreen()),
     GetPage(name: '/review_product', page: () => const ReviewProductScreen()),
     GetPage(name: '/write_review', page: () => const WriteReviewScreen()),

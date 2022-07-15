@@ -21,7 +21,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     HomeScreen(),
     OfferScreen(),
      CartScreen(),
-    const FavouriteScreen(),
+     FavouriteScreen(),
      AccountScreen()
   ];
 

@@ -23,7 +23,6 @@ class ProfileController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final data = await jsonDecode(prefs.getString('userDetails') ?? '');
 
-    // print();
 
     try {
       if (data['data']['USER'] != null) {
@@ -40,8 +39,7 @@ class ProfileController extends GetxController {
         phone.value = data['data']['user']['mobileNumber'];
       }
     } catch (e) {
-      print(e);
-      print('inside catch');
+  
     }
   }
 }

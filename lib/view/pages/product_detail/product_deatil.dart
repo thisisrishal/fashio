@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:fashio/controllers/cart_controller.dart';
+import 'package:fashio/controllers/fav_controller.dart';
 import 'package:fashio/controllers/single_product_controller.dart';
+import 'package:fashio/main.dart';
+import 'package:fashio/models/Hive/fav_model.dart';
 import 'package:fashio/view/shared/components/custom_button.dart';
 import 'package:fashio/view/shared/components/rating.dart';
 import 'package:fashio/view/shared/components/texts.dart';
@@ -16,6 +19,8 @@ class ProductDetailScreen extends StatelessWidget {
   ProductDetailScreen({Key? key}) : super(key: key);
 
   final productDetailC = Get.put(SingleProductController());
+  final favC = Get.put(FavController());
+
   final cartC = Get.put(CartController());
 
   @override
@@ -105,10 +110,21 @@ class ProductDetailScreen extends StatelessWidget {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           children: [
-                            CustomRow(
-                              leading: Container(),
-                              trailing: Container(),
-                              title: productDetailC.productDetails.productname,
+                            TextBar(
+                              hPadding: 0,
+                              firstTitle: HeadTitle(
+                                text: productDetailC.productDetails.productname,
+                                fontSize: 16.sp,
+                              ),
+                              secondTitle: GestureDetector(
+                                onTap: () {
+                                  favC.addToFav();
+                                },
+                                child: const Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: AppColor.kLightGrey,
+                                ),
+                              ),
                             ),
                             AppSize.kSizedBox10h,
                             AppSize.kSizedBox5h,
@@ -378,6 +394,7 @@ class ProductDetailScreen extends StatelessWidget {
                                 },
                               ),
                             ),
+                            AppSize.kSizedBox20h,
                           ])),
                 ],
               ),
@@ -389,17 +406,60 @@ class ProductDetailScreen extends StatelessWidget {
                       ? cartC.isCartItem(productDetailC.productDetails!.id)
                           ? CustomButton(
                               color: AppColor.kDarkBlue,
-                              text: 'Add to Cart',
+                              text: 'Go to Cart',
                               onPressed: () {
+                                Get.toNamed('/cart');
+                              })
+                          : CustomButton(
+                              color: AppColor.kDarkBlue,
+                              text: 'Add to Cart',
+                              onPressed: () async {
+                                cartC.productId =
+                                    productDetailC.productDetails.id;
+
+                                cartC.productImage =
+                                    productDetailC.productDetails.imgOne[0].url;
+
+                                cartC.price = productDetailC
+                                            .productDetails.offerPrice ==
+                                        0
+                                    ? productDetailC.productDetails.price
+                                        .toString()
+                                    : productDetailC.productDetails.offerPrice
+                                        .toString();
+
+                                cartC.color = productDetailC
+                                    .selectedColor.value.value
+                                    .toRadixString(16)
+                                    .toString();
+                                cartC.size = productDetailC.selectedSize.value;
+
+                                cartC.size = productDetailC
+                                    .selectedColor.value.value
+                                    .toRadixString(16)
+                                    .toString();
+                                cartC.size = productDetailC.selectedSize.value;
+                                print(cartC.userId);
+                                print(cartC.productId);
+                                print(cartC.productImage);
+                                print(cartC.price);
+                                print(cartC.color);
+                                print(cartC.size);
+
                                 if (cartC.userId.isNotEmpty &&
                                     cartC.productId.isNotEmpty &&
                                     cartC.productImage.isNotEmpty &&
                                     cartC.price.isNotEmpty &&
                                     cartC.color.isNotEmpty &&
                                     cartC.size.isNotEmpty) {
-                                  print('not ok');
+                                  Get.snackbar(
+                                      'Success', 'Product added to cart',
+                                      backgroundColor: AppColor.blueGrey);
+                                  cartC.addToCart();
                                 } else {
-                                  print('Something went wrong');
+                                  Get.snackbar(
+                                      '😀', 'Select the size and color',
+                                      backgroundColor: const Color(0xffe91e63));
                                 }
 
                                 // productDetailC.
@@ -408,15 +468,9 @@ class ProductDetailScreen extends StatelessWidget {
                                   toastLength: Toast.LENGTH_SHORT, // length
                                   gravity: ToastGravity.BOTTOM,
                                 );
-                                Get.toNamed('/cart');
+                                // Get.toNamed('/cart');
                               })
-                          : CustomButton(
-                              color: AppColor.kDarkBlue,
-                              text: 'Go to Cart',
-                              onPressed: () {
-                                Get.toNamed('/cart');
-                              })
-                      : Container())
+                      : Container()),
             ],
           ),
         )));
@@ -451,37 +505,5 @@ class ReviewText extends StatelessWidget {
             ))
       ],
     ));
-  }
-}
-
-class CustomRow extends StatelessWidget {
-  final Widget leading;
-  final Widget trailing;
-  final String title;
-  const CustomRow({
-    Key? key,
-    required this.leading,
-    required this.trailing,
-    required this.title,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-            width: 80.w,
-            child: HeadTitle(
-              text: title,
-              fontSize: 16.sp,
-            )),
-        const Icon(
-          Icons.favorite_border_outlined,
-          color: AppColor.kLightGrey,
-        )
-      ],
-    );
   }
 }

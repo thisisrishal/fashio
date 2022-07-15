@@ -6,14 +6,11 @@ String baseUrl = 'http://18.215.157.165:8080/api/users';
 Future getDataResponse(endUrl) async {
   final dio = Dio();
   final response = await dio.get('$baseUrl$endUrl');
-  // print('getting data is == $response');
 
   if (response.statusCode == 200) {
     var res = response.data['data'];
-    // print(res);
     return res;
   } else {
-    // print('errrrrrrrrrror');
     throw Exception('Failed to load data');
   }
 }
@@ -22,11 +19,9 @@ Future getResponse(endUrl) async {
   final dio = Dio();
 
   final response = await dio.get('$baseUrl$endUrl');
-  // print('getting data is == $response');
 
   if (response.statusCode == 200) {
     var res = response.data;
-    // print(res);
 
     return res;
   } else {
@@ -50,10 +45,7 @@ class AppServices {
   }
 
   static Future addToCart(dynamic data) async {
-
-  
-    final response =
-        await dio.post('$baseUrl/add-to-cart', data:data);
+    final response = await dio.post('$baseUrl/add-to-cart', data: data);
 
     if (response.statusCode == 200) {
       var jsonString = response.data;
@@ -61,6 +53,24 @@ class AppServices {
       return jsonString;
     } else {
       return null;
+    }
+  }
+
+  static Future removeCartItem(Map<String, String>  data) async {
+    try {
+      final response = await dio.post('$baseUrl/remove-cart-item', data: data);
+print(response.data);
+      if (response.statusCode == 200) {
+        var jsonString = response.data;
+
+        return jsonString;
+      } else {
+        print('Failed to load data');
+        return null;
+      }
+    } catch (e) {
+      print('catchilanooooooooooo');
+      throw Exception(e);
     }
   }
 }

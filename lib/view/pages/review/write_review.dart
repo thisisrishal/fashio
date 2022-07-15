@@ -46,7 +46,6 @@ class WriteReviewScreen extends StatelessWidget {
                   allowHalfRating: true,
 
                   onRatingUpdate: (double value) {
-                    // print(value);
                   },
                 ),
                 AppSize.kSizedBox10w,

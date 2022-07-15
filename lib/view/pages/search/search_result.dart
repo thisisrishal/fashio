@@ -59,46 +59,7 @@ class SearchResult extends StatelessWidget {
         ],
       ),
       body:
-          // ListView(
-          //   shrinkWrap: true,
-          //   children: [
-          //     Padding(
-          //       padding: const EdgeInsets.all(8.0),
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           const HeadTitle(
-          //             text: '145 Results',
-          //             fontSize: 14,
-          //             color: AppColor.kLightGrey,
-          //           ),
-          //           Row(
-          //             children: [
-          //               Row(
-          //                 children: [
-          //                   DropdownButton(
-          //                       underline: Container(),
-          //                       style: TextStyle(
-          //                           fontFamily: 'Poppins-SemiBold',
-          //                           fontWeight: FontWeight.values[4],
-          //                           color: AppColor.kblack.withOpacity(.6)),
-          //                       value: dropdownvalue,
-          //                       items: nameList.map((String items) {
-          //                         return DropdownMenuItem(
-          //                           value: items,
-          //                           child: Text(items),
-          //                         );
-          //                       }).toList(),
-          //                       onChanged: (value) {
-          //                         print(value);
-          //                       }),
-          //                 ],
-          //               ),
-          //             ],
-          //           ),
-          //         ],
-          //       ),
-          //     ),
+         
           GridView.builder(
         padding: const EdgeInsets.only(left: 10, right: 10),
         shrinkWrap: true,

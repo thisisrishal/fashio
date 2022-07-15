@@ -36,7 +36,7 @@ class HomeScreenController extends GetxController {
 
       bannerList.value = bannerModel.data.bannerData;
 
-      // print(bannerList.value);
+
     } catch (e) {
       throw e.toString();
     }
@@ -46,13 +46,11 @@ class HomeScreenController extends GetxController {
     try {
       var response = await getResponse('/category-data');
 
-      // print('----cat----$response');
 
       var categoryModel = categoryModelFromJson(response);
 
       categoryList.value = categoryModel.data.allCategoryData;
     } catch (e) {
-      // print('inside catch');
       throw e.toString();
     }
   }
@@ -72,7 +70,6 @@ class HomeScreenController extends GetxController {
   fetchMegaSaleProduct() async {
     try {
       var response = await getResponse('/mega-sale-products');
-      // print(response);
       var model = megaSaleProductsFromJson(response);
       megaSaleList.value = model.data.products;
     } catch (e) {
@@ -85,7 +82,6 @@ class HomeScreenController extends GetxController {
       var response = await getResponse('/recommended-products');
       var model = recommendedProductsFromJson(response);
       recommendedList.value = model.data.products;
-      // print(recommendedList.value[0].id);
     } catch (e) {
       throw e.toString();
     }
