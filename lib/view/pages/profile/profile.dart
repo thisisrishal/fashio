@@ -1,4 +1,3 @@
-
 import 'package:fashio/controllers/profile_controller.dart';
 import 'package:fashio/controllers/sign_in_controller.dart';
 import 'package:fashio/view/shared/components/texts.dart';
@@ -12,7 +11,6 @@ class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
 
   final loginSignInC = Get.put(LoginSignInController());
-
 
   final profileC = Get.put(ProfileController());
 
@@ -37,20 +35,25 @@ class ProfilePage extends StatelessWidget {
               AppSize.kSizedBox10h,
               Row(
                 children: [
-                  Container(
-                      width: 20.w,
-                      height: 20.w,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage(profileC.image.value.isNotEmpty
-                              ? profileC.image.value
-                              : "https://secure.gravatar.com/avatar/b732b6f4cd6913b53f735c0a0d923ea1?s=96&d=https%3A%2F%2Fwww.techzine.nl%2Fwp-content%2Fthemes%2Ftechzinev10%2Fimg%2Ficons%2Fusericon.png&r=g"),
+                  Row(
+                    children: [
+                      Container(
+                          width: 20.w,
+                          height: 20.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(profileC
+                                      .image.value.isNotEmpty
+                                  ? profileC.image.value
+                                  : "https://secure.gravatar.com/avatar/b732b6f4cd6913b53f735c0a0d923ea1?s=96&d=https%3A%2F%2Fwww.techzine.nl%2Fwp-content%2Fthemes%2Ftechzinev10%2Fimg%2Ficons%2Fusericon.png&r=g"),
 
-                          // 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M)3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
-                          fit: BoxFit.cover,
-                        ),
-                      )),
+                              // 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M)3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80'),
+                              fit: BoxFit.cover,
+                            ),
+                          )),
+                    ],
+                  ),
                   AppSize.kSizedBox10w,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +62,21 @@ class ProfilePage extends StatelessWidget {
                       HeadTitle(text: profileC.name.value),
                       SubTitle(text: profileC.userName.value)
                     ],
-                  )
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed('/editProfile');
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.grey.withOpacity(.3),
+                      child: Icon(
+                        Icons.edit,
+                        color: Colors.black,
+                        size: 18.sp,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               AppSize.kSizedBox20h,
@@ -68,18 +85,18 @@ class ProfilePage extends StatelessWidget {
                   profileC.getUserDetails();
                 },
                 child: ProfileTile(
-                  leadingIcon: ChangeIconColor.iconMessage,
+                  leadingIcon: const Icon(Icons.email),
                   title: 'Email',
                   trailingText: profileC.email.value,
                 ),
               ),
               ProfileTile(
-                leadingIcon: ChangeIconColor.iconPhone,
+                leadingIcon: const Icon(Icons.phone),
                 title: 'Phone Number',
                 trailingText: profileC.phone.value,
               ),
-              ProfileTile(
-                leadingIcon: ChangeIconColor.iconPassword,
+              const ProfileTile(
+                leadingIcon: Icon(Icons.lock),
                 title: 'Change Password',
                 trailingText: '..............................',
               ),
@@ -93,7 +110,6 @@ class ProfilePage extends StatelessWidget {
                   trailingText: '',
                 ),
               ),
-
             ],
           ),
         ));

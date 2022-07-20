@@ -1,30 +1,47 @@
+import 'package:fashio/models/product_details_model.dart';
+import 'package:fashio/view/constants/appConstants.dart';
 import 'package:get/state_manager.dart';
 import '../main.dart';
 import '../models/Hive/fav_model.dart';
-import '../view/constants/appConstants.dart';
 
 class FavController extends GetxController {
   @override
   void onInit() {
-    // getFav();
+    getFav();
     super.onInit();
   }
 
-  var favItems ;
+  final favItems = [].obs;
+
+  final isFav = false.obs;
 
   getFav() {
-    favItems.value = favBox.values;
+    favItems.value = favBox.values.toList();
   }
 
-  addToFav() {
-    favBox.put(
-        'check key',
-        FavModel(
-            productId: productDetailC.productDetails.id,
-            img: productDetailC.productDetails.imgOne[0].url,
-            title: productDetailC.productDetails.productname,
-            price: productDetailC.productDetails.price,
-            offerPrice: productDetailC.productDetails.offerPrice,
-            offerPercent: productDetailC.productDetails.discount));
+  isFavItem(String id) {
+    isFav.value = favBox.containsKey(id);
+  }
+
+  addToFav(Product favItem) {
+    final favModelValue = FavModel(
+        productId: favItem.id,
+        img: favItem.imgOne![0].url,
+        title: favItem.productname,
+        price: favItem.price,
+        offerPrice: double.parse(favItem.offerPrice.toString()),
+        offerPercent: double.parse(favItem.discount.toString()));
+    favBox.put(favItem.id, favModelValue);
+    isFavItem(productDetailC.productDetails.id);
+    toastNotification(text: ' Item Added to Favourite');
+
+    getFav();
+  }
+
+  removeFav(String id) {
+    toastNotification(text: ' Item removed from Favourite');
+    favBox.delete(id);
+
+    getFav();
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fashio/view/constants/appConstants.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 class CustomColon extends StatelessWidget {
   const CustomColon({
@@ -115,8 +116,6 @@ class CustomBanner extends StatelessWidget {
                     maxLines: 2,
                   ),
                 )
-               
-               
               ],
             ),
           )
@@ -146,6 +145,7 @@ class ProductCard extends StatelessWidget {
   final double? imgWidth;
   final double? textWidth;
   bool delete;
+  void Function()? onTapDelete;
   ProductCard(
       {Key? key,
       required this.imgSrc,
@@ -157,9 +157,8 @@ class ProductCard extends StatelessWidget {
       this.imgWidth,
       this.delete = false,
       this.textWidth,
-      this.ratingCount = 0
-      //  this.imgWidth 30.w
-      })
+      this.ratingCount = 0,
+      this.onTapDelete})
       : super(key: key);
 
   @override
@@ -175,17 +174,37 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 14.h,
-              width: imgWidth ?? 30.w,
-              decoration: BoxDecoration(
-                color: AppColor.kThemeBlue,
-                borderRadius: BorderRadius.circular(4.0),
-                image: DecorationImage(
-                  image: NetworkImage(imgSrc),
-                  fit: BoxFit.cover,
+            Stack(
+              children: [
+                Container(
+                  height: 14.h,
+                  width: imgWidth ?? 30.w,
+                  decoration: BoxDecoration(
+                    color: AppColor.kThemeBlue,
+                    borderRadius: BorderRadius.circular(4.0),
+                    image: DecorationImage(
+                      image: NetworkImage(imgSrc),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-              ),
+                if (delete)
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Padding(
+                      padding: EdgeInsets.all(4.sp),
+                      child: GestureDetector(
+                        onTap: onTapDelete,
+                        child: Icon(
+                          Icons.delete,
+                          color: AppColor.kWhite,
+                          size: 22.sp,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,7 +214,9 @@ class ProductCard extends StatelessWidget {
                   text: name,
                   width: textWidth,
                 ),
-                Row(children: star ? [RatingIndicator(rating: ratingCount)] : []),
+                Row(
+                    children:
+                        star ? [RatingIndicator(rating: ratingCount)] : []),
                 AppSize.kSizedBox10h,
                 HeadTitle(
                     text: ' ₹$currentPrize',
@@ -219,7 +240,6 @@ class ProductCard extends StatelessWidget {
                       fontSize: 10,
                     ),
                     AppSize.kSizedBox20w,
-                    delete ? AppIcons.iconDelete : Container(),
                   ],
                 ),
               ],

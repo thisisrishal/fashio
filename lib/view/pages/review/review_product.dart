@@ -1,4 +1,3 @@
-// import 'package:smart_select/smart_select.dart';
 import 'package:fashio/view/shared/components/custom_button.dart';
 import 'package:fashio/view/shared/components/rating.dart';
 

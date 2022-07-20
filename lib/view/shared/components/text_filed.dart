@@ -5,7 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'package:fashio/view/constants/appConstants.dart';
 
 class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String label;
   final Widget icon;
   final bool obscureText;
@@ -16,7 +16,7 @@ class CustomTextField extends StatelessWidget {
 
   const CustomTextField(
       {Key? key,
-      required this.controller,
+       this.controller,
       required this.label,
       required this.icon,
       this.obscureText = false,

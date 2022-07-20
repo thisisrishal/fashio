@@ -16,8 +16,6 @@ class CartController extends GetxController {
 
   var cartProducts = Rx<List<Cartdatum>>([]);
 
-  
-
   String userId = '';
   String productId = '';
   String productImage = '';
@@ -75,12 +73,19 @@ class CartController extends GetxController {
   }
 
   removeCartItem(String id) async {
-    final datas = {"userID": '62cd08b93132c44f9ef7d168', "productID": '62bd6e1d12db1861e6286dbf'};
-    // print("$userId-----------$id------");
+   
+
+    var datas = {"userID": userId, "productID": id};
+
+    // final datas = {"userID": '62cd08b93132c44f9ef7d168', "productID": '62bd6e1d12db1861e6286dbf'};
 
     var response = await AppServices.removeCartItem(datas);
     if (response != null) {
       await fetchCartProducts();
+  
+      Get.toNamed('/cart');
     }
+
+
   }
 }

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+// ignore: must_be_immutable
 class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
 
@@ -42,289 +43,317 @@ class CartScreen extends StatelessWidget {
             child: cartController.cartProducts.value.isNotEmpty
                 ? Column(
                     children: [
-                      Container(
-                        padding: EdgeInsets.only(top: 2.5.w),
-                        height: 22.h,
-                        width: 100.w,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: AppColor.kLightGrey),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          //  mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Row(
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount:  cartController.cartProducts.value.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            padding: EdgeInsets.only(top: 2.5.w),
+                            height: 22.h,
+                            width: 100.w,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: AppColor.kLightGrey),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              //  mainAxisSize: MainAxisSize.min,
                               children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: 20.w,
-                                      height: 10.h,
-                                      decoration: BoxDecoration(
-                                          color: AppColor.kThemeBlue,
-                                          borderRadius: customBorderRadius4,
-                                          image: DecorationImage(
-                                              image: NetworkImage(cartController
-                                                  .cartProducts
-                                                  .value[0]
-                                                  .productImage),
-                                              fit: BoxFit.cover)),
-                                    ),
-                                    AppSize.kSizedBox10h,
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 6.w,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.horizontal(
-                                                      left: Radius.circular(
-                                                          4.sp)),
-                                              color: AppColor.kLightGrey
-                                                  .withOpacity(.3),
-                                            ),
-                                            child:
-                                                const Center(child: Text('-')),
-                                          ),
-                                          //custom elevated button
-
-                                          Container(
-                                              width: 8.w,
-                                              height: 18.sp,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  border: Border.all(
-                                                    color: AppColor.kLightGrey
-                                                        .withOpacity(.3),
-                                                  )),
-                                              child: Center(
-                                                  child: Text(cartController
-                                                      .cartProducts
-                                                      .value[0]
-                                                      .quantity
-                                                      .toString()))),
-                                          Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppColor.kLightGrey
-                                                      .withOpacity(.3),
-                                                  borderRadius:
-                                                      BorderRadius.horizontal(
-                                                          right:
-                                                              Radius.circular(
-                                                                  4.sp))),
-                                              width: 6.w,
-                                              child: const Center(
-                                                  child: Text('+'))),
-                                          AppSize.kSizedBox10w,
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                AppSize.kSizedBox5w,
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
+                                Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(
+                                    Column(
                                       children: [
-                                        CardText(
-                                            text: cartController.cartProducts
-                                                .value[0].productname,
-                                            fontSize: 13.sp,
-                                            width: 55.w),
-                                        GestureDetector(
-                                            onTap: () {
-                                              cartController.removeCartItem(
-                                                  cartController
-                                                      .cartProducts.value[0].id
-                                                      .toString());
-                                            },
-                                            child: AppIcons.iconDelete)
+                                        Container(
+                                          width: 20.w,
+                                          height: 10.h,
+                                          decoration: BoxDecoration(
+                                              color: AppColor.kThemeBlue,
+                                              borderRadius: customBorderRadius4,
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      cartController
+                                                          .cartProducts
+                                                          .value[0]
+                                                          .productImage),
+                                                  fit: BoxFit.cover)),
+                                        ),
+                                        AppSize.kSizedBox10h,
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Container(
+                                                width: 6.w,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.horizontal(
+                                                          left: Radius.circular(
+                                                              4.sp)),
+                                                  color: AppColor.kLightGrey
+                                                      .withOpacity(.3),
+                                                ),
+                                                child: const Center(
+                                                    child: Text('-')),
+                                              ),
+                                              //custom elevated button
+
+                                              Container(
+                                                  width: 8.w,
+                                                  height: 18.sp,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      border: Border.all(
+                                                        color: AppColor
+                                                            .kLightGrey
+                                                            .withOpacity(.3),
+                                                      )),
+                                                  child: Center(
+                                                      child: Text(cartController
+                                                          .cartProducts
+                                                          .value[index]
+                                                          .quantity
+                                                          .toString()))),
+                                              Container(
+                                                  decoration: BoxDecoration(
+                                                      color: AppColor.kLightGrey
+                                                          .withOpacity(.3),
+                                                      borderRadius: BorderRadius
+                                                          .horizontal(
+                                                              right: Radius
+                                                                  .circular(
+                                                                      4.sp))),
+                                                  width: 6.w,
+                                                  child: const Center(
+                                                      child: Text('+'))),
+                                              AppSize.kSizedBox10w,
+                                            ],
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                    AppSize.kSizedBox10h,
-                                    AppSize.kSizedBox5h,
-                                    Row(
+                                    AppSize.kSizedBox5w,
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
+                                        Row(
                                           children: [
-                                            Card(
-                                              margin: const EdgeInsets.all(0),
-                                              child: Container(
-                                                padding: EdgeInsets.only(
-                                                    left: 6.sp, right: 6.sp),
-                                                decoration: BoxDecoration(
-                                                    color: AppColor.kLightBlue
-                                                        .withOpacity(.5),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4.sp)),
-                                                child: DropdownButton(
-                                                    icon: AppIcons.icondown,
-                                                    isDense: true,
-                                                    elevation: 0,
-                                                    style: TextStyle(
-                                                      fontSize: 10.sp,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: AppColor.kblack,
-                                                    ),
-                                                    underline: Container(),
-                                                    value: dropdownSize,
-                                                    items: sizeList
-                                                        .map((e) =>
-                                                            DropdownMenuItem(
-                                                              enabled: true,
-                                                              value: e,
-                                                              child: Text(
-                                                                  'Size  $e'),
-                                                            ))
-                                                        .toList(),
-                                                    onChanged:
-                                                        (String? newValue) {
-                                                      dropdownSize = newValue!;
-                                                    }),
-                                              ),
-                                            ),
-                                            AppSize.kSizedBox10h,
-                                            LineThroughText(
-                                                text:
-                                                    '₹ ${cartController.cartProducts.value[0].mrp}',
-                                                fontSize: 14.sp),
+                                            CardText(
+                                                text: cartController
+                                                    .cartProducts
+                                                    .value[index]
+                                                    .productname,
+                                                fontSize: 13.sp,
+                                                width: 55.w),
+                                            GestureDetector(
+                                                onTap: () {
+                                                  cartController.removeCartItem(
+                                                      cartController
+                                                          .cartProducts
+                                                          .value[index]
+                                                          .id
+                                                          .toString());
+                                                },
+                                                child: AppIcons.iconDelete)
                                           ],
                                         ),
-                                        AppSize.kSizedBox10w,
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                        AppSize.kSizedBox10h,
+                                        AppSize.kSizedBox5h,
+                                        Row(
                                           children: [
-                                            Card(
-                                              margin: const EdgeInsets.all(0),
-                                              child: Container(
-                                                padding: EdgeInsets.only(
-                                                    left: 2.sp, right: 6.sp),
-                                                decoration: BoxDecoration(
-                                                    color: AppColor.kLightBlue
-                                                        .withOpacity(.5),
-                                                    borderRadius:
-                                                        customBorderRadius4),
-                                                child: DropdownButton(
-                                                    icon: AppIcons.icondown,
-                                                    isDense: true,
-                                                    elevation: 0,
-                                                    style: TextStyle(
-                                                      fontSize: 10.sp,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: AppColor.kblack,
-                                                    ),
-                                                    underline: Container(),
-                                                    value: dropdownColor,
-                                                    items: colorList
-                                                        .map((e) =>
-                                                            DropdownMenuItem(
-                                                              enabled: true,
-                                                              value: e,
-                                                              child: Padding(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Card(
+                                                  margin:
+                                                      const EdgeInsets.all(0),
+                                                  child: Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 6.sp,
+                                                        right: 6.sp),
+                                                    decoration: BoxDecoration(
+                                                        color: AppColor
+                                                            .kLightBlue
+                                                            .withOpacity(.5),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    4.sp)),
+                                                    child: DropdownButton(
+                                                        icon: AppIcons.icondown,
+                                                        isDense: true,
+                                                        elevation: 0,
+                                                        style: TextStyle(
+                                                          fontSize: 10.sp,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color:
+                                                              AppColor.kblack,
+                                                        ),
+                                                        underline: Container(),
+                                                        value: dropdownSize,
+                                                        items: sizeList
+                                                            .map((e) =>
+                                                                DropdownMenuItem(
+                                                                  enabled: true,
+                                                                  value: e,
+                                                                  child: Text(
+                                                                      'Size  $e'),
+                                                                ))
+                                                            .toList(),
+                                                        onChanged:
+                                                            (String? newValue) {
+                                                          dropdownSize =
+                                                              newValue!;
+                                                        }),
+                                                  ),
+                                                ),
+                                                AppSize.kSizedBox10h,
+                                                LineThroughText(
+                                                    text:
+                                                        '₹ ${cartController.cartProducts.value[index].mrp}',
+                                                    fontSize: 14.sp),
+                                              ],
+                                            ),
+                                            AppSize.kSizedBox10w,
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Card(
+                                                  margin:
+                                                      const EdgeInsets.all(0),
+                                                  child: Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 2.sp,
+                                                        right: 6.sp),
+                                                    decoration: BoxDecoration(
+                                                        color: AppColor
+                                                            .kLightBlue
+                                                            .withOpacity(.5),
+                                                        borderRadius:
+                                                            customBorderRadius4),
+                                                    child: DropdownButton(
+                                                        icon: AppIcons.icondown,
+                                                        isDense: true,
+                                                        elevation: 0,
+                                                        style: TextStyle(
+                                                          fontSize: 10.sp,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color:
+                                                              AppColor.kblack,
+                                                        ),
+                                                        underline: Container(),
+                                                        value: dropdownColor,
+                                                        items: colorList
+                                                            .map((e) =>
+                                                                DropdownMenuItem(
+                                                                  enabled: true,
+                                                                  value: e,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsets.symmetric(
                                                                         horizontal:
                                                                             4.0,
                                                                         vertical:
                                                                             4.sp),
-                                                                child:
-                                                                    CircleAvatar(
-                                                                  radius: 10,
-                                                                  backgroundColor:
-                                                                      e,
-                                                                ),
-                                                              ),
-                                                            ))
-                                                        .toList(),
-                                                    onChanged:
-                                                        (Color? newValue) {
-                                                      dropdownColor = newValue!;
-                                                    }),
-                                              ),
+                                                                    child:
+                                                                        CircleAvatar(
+                                                                      radius:
+                                                                          10,
+                                                                      backgroundColor:
+                                                                          e,
+                                                                    ),
+                                                                  ),
+                                                                ))
+                                                            .toList(),
+                                                        onChanged:
+                                                            (Color? newValue) {
+                                                          dropdownColor =
+                                                              newValue!;
+                                                        }),
+                                                  ),
+                                                ),
+                                                AppSize.kSizedBox10h,
+                                                // Text('')
+                                                HeadTitle(
+                                                    text:
+                                                        '₹ ${cartController.cartProducts.value[index].mrp}',
+                                                    fontSize: 14.sp)
+                                              ],
                                             ),
-                                            AppSize.kSizedBox10h,
-                                            // Text('')
-                                            HeadTitle(
-                                                text:
-                                                    '₹ ${cartController.cartProducts.value[0].totalPrice}',
-                                                fontSize: 14.sp)
                                           ],
                                         ),
                                       ],
                                     ),
                                   ],
                                 ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(6.sp),
+                                      child: Container(
+                                        padding: EdgeInsets.all(6.sp),
+                                        width: 36.w,
+                                        height: 28.sp,
+                                        decoration: BoxDecoration(
+                                            color: AppColor.kLightBlue,
+                                            borderRadius: customBorderRadius4),
+                                        child: Row(
+                                          children: [
+                                            AppIcons.saveForLater,
+                                            AppSize.kSizedBox5w,
+                                            const SubTitle(
+                                              text: 'Save for Later',
+                                              color: AppColor.kDarkBlue,
+                                              fontWeight: FontWeight.w500,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(6.sp),
+                                      child: Container(
+                                        padding: EdgeInsets.only(left: 6.sp),
+                                        width: 36.w,
+                                        height: 28.sp,
+                                        decoration: BoxDecoration(
+                                            color: AppColor.kLightBlue,
+                                            borderRadius: customBorderRadius4),
+                                        child: Row(
+                                          children: [
+                                            AppIcons.buyThisNow,
+                                            AppSize.kSizedBox5w,
+                                            const SubTitle(
+                                              text: 'Buy this Now',
+                                              color: AppColor.kDarkBlue,
+                                              fontWeight: FontWeight.w500,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(6.sp),
-                                  child: Container(
-                                    padding: EdgeInsets.all(6.sp),
-                                    width: 36.w,
-                                    height: 28.sp,
-                                    decoration: BoxDecoration(
-                                        color: AppColor.kLightBlue,
-                                        borderRadius: customBorderRadius4),
-                                    child: Row(
-                                      children: [
-                                        AppIcons.saveForLater,
-                                        AppSize.kSizedBox5w,
-                                        const SubTitle(
-                                          text: 'Save for Later',
-                                          color: AppColor.kDarkBlue,
-                                          fontWeight: FontWeight.w500,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(6.sp),
-                                  child: Container(
-                                    padding: EdgeInsets.only(left: 6.sp),
-                                    width: 36.w,
-                                    height: 28.sp,
-                                    decoration: BoxDecoration(
-                                        color: AppColor.kLightBlue,
-                                        borderRadius: customBorderRadius4),
-                                    child: Row(
-                                      children: [
-                                        AppIcons.buyThisNow,
-                                        AppSize.kSizedBox5w,
-                                        const SubTitle(
-                                          text: 'Buy this Now',
-                                          color: AppColor.kDarkBlue,
-                                          fontWeight: FontWeight.w500,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                          );
+                          ;
+                        },
                       ),
                       AppSize.kSizedBox10h,
                       AppSize.kSizedBox5h,
@@ -388,12 +417,12 @@ class CartScreen extends StatelessWidget {
                                 children: [
                                   PrizeListRow(
                                     leading: SubTitle(
-                                      text: 'Items(3)',
+                                      text: 'Items(${cartController.cartProducts.value.length})',
                                       color: AppColor.kDarkBlue,
                                       fontSize: 10.sp,
                                     ),
                                     trailing: SubTitle(
-                                      text: '₹598.86',
+                                      text: cartController.cartProducts.value[0].totalPrice.toString(),
                                       color: AppColor.kDarkBlue,
                                       fontSize: 10.sp,
                                     ),

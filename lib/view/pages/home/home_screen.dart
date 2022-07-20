@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:fashio/view/constants/appConstants.dart';
+import 'package:slide_countdown/slide_countdown.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -62,42 +63,83 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       AppSize.kSizedBox10h,
-                      CarouselSlider.builder(
-                        carouselController: _controller,
-                        itemCount: homeScreenC.bannerList.value.isEmpty
-                            ? 0
-                            : homeScreenC.bannerList.value.length,
-                        itemBuilder: (BuildContext context, int index,
-                            int pageViewIndex) {
-                          return homeScreenC.bannerList.value.isNotEmpty
-                              ? CustomCarouselItem(
-                                  index: index,
-                                  title: 'Super Flash Sale \n 50% off',
-                                  imageUrl: homeScreenC
-                                      .bannerList.value[index].imgOne[0].url,
-                                  subItem: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TimeContainer(time: '08'),
-                                      const CustomColon(),
-                                      TimeContainer(time: '34'),
-                                      const CustomColon(),
-                                      TimeContainer(time: '52'),
-                                    ],
-                                  ),
-                                )
-                              : Container();
-                        },
-                        options: CarouselOptions(
-                            autoPlay: true,
-                            viewportFraction: 1,
-                            enlargeCenterPage: true,
-                            aspectRatio: 2,
-                            height: 25.h,
-                            onPageChanged: (index, reason) {
-                              _current.value = index;
-                            }),
+                      Stack(
+                        children: [
+                          CarouselSlider.builder(
+                            carouselController: _controller,
+                            itemCount: homeScreenC.bannerList.value.isEmpty
+                                ? 0
+                                : homeScreenC.bannerList.value.length,
+                            itemBuilder: (BuildContext context, int index,
+                                int pageViewIndex) {
+                              return homeScreenC.bannerList.value.isNotEmpty
+                                  ? CustomCarouselItem(
+                                      index: index,
+                                      title: 'Super Flash Sale \n 50% off',
+                                      imageUrl: homeScreenC.bannerList
+                                          .value[index].imgOne[0].url,
+                                      subItem: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: const [
+                                          // TimeContainer(time: '08'),
+                                          // const CustomColon(),
+                                          // TimeContainer(time: '34'),
+                                          // const CustomColon(),
+                                          // TimeContainer(time: '52'),
+                                        ],
+                                      ),
+                                    )
+                                  : Container();
+                            },
+                            options: CarouselOptions(
+                                autoPlay: true,
+                                viewportFraction: 1,
+                                enlargeCenterPage: true,
+                                aspectRatio: 2,
+                                height: 25.h,
+                                onPageChanged: (index, reason) {
+                                  _current.value = index;
+                                }),
+                          ),
+                          Positioned(
+                            bottom: 18.sp,
+                            left: 22.sp,
+                            child: SlideCountdownSeparated(
+                              width: 14.w,
+                              height: 14.w,
+
+                              // separatorType: SeparatorType.title,
+                              textStyle: TextStyle(
+                                  color: const Color(0xD1020D4D),
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold),
+
+                              separatorStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold),
+                              duration: homeScreenC.defaultDuration,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4.sp),
+                                  color: AppColor.kWhite),
+                            ),
+                          ),
+                           Positioned(
+                             bottom: 18.sp,
+                              left: 22.sp,
+                              child: Row(
+                            children: const [
+                             HeadTitle(text: 'Days'),
+                             AppSize.kSizedBox10w,
+                              HeadTitle(text: 'Hours'),
+                             AppSize.kSizedBox10w,
+                              HeadTitle(text: 'Minute'),
+                             AppSize.kSizedBox10w,
+                              HeadTitle(text: 'Second')
+                            ],
+                          ))
+                        ],
                       ),
                       Obx(() {
                         return Row(
@@ -136,7 +178,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       AppSize.kSizedBox10h,
                       SizedBox(
                         height: 12.h,
@@ -182,7 +223,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       SizedBox(
                         height: 33.h,
                         child: ListView.builder(
@@ -212,9 +252,16 @@ class HomeScreen extends StatelessWidget {
                                   name: homeScreenC
                                       .flashSaleList.value[index].productname
                                       .toString(),
-                                  currentPrize: homeScreenC
-                                      .flashSaleList.value[index].offerPrice
-                                      .toString(),
+                                  currentPrize: homeScreenC.flashSaleList
+                                              .value[index].offerPrice
+                                              .toString() ==
+                                          '0'
+                                      ? homeScreenC
+                                          .flashSaleList.value[index].price
+                                          .toString()
+                                      : homeScreenC
+                                          .flashSaleList.value[index].offerPrice
+                                          .toString(),
                                   originalPrize: homeScreenC
                                       .flashSaleList.value[index].price
                                       .toString(),
@@ -245,8 +292,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // const TextBar(
-                      //     firstTitle: 'Mega Sale', secondTitle: 'See more'),
                       SizedBox(
                         height: 33.h,
                         child: ListView.builder(
@@ -265,9 +310,16 @@ class HomeScreen extends StatelessWidget {
                                       .megaSaleList.value[index].imgOne[0].url,
                                   name: homeScreenC
                                       .megaSaleList.value[index].productname,
-                                  currentPrize: homeScreenC
-                                      .megaSaleList.value[index].offerPrice
-                                      .toString(),
+                                  currentPrize: homeScreenC.flashSaleList
+                                              .value[index].offerPrice
+                                              .toString() ==
+                                          '0'
+                                      ? homeScreenC
+                                          .flashSaleList.value[index].price
+                                          .toString()
+                                      : homeScreenC
+                                          .flashSaleList.value[index].offerPrice
+                                          .toString(),
                                   originalPrize: homeScreenC
                                       .megaSaleList.value[index].price
                                       .toString(),
@@ -330,15 +382,38 @@ class HomeScreen extends StatelessWidget {
                             mainAxisSpacing: 10.0,
                             mainAxisExtent: 33.h,
                           ),
-                          itemCount: 4,
+                          itemCount:
+                              homeScreenC.recommendedList.value.length.isOdd
+                                  ? homeScreenC.recommendedList.value.length - 1
+                                  : homeScreenC.recommendedList.value.length,
                           itemBuilder: (BuildContext context, int index) {
                             return ProductCard(
-                              imgSrc: imgList[index],
-                              name: 'FS - Nike Air max 270 React new',
-                              currentPrize: '2999',
-                              originalPrize: '4999',
-                              offer: '24',
+                              imgSrc: homeScreenC
+                                  .recommendedList.value[index].imgOne[0].url
+                                  .toString(),
+                              name: homeScreenC
+                                  .recommendedList.value[index].productname
+                                  .toString(),
+                              currentPrize: homeScreenC.recommendedList
+                                          .value[index].offerPrice
+                                          .toString() ==
+                                      '0'
+                                  ? homeScreenC
+                                      .recommendedList.value[index].price
+                                      .toString()
+                                  : homeScreenC
+                                      .recommendedList.value[index].offerPrice
+                                      .toString(),
+                              originalPrize: homeScreenC
+                                  .recommendedList.value[index].price
+                                  .toString(),
+                              offer: homeScreenC
+                                  .recommendedList.value[index].discount
+                                  .toString(),
                               star: true,
+                              ratingCount: double.parse(homeScreenC
+                                  .recommendedList.value[index].rating.length
+                                  .toString()),
                               imgWidth: 40.w,
                             );
                           },

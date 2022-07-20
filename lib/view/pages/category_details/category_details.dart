@@ -1,4 +1,5 @@
 import 'package:fashio/controllers/all_products_controller.dart';
+import 'package:fashio/controllers/cart_controller.dart';
 import 'package:fashio/view/constants/appConstants.dart';
 import 'package:fashio/view/pages/home/components/components.dart';
 import 'package:fashio/view/shared/components/texts.dart';
@@ -16,14 +17,19 @@ class CategoryDetails extends StatelessWidget {
 
   final allProductsController = Get.put(AllProductsController());
 
+  final CartController cartController = Get.find();
+
   var product = Get.arguments;
 
   // allProductsController.getCategoryDetails('Men');
   @override
   Widget build(BuildContext context) {
+       print(
+        '===========ithanu get product============${Get.arguments.subcategoryname}');
+
     allProductsController.getAllProductDetails();
     allProductsController.getCategoryDetails(product.subcategoryname);
-    
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.kWhite,
@@ -62,34 +68,46 @@ class CategoryDetails extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.only(top: 8.sp),
-                    child: ProductCard(
-                      imgSrc: allProductsController
-                          .categoryDetials.value[index].imgFive[0].url
-                          .toString(),
-                      name: homeScreenC.flashSaleList.value[index].productname
-                          .toString(),
-                      currentPrize:
-                          homeScreenC.flashSaleList.value[index].offerPrice == 0
-                              ? homeScreenC.flashSaleList.value[index].price
-                                  .toString()
-                              : homeScreenC
-                                  .flashSaleList.value[index].offerPrice
-                                  .toString(),
-                      originalPrize: homeScreenC
-                          .flashSaleList.value[index].price
-                          .toString(),
-                      offer: homeScreenC.flashSaleList.value[index].discount
-                          .toString(),
-                      // offer: '24',
-                      star: true,
-                      ratingCount:
-                          homeScreenC.flashSaleList.value[index].rating!.isEmpty
-                              ? 1
-                              : double.parse(homeScreenC.flashSaleList
-                                  .value[index].rating![0].rateValue
-                                  .toString()),
+                    child: GestureDetector(
+                      onTap: ()async{
+                       await productDetailC.fetchProductDetails(
+                                    homeScreenC.flashSaleList.value[index].sId
+                                        .toString());
+                                cartController.fetchCartProducts();
 
-                      imgWidth: 40.w,
+                                Get.toNamed('/product_detail');
+                              
+                      
+                      },
+                      child: ProductCard(
+                        imgSrc: allProductsController
+                            .categoryDetials.value[index].imgFive[0].url
+                            .toString(),
+                        name: homeScreenC.flashSaleList.value[index].productname
+                            .toString(),
+                        currentPrize:
+                            homeScreenC.flashSaleList.value[index].offerPrice == 0
+                                ? homeScreenC.flashSaleList.value[index].price
+                                    .toString()
+                                : homeScreenC
+                                    .flashSaleList.value[index].offerPrice
+                                    .toString(),
+                        originalPrize: homeScreenC
+                            .flashSaleList.value[index].price
+                            .toString(),
+                        offer: homeScreenC.flashSaleList.value[index].discount
+                            .toString(),
+                        // offer: '24',
+                        star: true,
+                        ratingCount:
+                            homeScreenC.flashSaleList.value[index].rating!.isEmpty
+                                ? 1
+                                : double.parse(homeScreenC.flashSaleList
+                                    .value[index].rating![0].rateValue
+                                    .toString()),
+                    
+                        imgWidth: 40.w,
+                      ),
                     ),
                   );
                 },

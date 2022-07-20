@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
+import '../search/components/searchBar.dart';
+
 class MoreCategoryScreen extends StatelessWidget {
   MoreCategoryScreen({Key? key}) : super(key: key);
 
@@ -31,7 +33,7 @@ class MoreCategoryScreen extends StatelessWidget {
               ),
             ],
           ),
-          child: const SearchBarCustom(
+          child: SearchBar(
             autofocus: false,
           ),
         ),
@@ -79,4 +81,3 @@ class MoreCategoryScreen extends StatelessWidget {
     );
   }
 }
-

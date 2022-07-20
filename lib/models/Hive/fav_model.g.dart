@@ -17,12 +17,12 @@ class FavModelAdapter extends TypeAdapter<FavModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return FavModel(
-      productId: fields[0] as String,
-      img: fields[1] as String,
-      title: fields[2] as String,
-      price: fields[3] as int,
-      offerPrice: fields[4] as double,
-      offerPercent: fields[5] as double,
+      productId: fields[0] as String?,
+      img: fields[1] as String?,
+      title: fields[2] as String?,
+      price: fields[3] as int?,
+      offerPrice: fields[4] as double?,
+      offerPercent: fields[5] as double?,
     );
   }
 

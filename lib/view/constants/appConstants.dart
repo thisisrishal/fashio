@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:bot_toast/bot_toast.dart';
+import 'package:fashio/controllers/search_controller.dart';
 import 'package:fashio/controllers/single_product_controller.dart';
 import 'package:fashio/view/shared/components/rating.dart';
 import 'package:fashio/view/shared/components/texts.dart';
@@ -10,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 final productDetailC = Get.put(SingleProductController());
+final searchController = Get.put(SearchController());
+final constPadding = EdgeInsets.all(4.sp);
 
 class Logo2 extends StatelessWidget {
   const Logo2({
@@ -27,17 +31,28 @@ class Logo2 extends StatelessWidget {
   }
 }
 
+CancelFunc toastNotification({
+  required String text,
+}) {
+  return BotToast.showText(
+      text: text,
+      contentPadding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 12.sp),
+      duration: const Duration(seconds: 2),
+      animationDuration: const Duration(milliseconds: 500),
+      animationReverseDuration: const Duration(milliseconds: 500),
+      textStyle: TextStyle(
+          color: Colors.white.withOpacity(.8),
+          fontSize: 10.sp,
+          fontWeight: FontWeight.w600),
+      borderRadius: BorderRadius.circular(6.sp),
+      align: const Alignment(0, 0.7),
+      contentColor: Colors.black);
+}
+
 SystemUiOverlayStyle customOverlayStyle(
         Color barColor, Brightness brightness) =>
     SystemUiOverlayStyle(
         statusBarColor: barColor, statusBarIconBrightness: brightness);
-
-// SystemUiOverlayStyle customStatusBarStyle() {
-//   return const SystemUiOverlayStyle(
-//       statusBarColor: Colors.white,
-//       systemNavigationBarIconBrightness: Brightness.dark,
-//       statusBarIconBrightness: Brightness.dark);
-// }
 
 class AppColor {
   static const Color kWhite = Color(0xFFFFFFFF);
@@ -344,57 +359,6 @@ class PrizeListRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [leading, trailing],
       ),
-    );
-  }
-}
-
-class SearchBarCustom extends StatelessWidget {
-  final bool autofocus;
-
-  const SearchBarCustom({
-    Key? key,
-    this.autofocus = true,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 80.w,
-      height: 6.h,
-      color: Colors.white,
-      child: Center(
-          child: TextField(
-              style: TextStyle(
-                  fontFamily: 'Poppins-SemiBold',
-                  fontWeight: FontWeight.values[4],
-                  color: AppColor.kblack.withOpacity(.6)),
-              autofocus: autofocus,
-              // enabled: false,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: AppColor.kThemeBlue.withOpacity(.4), width: 2.0),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: AppColor.kLightGrey.withOpacity(.1), width: 2.0),
-                ),
-                // enabledBorder: OutlineInputBorder(
-                //   borderSide: BorderSide(color: Colors.green, width: 2.0),
-                // ),
-                hintText: 'Search for something',
-                contentPadding: const EdgeInsets.all(10),
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: AppColor.kThemeBlue.withOpacity(.8),
-                  size: 20.sp,
-                ),
-                suffixIcon: Icon(
-                  Icons.clear,
-                  color: AppColor.kLightGrey.withOpacity(.8),
-                  size: 20.sp,
-                ),
-              ))),
     );
   }
 }

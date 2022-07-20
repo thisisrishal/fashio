@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'dart:convert';
-
 
 import 'package:fashio/models/category_model.dart';
 import 'package:fashio/models/home_screen/banner_model.dart';
@@ -7,6 +7,7 @@ import 'package:fashio/models/home_screen/flash_sale_model.dart';
 import 'package:fashio/models/home_screen/mega_sale_model.dart';
 import 'package:fashio/models/home_screen/recommended_products.dart';
 import 'package:fashio/services/AppServices.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeScreenController extends GetxController {
@@ -21,6 +22,12 @@ class HomeScreenController extends GetxController {
     super.onInit();
   }
 
+  // late Timer timer;
+  // RxInt start = 10.obs;
+  final defaultDuration = const Duration(days: 2, hours: 2, minutes: 30);
+  final defaultPadding =
+      const EdgeInsets.symmetric(horizontal: 10, vertical: 5);
+
   final flashSaleList = Rx<List<Products>>([]);
   final megaSaleList = Rx<List>([]);
   final recommendedList = Rx<List<RecommendedProduct>>([]);
@@ -31,12 +38,9 @@ class HomeScreenController extends GetxController {
     try {
       var response = await getResponse('/banner-data');
 
-
       var bannerModel = bannerModelFromJson(response);
 
       bannerList.value = bannerModel.data.bannerData;
-
-
     } catch (e) {
       throw e.toString();
     }
@@ -45,7 +49,6 @@ class HomeScreenController extends GetxController {
   fetchCategoryItems() async {
     try {
       var response = await getResponse('/category-data');
-
 
       var categoryModel = categoryModelFromJson(response);
 
@@ -86,4 +89,18 @@ class HomeScreenController extends GetxController {
       throw e.toString();
     }
   }
+
+  // void startTimer() {
+  //   const oneSec = Duration(seconds: 1);
+  //   timer = Timer.periodic(
+  //     oneSec,
+  //     (Timer timer) {
+  //       if (start.value == 0) {
+  //         timer.cancel();
+  //       } else {
+  //         start.value--;
+  //       }
+  //     },
+  //   );
+  // }
 }

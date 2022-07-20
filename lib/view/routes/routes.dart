@@ -11,6 +11,7 @@ import 'package:fashio/view/pages/mega_sale/mega_sale.dart';
 import 'package:fashio/view/pages/notification/notification.dart';
 import 'package:fashio/view/pages/offer/offer.dart';
 import 'package:fashio/view/pages/product_detail/product_deatil.dart';
+import 'package:fashio/view/pages/profile/edit_profile.dart';
 import 'package:fashio/view/pages/profile/profile.dart';
 import 'package:fashio/view/pages/register/register_one.dart';
 import 'package:fashio/view/pages/review/review_product.dart';
@@ -33,29 +34,24 @@ class Routes {
     GetPage(name: '/moreCategory', page: () => MoreCategoryScreen()),
 
     GetPage(name: '/offer', page: () => OfferScreen()),
-    GetPage(name: '/fav', page: () =>  FavouriteScreen()),
+    GetPage(name: '/fav', page: () => FavouriteScreen()),
     GetPage(name: '/product_detail', page: () => ProductDetailScreen()),
     GetPage(name: '/review_product', page: () => const ReviewProductScreen()),
     GetPage(name: '/write_review', page: () => const WriteReviewScreen()),
     GetPage(name: '/d', page: () => HomeScreen()),
     GetPage(name: '/notification', page: () => NotificationScreen()),
     GetPage(name: '/home', page: () => HomeScreen()),
-    // GetPage(name: '/', page: () => exploreScreen()),
-    GetPage(name: '/search', page: () => const SearchScreen()),
+    GetPage(name: '/search', page: () =>  SearchScreen()),
     GetPage(name: '/filter', page: () => const FilterScreen()),
-    // GetPage(name: '/', page: () => SortbyScreen()),
     GetPage(name: '/cart', page: () => CartScreen()),
-    // GetPage(name: '/', page: () => ShipToScreen()),
-    // GetPage(name: '/', page: () => PaymentScreen()),
-    // GetPage(name: '/', page: () => SuccessScreen())
     GetPage(name: '/offer', page: () => OfferScreen()),
     GetPage(name: '/account', page: () => AccountScreen()),
     GetPage(name: '/profile', page: () => ProfilePage()),
     GetPage(name: '/flashSale', page: () => FlashSaleScreen()),
     GetPage(name: '/megaSale', page: () => MegaSaleScreen()),
     GetPage(name: '/categoryDetails', page: () => CategoryDetails()),
-
-    // GetPage(name: '/', page: () => OrderScreen()),
+    GetPage(name: '/edit', page: () =>  EditProfile()),
     // GetPage(name: '/', page: () => AddressScreen()),
   ];
 }
+ 

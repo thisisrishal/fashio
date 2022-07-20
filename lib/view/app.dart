@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:fashio/view/constants/appConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -13,10 +14,8 @@ class MyApp extends StatelessWidget {
         builder: (context, orientation, deviceType) => GetMaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Fashio',
+              builder: BotToastInit(),
               theme: ThemeData(
-                // appBarTheme: Theme.of(context).appBarTheme.copyWith(
-                //       systemOverlayStyle: SystemUiOverlayStyle.dark,
-                //     ),
                 scaffoldBackgroundColor: AppColor.kWhite,
                 fontFamily: 'poppins',
               ),

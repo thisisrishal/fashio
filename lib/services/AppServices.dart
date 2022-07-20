@@ -56,20 +56,44 @@ class AppServices {
     }
   }
 
-  static Future removeCartItem(Map<String, String>  data) async {
+  static Future removeCartItem(Map<String, String> data) async {
     try {
-      final response = await dio.post('$baseUrl/remove-cart-item', data: data);
-print(response.data);
+      final response = await dio.put('$baseUrl/remove-cart-item', data: data);
       if (response.statusCode == 200) {
         var jsonString = response.data;
 
         return jsonString;
-      } else {
-        print('Failed to load data');
-        return null;
       }
     } catch (e) {
-      print('catchilanooooooooooo');
+      throw Exception(e);
+    }
+  }
+
+//? not loading data from server
+  static Future getCoupons() async {
+    try {
+      final response = await dio.get('$baseUrl/user-coupon-data');
+
+      if (response.statusCode == 200) {
+        var jsonString = response.data;
+
+        return jsonString;
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  static Future searchProduct({required String keyword}) async {
+    try {
+      final response = await dio.get('$baseUrl/search-product/$keyword');
+
+      if (response.statusCode == 200) {
+        var jsonString = response.data;
+
+        return jsonString;
+      }
+    } catch (e) {
       throw Exception(e);
     }
   }

@@ -1,15 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:fashio/controllers/cart_controller.dart';
 import 'package:fashio/controllers/fav_controller.dart';
+import 'package:fashio/controllers/home_screen_controller.dart';
 import 'package:fashio/controllers/single_product_controller.dart';
-import 'package:fashio/main.dart';
-import 'package:fashio/models/Hive/fav_model.dart';
 import 'package:fashio/view/shared/components/custom_button.dart';
 import 'package:fashio/view/shared/components/rating.dart';
 import 'package:fashio/view/shared/components/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fashio/view/constants/appConstants.dart';
@@ -19,12 +17,16 @@ class ProductDetailScreen extends StatelessWidget {
   ProductDetailScreen({Key? key}) : super(key: key);
 
   final productDetailC = Get.put(SingleProductController());
+  final homeScreenC = Get.put(HomeScreenController());
+
   final favC = Get.put(FavController());
 
   final cartC = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
+    favC.isFavItem(productDetailC.productDetails.id);
+
     List<String> bannerImage = [
       productDetailC.productDetails.imgOne[0].url,
       productDetailC.productDetails.imgTwo[0].url,
@@ -116,15 +118,25 @@ class ProductDetailScreen extends StatelessWidget {
                                 text: productDetailC.productDetails.productname,
                                 fontSize: 16.sp,
                               ),
-                              secondTitle: GestureDetector(
-                                onTap: () {
-                                  favC.addToFav();
-                                },
-                                child: const Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: AppColor.kLightGrey,
-                                ),
-                              ),
+                              secondTitle: favC.isFav.value
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        favC.removeFav(
+                                            productDetailC.productDetails.id);
+                                      },
+                                      child: const Icon(Icons.favorite_rounded,
+                                          color: Colors.red))
+                                  : GestureDetector(
+                                      onTap: () {
+                                        favC.addToFav(
+                                            productDetailC.productDetails);
+                                        // Get.snackbar(favBox., message)
+                                      },
+                                      child: const Icon(
+                                        Icons.favorite_border_outlined,
+                                        color: AppColor.kLightGrey,
+                                      ),
+                                    ),
                             ),
                             AppSize.kSizedBox10h,
                             AppSize.kSizedBox5h,
@@ -306,12 +318,11 @@ class ProductDetailScreen extends StatelessWidget {
                                                             .center,
                                                     children: [
                                                       HeadTitle(
-                                                        text: productDetailC
-                                                            .productDetails!
-                                                            .rating![0]
-                                                            .userName,
-                                                        fontSize: 12.sp,
-                                                      ),
+                                                          text: productDetailC
+                                                              .productDetails!
+                                                              .rating![0]
+                                                              .userName,
+                                                          fontSize: 12.sp),
                                                       RatingIndicator(
                                                         rating: double.parse(
                                                             productDetailC
@@ -375,7 +386,7 @@ class ProductDetailScreen extends StatelessWidget {
                               height: 33.h,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: 6,
+                                itemCount: homeScreenC.recommendedList.value.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(
                                     padding: const EdgeInsets.only(
@@ -385,11 +396,33 @@ class ProductDetailScreen extends StatelessWidget {
                                       right: 4,
                                     ),
                                     child: ProductCard(
-                                        imgSrc: imgList[index],
-                                        name: 'FS - Nike Air max 270 React new',
-                                        currentPrize: '2999',
-                                        originalPrize: '4999',
-                                        offer: '24'),
+                              imgSrc: homeScreenC
+                                  .recommendedList.value[index].imgOne[0].url
+                                  .toString(),
+                              name: homeScreenC
+                                  .recommendedList.value[index].productname
+                                  .toString(),
+                              currentPrize: homeScreenC.recommendedList
+                                          .value[index].offerPrice
+                                          .toString() ==
+                                      '0'
+                                  ? homeScreenC
+                                      .recommendedList.value[index].price
+                                      .toString()
+                                  : homeScreenC
+                                      .recommendedList.value[index].offerPrice
+                                      .toString(),
+                              originalPrize: homeScreenC
+                                  .recommendedList.value[index].price
+                                  .toString(),
+                              offer: homeScreenC
+                                  .recommendedList.value[index].discount
+                                  .toString(),
+                              star: true,
+                              ratingCount: double.parse(homeScreenC
+                                  .recommendedList.value[index].rating.length
+                                  .toString()),
+                            )
                                   );
                                 },
                               ),
@@ -439,12 +472,6 @@ class ProductDetailScreen extends StatelessWidget {
                                     .toRadixString(16)
                                     .toString();
                                 cartC.size = productDetailC.selectedSize.value;
-                                print(cartC.userId);
-                                print(cartC.productId);
-                                print(cartC.productImage);
-                                print(cartC.price);
-                                print(cartC.color);
-                                print(cartC.size);
 
                                 if (cartC.userId.isNotEmpty &&
                                     cartC.productId.isNotEmpty &&
@@ -452,9 +479,9 @@ class ProductDetailScreen extends StatelessWidget {
                                     cartC.price.isNotEmpty &&
                                     cartC.color.isNotEmpty &&
                                     cartC.size.isNotEmpty) {
-                                  Get.snackbar(
-                                      'Success', 'Product added to cart',
-                                      backgroundColor: AppColor.blueGrey);
+                                  toastNotification(
+                                    text: 'Item added to cart',
+                                  );
                                   cartC.addToCart();
                                 } else {
                                   Get.snackbar(
@@ -462,12 +489,6 @@ class ProductDetailScreen extends StatelessWidget {
                                       backgroundColor: const Color(0xffe91e63));
                                 }
 
-                                // productDetailC.
-                                Fluttertoast.showToast(
-                                  msg: "Item added to cart", // message
-                                  toastLength: Toast.LENGTH_SHORT, // length
-                                  gravity: ToastGravity.BOTTOM,
-                                );
                                 // Get.toNamed('/cart');
                               })
                       : Container()),

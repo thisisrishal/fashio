@@ -6,6 +6,7 @@ import 'models/Hive/fav_model.dart';
 import 'view/app.dart';
 
 
+
 late Box<FavModel> favBox;
 
 void main() async{
@@ -17,6 +18,10 @@ void main() async{
 
   Hive.registerAdapter(FavModelAdapter());
    favBox = await Hive.openBox<FavModel>('favBox');
+
+
+
+
 
 
   runApp(

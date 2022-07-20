@@ -2,6 +2,9 @@ import 'package:fashio/models/all_products/all_products_model.dart';
 import 'package:fashio/services/AppServices.dart';
 import 'package:get/state_manager.dart';
 
+
+
+
 class AllProductsController extends GetxController {
   @override
   void onInit() {
@@ -19,6 +22,7 @@ class AllProductsController extends GetxController {
       productList.value = products.data.products;
     }
   }
+  
 
   getCategoryDetails(String category) async {
     int count = 0;

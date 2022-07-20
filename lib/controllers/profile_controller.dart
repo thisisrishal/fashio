@@ -42,4 +42,20 @@ class ProfileController extends GetxController {
   
     }
   }
+
+  updateUserDetails(){
+
+    
+
+
+
+
+
+  }
+
+
+
+
+
+
 }
