@@ -15,6 +15,15 @@ String? validateMobile(String value) {
   }
 }
 
+String? validatePincode(String value) {
+// Indian Mobile number are of 10 digit only
+  if (value.length != 6) {
+    return 'Mobile Number must be of 10 digit';
+  } else {
+    return null;
+  }
+}
+
 String? validatePassword(String value) {
   RegExp regex =
       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');

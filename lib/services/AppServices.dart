@@ -97,4 +97,52 @@ class AppServices {
       throw Exception(e);
     }
   }
+
+  static Future getAddress(String userid) async {
+    try {
+      final response = await dio.get('$baseUrl/user-address-data/$userid');
+
+      if (response.statusCode == 200) {
+        var jsonString = response.data;
+
+        return jsonString;
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  static Future addAddress({
+    required String userid,
+    required String name,
+    required String houseName,
+    required String area,
+    required String state,
+    required String phno,
+    required String city,
+    required String pincode,
+  }) async {
+    try {
+      final response = await dio.post('$baseUrl/add-new-address', data: {
+        "userId": userid,
+        "firstName": name,
+        "lastName": " ",
+        "address1": houseName,
+        "address2": area,
+        "mobileNumber": phno,
+        "city": city,
+        "state": state,
+        "pincode": pincode
+      });
+
+      if (response.statusCode == 200) {
+        var jsonString = response.data;
+
+        return jsonString;
+      }
+    } catch (e) {
+      print(e);
+      throw Exception(e);
+    }
+  }
 }

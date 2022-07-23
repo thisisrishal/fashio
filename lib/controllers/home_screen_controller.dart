@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:fashio/models/category_model.dart';
 import 'package:fashio/models/home_screen/banner_model.dart';
 import 'package:fashio/models/home_screen/flash_sale_model.dart';

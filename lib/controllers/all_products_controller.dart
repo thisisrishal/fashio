@@ -8,7 +8,7 @@ import 'package:get/state_manager.dart';
 class AllProductsController extends GetxController {
   @override
   void onInit() {
-    getAllProductDetails();
+    getAllProductDetails(); 
 
     super.onInit();
   }

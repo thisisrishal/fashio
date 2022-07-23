@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fashio/controllers/address_controller.dart';
 import 'package:fashio/view/pages/order/order.dart';
 import 'package:fashio/view/shared/components/texts.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +7,9 @@ import 'package:get/get.dart';
 
 import 'package:fashio/view/constants/appConstants.dart';
 
-
 class AccountScreen extends StatelessWidget {
-  AccountScreen({Key? key}) : super(key: key);
+   AccountScreen({Key? key}) : super(key: key);
+  final addressC = Get.put(AddressController());
 
 
   @override
@@ -34,12 +35,20 @@ class AccountScreen extends StatelessWidget {
                   leading: ChangeIconColor.iconPerson, title: 'Profile')),
           GestureDetector(
               onTap: () {
-                Get.to(const OrderPage());
+                Get.to(const OrderPage()
+                );
               },
               child: CustomListTile(
                   leading: ChangeIconColor.iconBag, title: 'Order')),
-          CustomListTile(
-              leading: ChangeIconColor.iconlocation, title: 'Address'),
+          GestureDetector(
+            onTap: () {
+              addressC.getAddress();
+
+              Get.toNamed('/address');
+            },
+            child: CustomListTile(
+                leading: ChangeIconColor.iconlocation, title: 'Address'),
+          ),
           // GestureDetector(
           //   onTap: () {
           //     loginSignInC.logout();
@@ -61,7 +70,7 @@ class CustomListTile extends StatelessWidget {
     Key? key,
     required this.leading,
     this.title = '',
-     this.trailing,
+    this.trailing,
   }) : super(key: key);
 
   @override
@@ -71,7 +80,7 @@ class CustomListTile extends StatelessWidget {
       // dense: true,
       leading: leading,
       title: HeadTitle(text: title, fontWeight: FontWeight.bold),
-      trailing: trailing ?? SizedBox(),
+      trailing: trailing ?? const SizedBox(),
     );
   }
 }

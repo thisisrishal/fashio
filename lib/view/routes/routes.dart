@@ -1,4 +1,6 @@
 import 'package:fashio/view/pages/account/account.dart';
+import 'package:fashio/view/pages/address/add_address.dart';
+import 'package:fashio/view/pages/address/address.dart';
 import 'package:fashio/view/pages/cart/cart.dart';
 import 'package:fashio/view/pages/category_details/category_details.dart';
 import 'package:fashio/view/pages/favourite/favourite.dart';
@@ -41,7 +43,7 @@ class Routes {
     GetPage(name: '/d', page: () => HomeScreen()),
     GetPage(name: '/notification', page: () => NotificationScreen()),
     GetPage(name: '/home', page: () => HomeScreen()),
-    GetPage(name: '/search', page: () =>  SearchScreen()),
+    GetPage(name: '/search', page: () => const SearchScreen()),
     GetPage(name: '/filter', page: () => const FilterScreen()),
     GetPage(name: '/cart', page: () => CartScreen()),
     GetPage(name: '/offer', page: () => OfferScreen()),
@@ -50,8 +52,10 @@ class Routes {
     GetPage(name: '/flashSale', page: () => FlashSaleScreen()),
     GetPage(name: '/megaSale', page: () => MegaSaleScreen()),
     GetPage(name: '/categoryDetails', page: () => CategoryDetails()),
-    GetPage(name: '/edit', page: () =>  EditProfile()),
+    GetPage(name: '/edit', page: () => EditProfile()),
+    GetPage(name: '/address', page: () => AddressScreen()),
+    GetPage(name: '/addAddress', page: () =>  AddAdress()),
+
     // GetPage(name: '/', page: () => AddressScreen()),
   ];
 }
- 

@@ -21,10 +21,12 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
     searchController.isSearching.value = false;
   }
+  
 
   final homeController = Get.put(HomeScreenController());
 
   @override
+  
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
@@ -41,6 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     onTap: () => Get.offNamed('/categoryDetails',
                         arguments: homeController.categoryList.value[index]),
                     child: CustomListTile(
+                      
                         leading: Text(
                       homeController.categoryList.value[index].subcategoryname,
                       style: TextStyle(

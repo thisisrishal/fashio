@@ -79,6 +79,7 @@ class AppSize {
   static SizedBox kSizedBox20h = SizedBox(height: 3.h);
   static const SizedBox kSizedBox10w = SizedBox(width: 10);
   static const SizedBox kSizedBox20w = SizedBox(width: 20);
+
 }
 
 class AppIcons {

@@ -129,14 +129,17 @@ class HomeScreen extends StatelessWidget {
                              bottom: 18.sp,
                               left: 22.sp,
                               child: Row(
-                            children: const [
-                             HeadTitle(text: 'Days'),
-                             AppSize.kSizedBox10w,
-                              HeadTitle(text: 'Hours'),
-                             AppSize.kSizedBox10w,
-                              HeadTitle(text: 'Minute'),
-                             AppSize.kSizedBox10w,
-                              HeadTitle(text: 'Second')
+                            children:  [
+                              SizedBox(width: 12.sp),
+                              HeadTitle(text: 'Days',
+                                    fontSize: 8.sp,
+                                  ),
+                             SizedBox(width: 28.sp),
+                               HeadTitle(text: 'Hours',fontSize: 8.sp,),
+                                  SizedBox(width: 24.sp),
+                               HeadTitle(text: 'Minute',fontSize: 8.sp,),
+                              SizedBox(width: 20.sp),
+                               HeadTitle(text: 'Second',fontSize: 8.sp,)
                             ],
                           ))
                         ],
